@@ -84,6 +84,55 @@
   </div>
 </section>
 
+<!-- CALCULATOR -->
+<section class="calc-wrap">
+  <div class="wrap">
+    <div class="center" style="max-width:640px;margin:0 auto">
+      <span class="eyebrow">The maths that keeps installers up at night</span>
+      <h2 style="margin-top:12px">What are missed calls actually costing you?</h2>
+      <p style="margin-top:14px">Drag the sliders to your reality. Most installers are shocked by the yearly figure.</p>
+    </div>
+    <div class="calc">
+      <div>
+        <div class="field">
+          <label>Missed calls per week <span class="hint">— calls that ring out or hit voicemail</span></label>
+          <input type="range" id="missed" min="1" max="30" value="6">
+          <div class="val"><span id="missedVal">6</span> calls / week</div>
+        </div>
+        <div class="field">
+          <label>Roughly how many are quote enquiries?</label>
+          <input type="range" id="quotePct" min="10" max="90" value="45" step="5">
+          <div class="val"><span id="quotePctVal">45</span>% are quotes · the rest repairs/other</div>
+        </div>
+        <div class="field">
+          <label>Average value of a quote job</label>
+          <div class="presets">
+            <button data-val="2600" class="active">Boiler ~£2,600</button>
+            <button data-val="9000">Heat pump ~£9,000</button>
+          </div>
+          <div style="margin-top:12px">
+            <input class="num-input" type="number" id="jobVal" value="2600">
+          </div>
+        </div>
+        <div class="field">
+          <label>What share of missed quotes do you reckon you actually lose?</label>
+          <input type="range" id="lossPct" min="10" max="80" value="35" step="5">
+          <div class="val">You lose about <span id="lossPctVal">35</span>% of them</div>
+        </div>
+      </div>
+      <div class="result">
+        <div class="label">Revenue slipping away — per month</div>
+        <div class="money" id="perMonth">£0</div>
+        <hr>
+        <div class="label">Per year</div>
+        <div class="money year" id="perYear">£0</div>
+        <div class="foot" id="footNote">Repair calls counted at a conservative £300 job value.</div>
+        <a href="book.html" class="btn btn-primary" style="margin-top:20px;justify-content:center">Recover it for £397/month →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- HOW IT WORKS -->
 <section class="how">
   <div class="wrap">
@@ -136,58 +185,17 @@
       </div>
     </div>
 
+
+    <div class="flowstrip">
+      <span>📞 Call missed</span><em>→</em>
+      <span>💬 AI holds the conversation</span><em>→</em>
+      <span>🏷 Tagged &amp; prioritised</span><em>→</em>
+      <span>📥 Lands in your pipeline</span><em>→</em>
+      <span>🙋 You&rsquo;re notified</span>
+    </div>
     <div class="highlight-band">
       <h3>The honest promise: it sounds like your firm, not a call centre.</h3>
       <p>Knowledgeable, local, to the point. It never invents a price or an appointment, never over-promises, and always speaks the way a good tradesperson would text a customer back. That's why people reply — and why they book.</p>
-    </div>
-  </div>
-</section>
-
-<!-- CALCULATOR -->
-<section class="calc-wrap">
-  <div class="wrap">
-    <div class="center" style="max-width:640px;margin:0 auto">
-      <span class="eyebrow">The maths that keeps installers up at night</span>
-      <h2 style="margin-top:12px">What are missed calls actually costing you?</h2>
-      <p style="margin-top:14px">Drag the sliders to your reality. Most installers are shocked by the yearly figure.</p>
-    </div>
-    <div class="calc">
-      <div>
-        <div class="field">
-          <label>Missed calls per week <span class="hint">— calls that ring out or hit voicemail</span></label>
-          <input type="range" id="missed" min="1" max="30" value="6">
-          <div class="val"><span id="missedVal">6</span> calls / week</div>
-        </div>
-        <div class="field">
-          <label>Roughly how many are quote enquiries?</label>
-          <input type="range" id="quotePct" min="10" max="90" value="45" step="5">
-          <div class="val"><span id="quotePctVal">45</span>% are quotes · the rest repairs/other</div>
-        </div>
-        <div class="field">
-          <label>Average value of a quote job</label>
-          <div class="presets">
-            <button data-val="2600" class="active">Boiler ~£2,600</button>
-            <button data-val="9000">Heat pump ~£9,000</button>
-          </div>
-          <div style="margin-top:12px">
-            <input class="num-input" type="number" id="jobVal" value="2600">
-          </div>
-        </div>
-        <div class="field">
-          <label>What share of missed quotes do you reckon you actually lose?</label>
-          <input type="range" id="lossPct" min="10" max="80" value="35" step="5">
-          <div class="val">You lose about <span id="lossPctVal">35</span>% of them</div>
-        </div>
-      </div>
-      <div class="result">
-        <div class="label">Revenue slipping away — per month</div>
-        <div class="money" id="perMonth">£0</div>
-        <hr>
-        <div class="label">Per year</div>
-        <div class="money year" id="perYear">£0</div>
-        <div class="foot" id="footNote">Repair calls counted at a conservative £300 job value.</div>
-        <a href="book.html" class="btn btn-primary" style="margin-top:20px;justify-content:center">Recover it for £397/month →</a>
-      </div>
     </div>
   </div>
 </section>
@@ -231,15 +239,15 @@
     <div class="center" style="max-width:680px;margin:0 auto">
       <span class="eyebrow">Grows with you</span>
       <h2 style="margin-top:12px">Start by plugging the leak. Then turn it into a machine.</h2>
-      <p style="margin-top:14px">The core system pays for itself on missed calls alone. As you settle in, these bolt on to squeeze more out of every customer you've ever had — added as they're ready, never before they're proven.</p>
+      <p style="margin-top:14px">The core system pays for itself on missed calls alone. As you settle in, these are included free as Relance evolves — added as they're ready, never before they're proven.</p>
     </div>
     <div class="road-grid">
-      <div class="road"><span class="soon">Coming</span><h3>Quote follow-up</h3><p>Automatically chase the quotes customers never got back to you on — in your voice, at the right moment. This is where installers leave the most money.</p></div>
-      <div class="road"><span class="soon">Coming</span><h3>Review engine</h3><p>The second a job is marked won, the customer gets a friendly nudge for a Google review — quietly building the reputation that wins the next ten jobs.</p></div>
-      <div class="road"><span class="soon">Coming</span><h3>Annual service reminders</h3><p>Every past customer gets a timely reminder when their boiler service is due. Recurring bookings on autopilot, from a list you already own.</p></div>
-      <div class="road"><span class="soon">Coming</span><h3>Owner ROI reports</h3><p>A plain monthly summary: leads recovered, estimated value saved, response times. See exactly what you're getting for your money.</p></div>
-      <div class="road"><span class="soon">Coming</span><h3>Database reactivation</h3><p>A one-off campaign to your dormant customer list that often pays for the whole setup in week one.</p></div>
-      <div class="road"><span class="soon">Coming</span><h3>Voice AI</h3><p>When you're ready, a natural-sounding voice that can actually pick up and talk — the premium tier, layered on once the texting system has a track record for you.</p></div>
+      <div class="road"><span class="soon">Included free</span><h3>Quote follow-up</h3><p>Automatically chase the quotes customers never got back to you on — in your voice, at the right moment. This is where installers leave the most money.</p></div>
+      <div class="road"><span class="soon">Included free</span><h3>Review engine</h3><p>The second a job is marked won, the customer gets a friendly nudge for a Google review — quietly building the reputation that wins the next ten jobs.</p></div>
+      <div class="road"><span class="soon">Included free</span><h3>Annual service reminders</h3><p>Every past customer gets a timely reminder when their boiler service is due. Recurring bookings on autopilot, from a list you already own.</p></div>
+      <div class="road"><span class="soon">Included free</span><h3>Owner ROI reports</h3><p>A plain monthly summary: leads recovered, estimated value saved, response times. See exactly what you're getting for your money.</p></div>
+      <div class="road"><span class="soon">Included free</span><h3>Database reactivation</h3><p>A one-off campaign to your dormant customer list that often pays for the whole setup in week one.</p></div>
+      <div class="road"><span class="soon">Included free</span><h3>Voice AI</h3><p>When you're ready, a natural-sounding voice that can actually pick up and talk — the premium tier, layered on once the texting system has a track record for you.</p></div>
     </div>
   </div>
 </section>
@@ -359,5 +367,6 @@
   }));
   calc();
 </script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

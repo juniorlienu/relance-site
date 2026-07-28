@@ -214,3 +214,8 @@ footer .brand{color:#fff}
 .book-points .tick{color:var(--amber)}
 
 .rl{color:var(--amber);font-weight:700}
+
+/* ---- pipeline / process flow strip ---- */
+.flowstrip{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin:40px auto 0;max-width:980px}
+.flowstrip span{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:10px 18px;font-weight:600;font-size:.92rem;color:var(--navy);box-shadow:var(--shadow)}
+.flowstrip em{color:var(--amber);font-style:normal;font-weight:800}
