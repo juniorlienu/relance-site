@@ -219,3 +219,10 @@ footer .brand{color:#fff}
 .flowstrip{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin:40px auto 0;max-width:980px}
 .flowstrip span{background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:10px 18px;font-weight:600;font-size:.92rem;color:var(--navy);box-shadow:var(--shadow)}
 .flowstrip em{color:var(--amber);font-style:normal;font-weight:800}
+
+/* ---- hero value strip ---- */
+.valuestrip{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px;padding-top:30px;border-top:1px solid rgba(255,255,255,.14)}
+.valuestrip div{display:flex;flex-direction:column;gap:5px}
+.valuestrip b{color:#fff;font-size:1rem;font-weight:700;letter-spacing:-.01em}
+.valuestrip span{color:#9fb2c4;font-size:.9rem;line-height:1.45}
+@media(max-width:820px){.valuestrip{grid-template-columns:1fr;gap:18px}}
