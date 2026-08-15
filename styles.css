@@ -267,3 +267,13 @@ footer .brand{color:#fff;justify-content:center;margin-bottom:8px}
 .fab-pop a{display:block;margin-top:12px;background:var(--amber);color:#fff;text-align:center;font-weight:800;text-decoration:none;border-radius:10px;padding:10px}
 .fab-btn{display:inline-flex;align-items:center;gap:.55rem;background:var(--amber);color:#fff;border:0;border-radius:999px;padding:14px 22px;font-weight:800;font-size:.95rem;cursor:pointer;box-shadow:0 10px 30px rgba(255,122,26,.45);animation:fpulse 2.6s infinite}
 @keyframes fpulse{0%,100%{box-shadow:0 10px 30px rgba(255,122,26,.45)}50%{box-shadow:0 10px 42px rgba(255,122,26,.75)}}
+
+/* ---- embedded owner digest ---- */
+.dashwrap{margin-top:40px;border-radius:20px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-lg);background:var(--panel);position:relative}
+.dashbar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#0e1a29;border-bottom:1px solid var(--line)}
+.dashbar i{width:11px;height:11px;border-radius:50%;background:#33415a;display:inline-block}
+.dashbar i:nth-child(1){background:#ff5f57}.dashbar i:nth-child(2){background:#febc2e}.dashbar i:nth-child(3){background:#28c840}
+.dashbar span{margin-left:10px;color:var(--slate);font-size:.8rem}
+.dashwrap iframe{width:100%;height:820px;border:0;display:block;background:var(--bg)}
+@media(max-width:700px){.dashwrap iframe{height:640px}}
+.dashnote{text-align:center;color:var(--slate);font-size:.9rem;margin-top:18px}
