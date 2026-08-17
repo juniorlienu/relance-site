@@ -67,6 +67,66 @@
   </div>
 </section>
 
+
+<!-- CALCULATOR -->
+<section class="calc-wrap">
+  <div class="wrap">
+    <div class="center rv" style="max-width:660px;margin:0 auto">
+      <span class="eyebrow">The maths most clinics never do</span>
+      <h2 style="margin-top:12px">What are unanswered enquiries costing you?</h2>
+      <p style="margin-top:14px">Drag the sliders to your reality. Most injectors are surprised by the yearly figure, because a lost client isn&rsquo;t one treatment &mdash; it&rsquo;s every treatment they&rsquo;d have come back for.</p>
+    </div>
+    <div class="calc rv">
+      <div>
+        <div class="field">
+          <label>Enquiries you don&rsquo;t answer straight away <span class="hint">&mdash; DMs, texts and missed calls, per week</span></label>
+          <input type="range" id="aMissed" min="1" max="40" value="8">
+          <div class="val"><span id="aMissedVal">8</span> per week</div>
+        </div>
+        <div class="field">
+          <label>How many are about training courses?</label>
+          <input type="range" id="aCoursePct" min="0" max="60" value="15" step="5">
+          <div class="val"><span id="aCoursePctVal">15</span>% courses &middot; the rest are treatments</div>
+        </div>
+        <div class="field">
+          <label>Average treatment value</label>
+          <div class="presets">
+            <button data-val="200" class="active">Anti-wrinkle ~&pound;200</button>
+            <button data-val="280">Filler ~&pound;280</button>
+            <button data-val="450">Package ~&pound;450</button>
+          </div>
+          <div style="margin-top:12px">
+            <input class="num-input" type="number" id="aTreatVal" value="200">
+          </div>
+        </div>
+        <div class="field">
+          <label>Average course value</label>
+          <input class="num-input" type="number" id="aCourseVal" value="1200">
+        </div>
+        <div class="field">
+          <label>What share of slow replies do you reckon you lose?</label>
+          <input type="range" id="aLossPct" min="10" max="80" value="30" step="5">
+          <div class="val">You lose about <span id="aLossPctVal">30</span>% of them</div>
+        </div>
+        <div class="field">
+          <label>How often does a happy client come back each year?</label>
+          <input type="range" id="aRepeat" min="1" max="4" value="2" step="1">
+          <div class="val"><span id="aRepeatVal">2</span> visits a year</div>
+        </div>
+      </div>
+      <div class="result">
+        <div class="label">Slipping away &mdash; per month</div>
+        <div class="money" id="aPerMonth">&pound;0</div>
+        <hr>
+        <div class="label">Per year, counting repeat visits</div>
+        <div class="money year" id="aPerYear">&pound;0</div>
+        <div class="foot" id="aFoot">Course enquiries counted once; treatment clients counted across their repeat visits.</div>
+        <a href="book.html" class="btn btn-primary" style="margin-top:20px;justify-content:center">Recover it for &pound;397/month &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="how">
   <div class="wrap" style="max-width:820px">
     <div class="center">
@@ -124,6 +184,39 @@
   </div>
 </footer>
 
+
+<script>
+(function(){
+  var el=function(id){return document.getElementById(id)};
+  var missed=el('aMissed'), coursePct=el('aCoursePct'), lossPct=el('aLossPct'),
+      repeat=el('aRepeat'), treatVal=el('aTreatVal'), courseVal=el('aCourseVal');
+  if(!missed) return;
+  var presets=document.querySelectorAll('.presets button');
+  function fmt(n){ return '\u00A3' + Math.round(n).toLocaleString('en-GB'); }
+  function calc(){
+    el('aMissedVal').textContent = missed.value;
+    el('aCoursePctVal').textContent = coursePct.value;
+    el('aLossPctVal').textContent = lossPct.value;
+    el('aRepeatVal').textContent = repeat.value;
+    var perWeek=+missed.value, cShare=+coursePct.value/100, loss=+lossPct.value/100,
+        tVal=+treatVal.value||0, cVal=+courseVal.value||0, visits=+repeat.value;
+    var courseWk=perWeek*cShare, treatWk=perWeek*(1-cShare);
+    var lostCourse=courseWk*loss, lostTreat=treatWk*loss;
+    // month: first visit value only
+    var monthly=(lostTreat*tVal + lostCourse*cVal)*4.33;
+    // year: treatments counted across repeat visits, courses once
+    var yearly=(lostTreat*52*tVal*visits) + (lostCourse*52*cVal);
+    el('aPerMonth').textContent=fmt(monthly);
+    el('aPerYear').textContent=fmt(yearly);
+  }
+  [missed,coursePct,lossPct,repeat,treatVal,courseVal].forEach(function(x){x.addEventListener('input',calc)});
+  presets.forEach(function(b){b.addEventListener('click',function(){
+    presets.forEach(function(x){x.classList.remove('active')});
+    b.classList.add('active'); treatVal.value=b.dataset.val; calc();
+  })});
+  calc();
+})();
+</script>
 <script src="site.js" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
