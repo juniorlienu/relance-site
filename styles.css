@@ -277,3 +277,27 @@ footer .brand{color:#fff;justify-content:center;margin-bottom:8px}
 .dashwrap iframe{width:100%;height:820px;border:0;display:block;background:var(--bg)}
 @media(max-width:700px){.dashwrap iframe{height:640px}}
 .dashnote{text-align:center;color:var(--slate);font-size:.9rem;margin-top:18px}
+
+/* ---- industry selector modal ---- */
+.ibackdrop{position:fixed;inset:0;background:rgba(4,9,16,.72);backdrop-filter:blur(6px);z-index:200;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;transition:opacity .3s ease}
+.ibackdrop.show{opacity:1}
+.imodal{background:#101d2e;border:1px solid var(--line);border-radius:24px;max-width:1000px;width:100%;max-height:92vh;overflow:auto;padding:44px 40px 32px;box-shadow:0 40px 120px rgba(0,0,0,.6);transform:translateY(16px) scale(.985);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.ibackdrop.show .imodal{transform:none}
+@media(max-width:680px){.imodal{padding:30px 22px 24px;border-radius:20px}}
+.imodal .itop{display:flex;justify-content:flex-end;align-items:center;gap:16px;margin-bottom:6px}
+.imodal .iclose{background:transparent;border:0;color:var(--slate);font-size:1.5rem;line-height:1;cursor:pointer;padding:4px 8px;font-family:inherit}
+.imodal .iclose:hover{color:#fff}
+.imodal h2{text-align:center;font-size:clamp(1.6rem,3.4vw,2.35rem);max-width:20ch;margin:0 auto}
+.imodal .isub{text-align:center;color:var(--slate);margin-top:12px;font-size:1rem}
+.icards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+@media(max-width:820px){.icards{grid-template-columns:1fr}}
+.icard{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:250px;border-radius:16px;padding:22px;text-decoration:none;border:1px solid var(--line);overflow:hidden;transition:transform .18s ease,border-color .18s ease}
+.icard:hover{transform:translateY(-4px);border-color:rgba(255,122,26,.6)}
+.icard .iimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.icard .iscrim{position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(9,16,26,0) 30%,rgba(9,16,26,.86) 82%)}
+.icard h3{position:relative;z-index:1;color:#fff;font-size:1.3rem;display:flex;align-items:center;gap:.4rem}
+.icard h3 span{color:var(--amber)}
+.icard p{position:relative;z-index:1;color:#b9c7d6;font-size:.86rem;margin-top:6px}
+.iother{display:block;text-align:center;margin-top:26px;color:var(--amber);font-weight:700;text-decoration:none;font-size:1rem}
+.iother:hover{text-decoration:underline}
+.ifoot{text-align:center;color:var(--slate);font-size:.78rem;margin-top:18px;opacity:.75}

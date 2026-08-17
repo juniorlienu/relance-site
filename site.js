@@ -1,5 +1,41 @@
 // Relance site interactions: scroll reveals, animated conversations, demo bubble.
 (function(){
+  // ---- industry selector modal (first visit only) ----
+  function industryModal(){
+    if(document.body.hasAttribute('data-no-modal')) return;
+    try{ if(localStorage.getItem('relance-industry')) return; }catch(e){}
+    var INDUSTRIES = [
+      {href:'heating.html',   img:'ind-heating.svg',    name:'Heating &amp; Home Services', sub:'Boilers &middot; heat pumps &middot; plumbing'},
+      {href:'aesthetics.html', img:'ind-aesthetics.svg', name:'Beauty &amp; Aesthetics',     sub:'Clinics &middot; injectors &middot; academies'},
+      {href:'clinics.html',    img:'ind-clinics.svg',    name:'Clinics &amp; Therapists',    sub:'Chiropractors &middot; physios &middot; sports injury'}
+    ];
+    var back=document.createElement('div'); back.className='ibackdrop';
+    back.innerHTML='<div class="imodal" role="dialog" aria-modal="true" aria-label="Choose your industry">'+
+      '<div class="itop"><button class="iclose" type="button" aria-label="Close">&times;</button></div>'+
+      '<h2>We built <span style="color:var(--amber)">Relance</span> specifically for businesses like yours</h2>'+
+      '<p class="isub">Choose your industry and see what it recovers.</p>'+
+      '<div class="icards">'+ INDUSTRIES.map(function(i){
+        return '<a class="icard" href="'+i.href+'" data-ind="'+i.href+'">'+
+          '<img class="iimg" src="'+i.img+'" alt="" aria-hidden="true">'+
+          '<span class="iscrim"></span>'+
+          '<h3>'+i.name+' <span>&rsaquo;</span></h3><p>'+i.sub+'</p></a>';
+      }).join('') +'</div>'+
+      '<a class="iother" href="book.html">I\'m in a different industry &rarr;</a>'+
+      '<p class="ifoot">We remember your choice so you only see this once.</p>'+
+      '</div>';
+    document.body.appendChild(back);
+    requestAnimationFrame(function(){ back.classList.add('show'); });
+    function remember(v){ try{ localStorage.setItem('relance-industry', v||'skipped'); }catch(e){} }
+    function close(){ remember('skipped'); back.classList.remove('show'); setTimeout(function(){ back.remove(); },300); }
+    back.querySelector('.iclose').addEventListener('click', close);
+    back.addEventListener('click', function(e){ if(e.target===back) close(); });
+    document.addEventListener('keydown', function esc(e){ if(e.key==='Escape'){ close(); document.removeEventListener('keydown', esc);} });
+    back.querySelectorAll('.icard, .iother').forEach(function(a){
+      a.addEventListener('click', function(){ remember(a.getAttribute('data-ind')||'other'); });
+    });
+  }
+  setTimeout(industryModal, 900);
+
   // ---- scroll reveals ----
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });

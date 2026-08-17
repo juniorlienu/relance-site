@@ -1,0 +1,24 @@
+<svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Heating and home services">
+  <defs>
+    <linearGradient id="hbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#20344c"/><stop offset="1" stop-color="#101d2e"/>
+    </linearGradient>
+    <linearGradient id="flame" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#ff7a1a"/><stop offset="1" stop-color="#ffc46b"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="280" fill="url(#hbg)"/>
+  <g opacity=".28" stroke="#ff7a1a" fill="none" stroke-width="2">
+    <path d="M40 250 v-60 a14 14 0 0 1 14-14 h60"/><path d="M300 250 v-90 a14 14 0 0 0-14-14 h-40"/>
+    <circle cx="40" cy="176" r="5" fill="#ff7a1a" stroke="none"/><circle cx="300" cy="160" r="5" fill="#ff7a1a" stroke="none"/>
+  </g>
+  <!-- boiler unit -->
+  <rect x="132" y="70" width="136" height="150" rx="14" fill="#16273c" stroke="rgba(255,255,255,.14)" stroke-width="2"/>
+  <rect x="150" y="90" width="100" height="52" rx="8" fill="#0d1826"/>
+  <circle cx="200" cy="116" r="17" fill="none" stroke="#ff7a1a" stroke-width="3"/>
+  <path d="M200 105 l0 11 8 6" stroke="#ffc46b" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- flame -->
+  <path d="M200 208 c-16-10-22-24-14-38 3 8 8 11 12 12 -5-14 1-27 14-36 -3 12 3 18 10 25 6 6 9 13 9 20 0 12-13 22-31 17z" fill="url(#flame)"/>
+  <rect x="156" y="162" width="88" height="7" rx="3.5" fill="rgba(255,255,255,.12)"/>
+  <rect x="156" y="176" width="56" height="7" rx="3.5" fill="rgba(255,255,255,.08)"/>
+</svg>

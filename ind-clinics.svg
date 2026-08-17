@@ -1,0 +1,29 @@
+<svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Clinics and therapists">
+  <defs>
+    <linearGradient id="cbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#163a30"/><stop offset="1" stop-color="#101d2e"/>
+    </linearGradient>
+    <linearGradient id="grn" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8ef0b8"/><stop offset="1" stop-color="#2fd07a"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="280" fill="url(#cbg)"/>
+  <!-- spine -->
+  <g transform="translate(200 34)">
+    <path d="M0 0 C-14 26 14 52 0 78 C-14 104 14 130 0 156 C-14 182 10 200 0 214" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="3"/>
+    <g fill="url(#grn)">
+      <rect x="-26" y="6" width="52" height="16" rx="8" opacity=".85"/>
+      <rect x="-24" y="38" width="48" height="16" rx="8" opacity=".75"/>
+      <rect x="-27" y="70" width="54" height="17" rx="8.5"/>
+      <rect x="-24" y="104" width="48" height="16" rx="8" opacity=".75"/>
+      <rect x="-22" y="136" width="44" height="15" rx="7.5" opacity=".6"/>
+      <rect x="-20" y="166" width="40" height="14" rx="7" opacity=".5"/>
+    </g>
+    <!-- pain pulse on the highlighted vertebra -->
+    <circle cx="0" cy="78" r="30" fill="none" stroke="#8ef0b8" stroke-width="2" opacity=".55"/>
+    <circle cx="0" cy="78" r="44" fill="none" stroke="#8ef0b8" stroke-width="1.5" opacity=".28"/>
+  </g>
+  <!-- hands -->
+  <path d="M96 128 c14-12 30-14 44-6 l10 6 -8 12 -12-6 c-10-4-20 0-28 8z" fill="rgba(255,255,255,.4)"/>
+  <path d="M304 128 c-14-12-30-14-44-6 l-10 6 8 12 12-6 c10-4 20 0 28 8z" fill="rgba(255,255,255,.4)"/>
+</svg>

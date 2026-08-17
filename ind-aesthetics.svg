@@ -1,0 +1,30 @@
+<svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Beauty and aesthetics">
+  <defs>
+    <linearGradient id="abg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3a2340"/><stop offset="1" stop-color="#131d2e"/>
+    </linearGradient>
+    <linearGradient id="pink" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f0a6d6"/><stop offset="1" stop-color="#c86fae"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="280" fill="url(#abg)"/>
+  <g opacity=".3">
+    <circle cx="60" cy="60" r="3" fill="#f0a6d6"/><circle cx="340" cy="70" r="4" fill="#f0a6d6"/>
+    <circle cx="320" cy="220" r="3" fill="#f0a6d6"/><circle cx="70" cy="215" r="2.5" fill="#f0a6d6"/>
+  </g>
+  <!-- face profile -->
+  <path d="M150 60 c40 0 66 30 66 68 0 22-8 34-8 44 0 8 10 8 10 18 0 8-12 10-12 18 0 10 6 12 6 20 0 14-18 22-38 22" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="3" stroke-linecap="round"/>
+  <!-- lips highlight -->
+  <path d="M182 176 c8-6 18-6 26 0 -8 8-18 8-26 0z" fill="url(#pink)"/>
+  <!-- syringe -->
+  <g transform="rotate(-38 300 150)">
+    <rect x="252" y="140" width="96" height="20" rx="6" fill="#16273c" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+    <rect x="258" y="146" width="58" height="8" rx="4" fill="url(#pink)"/>
+    <rect x="344" y="146" width="30" height="8" rx="4" fill="rgba(255,255,255,.55)"/>
+    <rect x="236" y="134" width="18" height="32" rx="5" fill="#16273c" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+  </g>
+  <g opacity=".9">
+    <path d="M300 84 l4 11 11 4 -11 4 -4 11 -4-11 -11-4 11-4z" fill="#ffd9f0"/>
+    <path d="M104 118 l3 8 8 3 -8 3 -3 8 -3-8 -8-3 8-3z" fill="#ffd9f0" opacity=".7"/>
+  </g>
+</svg>
