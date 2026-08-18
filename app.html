@@ -47,13 +47,20 @@
 
 <section>
   <div class="wrap">
+    <div class="indtabs" role="tablist" aria-label="Choose an industry">
+      <button class="ind on" data-ind="heating" type="button" role="tab" aria-selected="true">Heating &amp; renewables</button>
+      <button class="ind" data-ind="aesthetics" type="button" role="tab" aria-selected="false">Beauty &amp; aesthetics</button>
+      <button class="ind" data-ind="clinics" type="button" role="tab" aria-selected="false">Clinics &amp; therapists</button>
+    </div>
+    <p class="indnote">Every screen below switches with you. Same system, your industry's language.</p>
+
     <div class="appgrid">
 
       <div class="slot rv">
         <div class="phone"><div class="screen">
           <div class="notch"><span>9:41</span><span>&#9679;&#9679;&#9679;</span></div>
           <div class="livewrap">
-            <iframe class="liveframe" src="https://missed-call-router.vercel.app/api/digest?demo=1&amp;app=1" title="The Relance dashboard running inside the app" loading="lazy"></iframe>
+            <iframe id="liveframe" class="liveframe" src="https://missed-call-router.vercel.app/api/digest?demo=1&amp;app=1&amp;vertical=heating" title="The Relance dashboard running inside the app" loading="lazy"></iframe>
           </div>
           <div class="tabs"><div class="tab on"><i></i>Today</div><div class="tab"><i></i>Inbox</div><div class="tab"><i></i>Pipeline</div><div class="tab"><i></i>Diary</div></div>
         </div></div>
@@ -63,14 +70,8 @@
       <div class="slot rv">
         <div class="phone"><div class="screen">
           <div class="notch"><span>9:41</span><span>&#9679;&#9679;&#9679;</span></div>
-          <div class="appbar"><div class="t"><span class="ring"></span>Inbox</div><div class="av">MH</div></div>
-          <div class="body">
-            <div class="ph-conv"><div class="ph-ini a">JP</div><div class="c"><div class="n"><b>James Preston</b><span class="tm">2m</span></div><p>Ours is about 15 years old, it keeps&hellip;</p><span class="ph-pill ai">Relance replying</span></div></div>
-            <div class="ph-conv"><div class="ph-ini">SD</div><div class="c"><div class="n"><b>Sarah Doyle</b><span class="tm">18m</span></div><p>Perfect, Thursday at 10 works for us</p><span class="ph-pill ai">Booked</span></div></div>
-            <div class="ph-conv"><div class="ph-ini">MR</div><div class="c"><div class="n"><b>Mo Rahman</b><span class="tm">1h</span></div><p>Boiler&rsquo;s leaking and there&rsquo;s no heating&hellip;</p><span class="ph-pill h">Needs you</span></div></div>
-            <div class="ph-conv"><div class="ph-ini">EH</div><div class="c"><div class="n"><b>Ellie Hart</b><span class="tm">3h</span></div><p>I need CP12s for three properties</p><span class="ph-pill ai">Answered</span></div></div>
-            <div class="ph-conv"><div class="ph-ini">TW</div><div class="c"><div class="n"><b>Tom Whitaker</b><span class="tm">Yest</span></div><p>Thanks, that&rsquo;s great</p></div></div>
-          </div>
+          <div class="appbar"><div class="t"><span class="ring"></span>Inbox</div><div class="av" id="avInbox">MH</div></div>
+          <div class="body" id="inboxBody"></div>
           <div class="tabs"><div class="tab"><i></i>Today</div><div class="tab on"><i></i>Inbox</div><div class="tab"><i></i>Pipeline</div><div class="tab"><i></i>Diary</div></div>
         </div></div>
         <div class="cap"><b>Inbox</b><span>Calls, texts and messages in one list. Orange means <b class="rl">Relance</b> has it. Green means it wants you.</span></div>
@@ -79,17 +80,8 @@
       <div class="slot rv">
         <div class="phone"><div class="screen">
           <div class="notch"><span>9:41</span><span>&#9679;&#9679;&#9679;</span></div>
-          <div class="appbar"><div class="t"><span class="ring"></span>James Preston</div><div class="av">MH</div></div>
-          <div class="body">
-            <div class="ph-tbar"><div class="ph-ini a">JP</div><div><b>James Preston</b><br><span>Missed call &middot; 19:42</span></div></div>
-            <div class="ph-msg out">Hi James, sorry we missed your call. This is Meridian Heating. What can we help with?</div>
-            <span class="ph-sig">Relance &middot; 19:42</span>
-            <div class="ph-msg in">How much roughly for a new combi? Ours is 15 years old</div>
-            <div class="ph-msg out">Most combi swaps we do come in between &pound;2,200 and &pound;3,100 fitted, depending on the boiler and the pipework. If it&rsquo;s 15 years old it&rsquo;s worth a proper look. Would you like me to book you in for a free survey?</div>
-            <span class="ph-sig">Relance &middot; 19:43</span>
-            <div class="ph-msg in">Yes please, evenings are easier</div>
-            <div class="ph-act"><span>Take over</span><span class="p">Call James</span></div>
-          </div>
+          <div class="appbar"><div class="t"><span class="ring"></span><span id="threadName">James Preston</span></div><div class="av" id="avThread">MH</div></div>
+          <div class="body" id="threadBody"></div>
           <div class="tabs"><div class="tab"><i></i>Today</div><div class="tab on"><i></i>Inbox</div><div class="tab"><i></i>Pipeline</div><div class="tab"><i></i>Diary</div></div>
         </div></div>
         <div class="cap"><b>The conversation</b><span>Every message it sends is signed. One tap and you take the wheel.</span></div>
@@ -98,18 +90,8 @@
       <div class="slot rv">
         <div class="phone"><div class="screen">
           <div class="notch"><span>9:41</span><span>&#9679;&#9679;&#9679;</span></div>
-          <div class="appbar"><div class="t"><span class="ring"></span>Pipeline</div><div class="av">MH</div></div>
-          <div class="body">
-            <div class="ph-sect">Value recovered, last 7 days</div>
-            <div class="ph-bars"><i style="height:14%"></i><i style="height:84%"></i><i style="height:98%"></i><i style="height:26%"></i><i style="height:61%"></i><i style="height:76%"></i><i style="height:6%"></i></div>
-            <div class="ph-sect">Open by stage</div>
-            <div class="ph-stg"><span class="sn">New</span><div class="tr"><i style="width:100%"></i></div><span class="sv">&pound;5.3k</span></div>
-            <div class="ph-stg"><span class="sn">In conversation</span><div class="tr"><i style="width:53%"></i></div><span class="sv">&pound;2.8k</span></div>
-            <div class="ph-stg"><span class="sn">Quote sent</span><div class="tr"><i style="width:47%"></i></div><span class="sv">&pound;2.5k</span></div>
-            <div class="ph-stg"><span class="sn">Visit booked</span><div class="tr"><i style="width:49%"></i></div><span class="sv">&pound;2.6k</span></div>
-            <div class="ph-stg"><span class="sn">Won</span><div class="tr"><i style="width:70%"></i></div><span class="sv">&pound;3.7k</span></div>
-            <div class="ph-mini" style="margin-top:13px"><div><b>38s</b><span>Average reply</span></div><div><b>31</b><span>Conversations</span></div></div>
-          </div>
+          <div class="appbar"><div class="t"><span class="ring"></span>Pipeline</div><div class="av" id="avPipe">MH</div></div>
+          <div class="body" id="pipeBody"></div>
           <div class="tabs"><div class="tab"><i></i>Today</div><div class="tab"><i></i>Inbox</div><div class="tab on"><i></i>Pipeline</div><div class="tab"><i></i>Diary</div></div>
         </div></div>
         <div class="cap"><b>Pipeline</b><span>Your board, priced up, readable from the van seat.</span></div>
@@ -126,9 +108,9 @@
     <p class="lead">Everything the app shows also opens full screen on a laptop: the value you recovered, what&rsquo;s sitting in your pipeline, and the words your customers actually used. Have a scroll.</p>
     <div class="dashwrap rv">
       <div class="dashbar"><i></i><i></i><i></i><span>Your <b class="rl">Relance</b> dashboard</span></div>
-      <iframe src="https://missed-call-router.vercel.app/api/digest?demo=1" title="Relance dashboard live sample" loading="lazy"></iframe>
+      <iframe id="bigframe" src="https://missed-call-router.vercel.app/api/digest?demo=1&amp;vertical=heating" title="Relance dashboard live sample" loading="lazy"></iframe>
     </div>
-    <p class="dashnote">Sample figures from a demonstration business. Yours fills with your own enquiries from day one. <a href="https://missed-call-router.vercel.app/api/digest?demo=1" target="_blank" rel="noopener">Open it full screen &rarr;</a></p>
+    <p class="dashnote">Sample figures from a demonstration business. Yours fills with your own enquiries from day one. <a id="fulllink" href="https://missed-call-router.vercel.app/api/digest?demo=1" target="_blank" rel="noopener">Open it full screen &rarr;</a></p>
   </div>
 </section>
 
@@ -157,6 +139,135 @@
     <div style="margin-top:8px;opacity:.7">&copy; 2026 <b class="rl">Relance</b>. Demo line runs on a sample company for illustration.</div>
   </div>
 </footer>
+
+<script>
+var IND = {
+  heating: {
+    initials: 'MH',
+    threadName: 'James Preston',
+    inbox: [
+      ['JP','James Preston','2m','Ours is about 15 years old, it keeps…','Relance replying','ai',1],
+      ['SD','Sarah Doyle','18m','Perfect, Thursday at 10 works for us','Booked','ai',0],
+      ['MR','Mo Rahman','1h','Boiler’s leaking and there’s no heating…','Needs you','h',0],
+      ['EH','Ellie Hart','3h','I need CP12s for three properties','Answered','ai',0],
+      ['TW','Tom Whitaker','Yest','Thanks, that’s great','','',0]
+    ],
+    thread: {
+      sub: 'Missed call &middot; 19:42',
+      msgs: [
+        ['out','Hi James, sorry we missed your call. This is Meridian Heating. What can we help with?','19:42'],
+        ['in','How much roughly for a new combi? Ours is 15 years old',''],
+        ['out','Most combi swaps we do come in between &pound;2,200 and &pound;3,100 fitted, depending on the boiler and the pipework. If it’s 15 years old it’s worth a proper look. Would you like me to book you in for a free survey?','19:43'],
+        ['in','Yes please, evenings are easier','']
+      ],
+      action: 'Call James'
+    },
+    bars: [14, 84, 98, 26, 61, 76, 6],
+    stages: [['New',100,'£5.3k'],['In conversation',53,'£2.8k'],['Quote sent',47,'£2.5k'],['Visit booked',49,'£2.6k'],['Won',70,'£3.7k']],
+    mini: [['38s','Average reply'],['31','Conversations']]
+  },
+  aesthetics: {
+    initials: 'LA',
+    threadName: 'Chloe Bennett',
+    inbox: [
+      ['CB','Chloe Bennett','4m','How do I get into aesthetics? Do you…','Relance replying','ai',1],
+      ['AK','Amira Khan','22m','Saturday at 12 is perfect, thank you','Booked','ai',0],
+      ['RS','Rosie Shaw','1h','It’s swollen more than I expected…','Needs you','h',0],
+      ['NP','Nina Patel','3h','Is there a package for lips and cheeks?','Answered','ai',0],
+      ['JW','Jade Wills','Yest','Thanks, see you then','','',0]
+    ],
+    thread: {
+      sub: 'Instagram DM &middot; 21:18',
+      msgs: [
+        ['out','Hi Chloe, thanks for messaging Lumière Aesthetics. What were you looking to book in for?','21:18'],
+        ['in','How do I get into aesthetics? Do you do the foundation course?',''],
+        ['out','We do. Our accredited foundation course is &pound;1,400 and covers anti-wrinkle and filler, with a live model day. The next intake has two places left. Would you like me to book you a call with a trainer?','21:19'],
+        ['in','Yes please, evenings are easier for me','']
+      ],
+      action: 'Call Chloe'
+    },
+    bars: [12, 88, 30, 41, 88, 39, 4],
+    stages: [['New',100,'£1.7k'],['In conversation',54,'£900'],['Consult booked',83,'£1.4k'],['Deposit paid',33,'£560'],['Treated',27,'£450']],
+    mini: [['34s','Average reply'],['39','Conversations']]
+  },
+  clinics: {
+    initials: 'AM',
+    threadName: 'Daniel Okafor',
+    inbox: [
+      ['DO','Daniel Okafor','6m','My back has been going for months…','Relance replying','ai',1],
+      ['LF','Laura Finch','25m','Tuesday at 10 works, thanks','Booked','ai',0],
+      ['SB','Sam Bright','1h','Pins and needles down both legs now','Needs you','h',0],
+      ['HG','Harry Gill','3h','Do you take insurance or self pay?','Answered','ai',0],
+      ['MO','Megan Ord','Yest','Thanks, feeling much better','','',0]
+    ],
+    thread: {
+      sub: 'Missed call &middot; 19:55',
+      msgs: [
+        ['out','Hi Daniel, sorry we missed your call. This is AM Sports Clinic. What’s been troubling you?','19:55'],
+        ['in','My back has been going for months now, what would it take to fix it?',''],
+        ['out','A first assessment is &pound;65 and takes about 45 minutes, so we can find the cause rather than chase the pain. Most people with a long-standing back like that need a short course, which works out cheaper as a block. Shall I get you booked in?','19:56'],
+        ['in','Yes, mornings are best for me','']
+      ],
+      action: 'Call Daniel'
+    },
+    bars: [10, 41, 20, 50, 8, 100, 10],
+    stages: [['New',84,'£455'],['In conversation',60,'£325'],['Assessment',50,'£270'],['Treatment plan',100,'£540'],['Completed',28,'£150']],
+    mini: [['31s','Average reply'],['34','Conversations']]
+  }
+};
+
+function render(key) {
+  var d = IND[key] || IND.heating;
+
+  document.getElementById('inboxBody').innerHTML = d.inbox.map(function (r) {
+    return '<div class="ph-conv"><div class="ph-ini' + (r[6] ? ' a' : '') + '">' + r[0] + '</div><div class="c">' +
+      '<div class="n"><b>' + r[1] + '</b><span class="tm">' + r[2] + '</span></div><p>' + r[3] + '</p>' +
+      (r[4] ? '<span class="ph-pill ' + r[5] + '">' + r[4] + '</span>' : '') + '</div></div>';
+  }).join('');
+
+  var t = d.thread;
+  document.getElementById('threadName').textContent = d.threadName;
+  document.getElementById('threadBody').innerHTML =
+    '<div class="ph-tbar"><div class="ph-ini a">' + d.inbox[0][0] + '</div><div><b>' + d.threadName + '</b><br><span>' + t.sub + '</span></div></div>' +
+    t.msgs.map(function (m) {
+      return '<div class="ph-msg ' + m[0] + '">' + m[1] + '</div>' +
+        (m[2] ? '<span class="ph-sig">Relance &middot; ' + m[2] + '</span>' : '');
+    }).join('') +
+    '<div class="ph-act"><span>Take over</span><span class="p">' + t.action + '</span></div>';
+
+  document.getElementById('pipeBody').innerHTML =
+    '<div class="ph-sect">Value recovered, last 7 days</div>' +
+    '<div class="ph-bars">' + d.bars.map(function (h) { return '<i style="height:' + h + '%"></i>'; }).join('') + '</div>' +
+    '<div class="ph-sect">Open by stage</div>' +
+    d.stages.map(function (s) {
+      return '<div class="ph-stg"><span class="sn">' + s[0] + '</span><div class="tr"><i style="width:' + s[1] + '%"></i></div><span class="sv">' + s[2] + '</span></div>';
+    }).join('') +
+    '<div class="ph-mini" style="margin-top:13px">' + d.mini.map(function (m) {
+      return '<div><b>' + m[0] + '</b><span>' + m[1] + '</span></div>';
+    }).join('') + '</div>';
+
+  ['avInbox', 'avThread', 'avPipe'].forEach(function (id) { document.getElementById(id).textContent = d.initials; });
+
+  document.getElementById('liveframe').src = 'https://missed-call-router.vercel.app/api/digest?demo=1&app=1&vertical=' + key;
+  document.getElementById('bigframe').src = 'https://missed-call-router.vercel.app/api/digest?demo=1&vertical=' + key;
+  document.getElementById('fulllink').href = 'https://missed-call-router.vercel.app/api/digest?demo=1&vertical=' + key;
+
+  document.querySelectorAll('.ind').forEach(function (b) {
+    var on = b.dataset.ind === key;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-selected', on ? 'true' : 'false');
+  });
+  try { localStorage.setItem('relance-industry', key); } catch (e) {}
+}
+
+document.querySelectorAll('.ind').forEach(function (b) {
+  b.addEventListener('click', function () { render(b.dataset.ind); });
+});
+
+var saved = 'heating';
+try { var s = localStorage.getItem('relance-industry'); if (s && IND[s]) saved = s; } catch (e) {}
+render(saved);
+</script>
 
 <script src="site.js" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
