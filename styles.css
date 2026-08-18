@@ -307,9 +307,9 @@ footer .brand{color:#fff;justify-content:center;margin-bottom:8px}
 @media(max-width:1040px){.appgrid{grid-template-columns:1fr 1fr;gap:34px}}
 @media(max-width:640px){.appgrid{grid-template-columns:1fr}}
 .slot{text-align:center}
-.slot .cap{margin-top:18px;min-height:82px}
+.slot .cap{margin-top:18px;min-height:80px;max-width:250px;margin-left:auto;margin-right:auto}
 .slot .cap b{display:block;font-size:1rem}
-.slot .cap span{display:block;color:var(--slate);font-size:.88rem;margin-top:5px;line-height:1.55}
+.slot .cap span{display:block;color:var(--slate);font-size:.88rem;margin-top:6px;line-height:1.5;text-wrap:balance}
 .phone{width:232px;margin:0 auto;background:#05090f;border:9px solid #1c2634;border-radius:40px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.45)}
 .phone .screen{background:var(--bg);height:520px;display:flex;flex-direction:column;text-align:left;color:var(--ink)}
 .phone .notch{height:24px;display:flex;align-items:center;justify-content:space-between;padding:0 15px;font-size:.6rem;color:var(--slate);flex:0 0 auto}
