@@ -74,7 +74,7 @@
           <div class="body" id="inboxBody"></div>
           <div class="tabs"><div class="tab"><i></i>Today</div><div class="tab on"><i></i>Inbox</div><div class="tab"><i></i>Pipeline</div><div class="tab"><i></i>Diary</div></div>
         </div></div>
-        <div class="cap"><b>Inbox</b><span>Calls, texts and messages in one list. Orange is handled, green needs you.</span></div>
+        <div class="cap"><b>Inbox</b><span>Calls, texts and messages in one list. Orange is Lance, green needs you.</span></div>
       </div>
 
       <div class="slot rv">
@@ -84,7 +84,7 @@
           <div class="body" id="threadBody"></div>
           <div class="tabs"><div class="tab"><i></i>Today</div><div class="tab on"><i></i>Inbox</div><div class="tab"><i></i>Pipeline</div><div class="tab"><i></i>Diary</div></div>
         </div></div>
-        <div class="cap"><b>The conversation</b><span>Every message it sends is signed. One tap and you take over.</span></div>
+        <div class="cap"><b>The conversation</b><span>Every message Lance sends is signed. One tap and you take over.</span></div>
       </div>
 
       <div class="slot rv">
@@ -146,7 +146,7 @@ var IND = {
     initials: 'MH',
     threadName: 'James Preston',
     inbox: [
-      ['JP','James Preston','2m','Ours is about 15 years old, it keeps…','Relance replying','ai',1],
+      ['JP','James Preston','2m','Ours is about 15 years old, it keeps…','Lance replying','ai',1],
       ['SD','Sarah Doyle','18m','Perfect, Thursday at 10 works for us','Booked','ai',0],
       ['MR','Mo Rahman','1h','Boiler’s leaking and there’s no heating…','Needs you','h',0],
       ['EH','Ellie Hart','3h','I need CP12s for three properties','Answered','ai',0],
@@ -170,7 +170,7 @@ var IND = {
     initials: 'LA',
     threadName: 'Chloe Bennett',
     inbox: [
-      ['CB','Chloe Bennett','4m','How do I get into aesthetics? Do you…','Relance replying','ai',1],
+      ['CB','Chloe Bennett','4m','How do I get into aesthetics? Do you…','Lance replying','ai',1],
       ['AK','Amira Khan','22m','Saturday at 12 is perfect, thank you','Booked','ai',0],
       ['RS','Rosie Shaw','1h','It’s swollen more than I expected…','Needs you','h',0],
       ['NP','Nina Patel','3h','Is there a package for lips and cheeks?','Answered','ai',0],
@@ -194,7 +194,7 @@ var IND = {
     initials: 'AM',
     threadName: 'Daniel Okafor',
     inbox: [
-      ['DO','Daniel Okafor','6m','My back has been going for months…','Relance replying','ai',1],
+      ['DO','Daniel Okafor','6m','My back has been going for months…','Lance replying','ai',1],
       ['LF','Laura Finch','25m','Tuesday at 10 works, thanks','Booked','ai',0],
       ['SB','Sam Bright','1h','Pins and needles down both legs now','Needs you','h',0],
       ['HG','Harry Gill','3h','Do you take insurance or self pay?','Answered','ai',0],
@@ -231,7 +231,7 @@ function render(key) {
     '<div class="ph-tbar"><div class="ph-ini a">' + d.inbox[0][0] + '</div><div><b>' + d.threadName + '</b><br><span>' + t.sub + '</span></div></div>' +
     t.msgs.map(function (m) {
       return '<div class="ph-msg ' + m[0] + '">' + m[1] + '</div>' +
-        (m[2] ? '<span class="ph-sig">Relance &middot; ' + m[2] + '</span>' : '');
+        (m[2] ? '<span class="ph-sig">Lance &middot; ' + m[2] + '</span>' : '');
     }).join('') +
     '<div class="ph-act"><span>Take over</span><span class="p">' + t.action + '</span></div>';
 
