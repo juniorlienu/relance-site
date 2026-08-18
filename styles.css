@@ -326,10 +326,10 @@ footer .brand{color:#fff;justify-content:center;margin-bottom:8px}
 .ph-hero .lb{color:var(--slate);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;font-weight:700}
 .ph-hero .big{font-size:1.95rem;font-weight:800;color:var(--amber);letter-spacing:-.03em;margin:5px 0 3px}
 .ph-hero .sm{color:var(--slate);font-size:.66rem;line-height:1.45}
-.ph-mini{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:11px}
+.ph-mini{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin-bottom:11px}
 .ph-mini div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px}
-.ph-mini b{display:block;font-size:1.1rem;font-weight:800}
-.ph-mini span{color:var(--slate);font-size:.6rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.ph-mini b{display:block;font-size:1.05rem;font-weight:800}
+.ph-mini span{color:var(--slate);font-size:.58rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
 .ph-sect{color:var(--slate);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin:4px 0 8px}
 .ph-row{display:flex;gap:8px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line)}
 .ph-row:first-of-type{border-top:0}
