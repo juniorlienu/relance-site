@@ -381,3 +381,34 @@ footer .brand{color:#fff;justify-content:center;margin-bottom:8px}
 .indtabs .ind.on{border-color:var(--amber);color:var(--amber);background:rgba(255,122,26,.08)}
 .indnote{text-align:center;color:var(--slate);font-size:.92rem;margin-top:14px}
 @media(max-width:520px){.indtabs .ind{padding:9px 15px;font-size:.84rem}}
+
+/* ---- gated demo funnel ---- */
+.gatewrap{padding:70px 0 96px}
+.hide{display:none!important}
+.gate{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:38px 34px;box-shadow:var(--shadow-lg)}
+@media(max-width:560px){.gate{padding:28px 20px;border-radius:18px}}
+.gate h1{letter-spacing:-.02em}
+.gate p{color:var(--slate);line-height:1.65}
+#leadform{margin-top:26px;display:flex;flex-direction:column;gap:15px}
+#leadform label{display:block;color:var(--slate);font-size:.85rem;font-weight:700;letter-spacing:.02em}
+#leadform input[type=text],#leadform input[type=email],#leadform input[type=tel]{
+  width:100%;margin-top:7px;background:#0d1a29;border:1.5px solid var(--line);border-radius:12px;
+  padding:14px 15px;color:var(--ink);font-family:inherit;font-size:1rem;font-weight:500;transition:.16s}
+#leadform input:focus{outline:0;border-color:var(--amber);background:#0f1e2f}
+#leadform input::placeholder{color:#5c728a;font-weight:400}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+@media(max-width:520px){.frow{grid-template-columns:1fr}}
+.consent{display:flex!important;gap:12px;align-items:flex-start;font-weight:400!important;font-size:.86rem!important;
+  line-height:1.55;color:var(--slate);background:rgba(255,255,255,.03);border:1px solid var(--line);
+  border-radius:14px;padding:14px 15px;margin-top:4px}
+.consent input{margin-top:3px;width:19px;height:19px;flex:0 0 auto;accent-color:var(--amber)}
+.consent a{color:var(--amber)}
+.gateerr{color:#ff8b8b;font-size:.88rem;min-height:1.2em}
+.gatenote{text-align:center;color:var(--slate);font-size:.82rem;margin-top:4px}
+.indpicks{display:flex;flex-direction:column;gap:13px;margin-top:28px}
+.pick{background:transparent;border:1.5px solid var(--line);color:var(--ink);border-radius:99px;
+  padding:18px 24px;font-family:inherit;font-size:1.02rem;font-weight:700;cursor:pointer;transition:.18s;text-align:center}
+.pick:hover{border-color:var(--amber);color:var(--amber);background:rgba(255,122,26,.07);transform:translateY(-1px)}
+.filmwrap{margin-top:30px;border-radius:20px;overflow:hidden;border:1px solid var(--line);
+  background:#000;box-shadow:var(--shadow-lg)}
+.filmwrap video{width:100%;display:block;aspect-ratio:16/9;background:#000}
