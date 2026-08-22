@@ -412,3 +412,15 @@ footer .brand{color:#fff;justify-content:center;margin-bottom:8px}
 .filmwrap{margin-top:30px;border-radius:20px;overflow:hidden;border:1px solid var(--line);
   background:#000;box-shadow:var(--shadow-lg)}
 .filmwrap video{width:100%;display:block;aspect-ratio:16/9;background:#000}
+
+
+/* Watch the demo button in the nav */
+.btn-demo{background:var(--amber,#ff7a1a);color:#160c02;border:0;font-weight:700}
+.btn-demo:hover{filter:brightness(1.07)}
+.navlinks .btn-demo{margin-right:8px}
+
+/* The film step, made to be the thing you look at */
+.filmwrap{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55);border:1px solid rgba(255,122,26,.35)}
+.filmwrap video{display:block;width:100%;height:auto;background:#0b1420;cursor:pointer}
+.filmhead{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.1;margin-top:12px}
+.filmnote{margin-top:14px;color:var(--slate,#93a7bc);font-size:.95rem}

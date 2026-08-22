@@ -33,6 +33,7 @@
       <a href="app.html">The app</a>
       <a href="fees.html">Fees</a>
       <a href="about.html">About</a>
+      <a href="see-it.html" class="btn btn-demo">Watch the demo</a>
       <a href="book.html" class="btn btn-dark">Book a call</a>
     </div>
   </div>
@@ -86,10 +87,11 @@
   <div class="wrap hide" id="step3" style="max-width:1080px">
     <div class="center">
       <span class="eyebrow" id="filmkicker">Your film</span>
-      <h1 style="margin-top:12px;font-size:clamp(1.6rem,3.6vw,2.2rem)" id="filmtitle">Here is what happens to the calls you miss.</h1>
+      <h1 class="filmhead" id="filmtitle">Here is what happens to the enquiries you miss.</h1>
+      <p class="filmnote">Two minutes. Press play, or tap the picture.</p>
     </div>
     <div class="filmwrap">
-      <video id="film" controls playsinline preload="metadata" poster="og-image.png"></video>
+      <video id="film" controls playsinline preload="auto"></video>
     </div>
     <div class="center" style="margin-top:34px">
       <a href="book.html" class="btn btn-primary">Book a 15 minute call &rarr;</a>
@@ -112,10 +114,10 @@ var ENDPOINT = 'https://missed-call-router.vercel.app/api/lead';
 var lead = {};
 
 var FILMS = {
-  heating:    { src: 'relance-demo-heating.mp4',    kicker: 'Heating and renewables', title: 'The boiler job you never knew you lost.' },
-  aesthetics: { src: 'relance-demo-aesthetics.mp4', kicker: 'Beauty and aesthetics',  title: 'She messaged three clinics. One replied first.' },
-  clinics:    { src: 'relance-demo-clinics.mp4',    kicker: 'Clinics and therapists', title: 'Your hands were on a patient. The phone rang out.' },
-  other:      { src: 'relance-demo-general.mp4',    kicker: 'Your business',          title: 'Here is what happens to the calls you miss.' }
+  heating:    { src: 'relance-demo-heating.mp4',    poster: 'poster-heating.jpg',    kicker: 'Heating and renewables', title: 'The enquiry you never knew you lost.' },
+  aesthetics: { src: 'relance-demo-aesthetics.mp4', poster: 'poster-aesthetics.jpg', kicker: 'Beauty and aesthetics',  title: 'She messaged three places. One replied first.' },
+  clinics:    { src: 'relance-demo-clinics.mp4',    poster: 'poster-clinics.jpg',    kicker: 'Clinics and therapists', title: 'The enquiry you never knew you lost.' },
+  other:      { src: 'relance-demo-general.mp4',    poster: 'poster-general.jpg',    kicker: 'Your business',          title: 'Here is what happens to the enquiries you miss.' }
 };
 
 function show(id) {
@@ -154,20 +156,34 @@ document.querySelectorAll('.pick').forEach(function (b) {
     lead.industry = ind;
     try { localStorage.setItem('relance-industry', ind === 'other' ? 'heating' : ind); } catch (e) {}
 
-    // Send in the background. The film starts either way.
-    fetch(ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(lead)
-    }).catch(function () {});
+    // Send in the background. The film starts either way, but try twice,
+    // because a lead lost to a flaky network is a lead you never hear about.
+    function sendLead(attempt) {
+      fetch(ENDPOINT, {
+        method: 'POST',
+        keepalive: true,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(lead)
+      }).then(function (r) {
+        if (!r.ok && attempt < 2) setTimeout(function () { sendLead(attempt + 1); }, 1200);
+      }).catch(function () {
+        if (attempt < 2) setTimeout(function () { sendLead(attempt + 1); }, 1200);
+      });
+    }
+    sendLead(1);
 
     var film = FILMS[ind] || FILMS.other;
     document.getElementById('filmkicker').textContent = film.kicker;
     document.getElementById('filmtitle').textContent = film.title;
     var v = document.getElementById('film');
+    v.poster = film.poster;
     v.src = film.src;
     show('step3');
-    setTimeout(function () { v.play().catch(function () {}); }, 450);
+    setTimeout(function () {
+      try { document.getElementById('step3').scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {}
+      v.play().catch(function () {});
+    }, 350);
+    v.addEventListener('click', function () { if (v.paused) v.play().catch(function () {}); });
   });
 });
 </script>
