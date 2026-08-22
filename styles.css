@@ -415,9 +415,8 @@ footer .brand{color:#fff;justify-content:center;margin-bottom:8px}
 
 
 /* Watch the demo button in the nav */
-.btn-demo{background:var(--amber,#ff7a1a);color:#160c02;border:0;font-weight:700}
-.btn-demo:hover{filter:brightness(1.07)}
-.navlinks .btn-demo{margin-right:8px}
+.btn-demo{background:transparent;color:var(--amber,#ff7a1a);border:1px solid var(--amber,#ff7a1a);font-weight:700}
+.btn-demo:hover{background:rgba(255,122,26,.12)}
 
 /* The film step, made to be the thing you look at */
 .filmwrap{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.55);border:1px solid rgba(255,122,26,.35)}
