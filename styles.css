@@ -64,7 +64,9 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
 .hero h1 .hl{color:var(--amber)}
 .hero .lead{color:var(--slate);font-size:1.2rem;margin-top:22px;max-width:52ch}
-.hero .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.hero .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero .cta-row .btn{padding:15px 22px;white-space:nowrap}
+@media(max-width:520px){.hero .cta-row .btn{flex:1 1 100%;justify-content:center}}
 .trust{display:flex;flex-wrap:wrap;gap:22px;margin-top:38px;color:var(--slate);font-size:.9rem}
 .trust span{display:flex;align-items:center;gap:.45rem}
 .tick{color:var(--amber)}

@@ -1,31 +1,31 @@
 // Relance site interactions: scroll reveals, animated conversations, demo bubble.
 (function(){
-  // ---- industry selector modal (first visit only) ----
-  function industryModal(){
-    if(document.body.hasAttribute('data-no-modal')) return;
-    try{ if(localStorage.getItem('relance-industry')) return; }catch(e){}
-    var INDUSTRIES = [
-      {href:'heating.html',   img:'ind-heating.svg',    name:'Heating &amp; Home Services', sub:'Boilers &middot; heat pumps &middot; plumbing'},
-      {href:'aesthetics.html', img:'ind-aesthetics.svg', name:'Beauty &amp; Aesthetics',     sub:'Clinics &middot; injectors &middot; academies'},
-      {href:'clinics.html',    img:'ind-clinics.svg',    name:'Clinics &amp; Therapists',    sub:'Chiropractors &middot; physios &middot; sports injury'}
-    ];
+  // ---- industry selector modal ----
+  // Two uses: once on a first visit, and any time someone asks to watch the demo.
+  var TRADES = [
+    {key:'heating',    page:'heating.html',    img:'ind-heating.svg',    name:'Heating &amp; Home Services', sub:'Boilers &middot; heat pumps &middot; plumbing'},
+    {key:'aesthetics', page:'aesthetics.html', img:'ind-aesthetics.svg', name:'Beauty &amp; Aesthetics',     sub:'Clinics &middot; injectors &middot; academies'},
+    {key:'clinics',    page:'clinics.html',    img:'ind-clinics.svg',    name:'Clinics &amp; Therapists',    sub:'Chiropractors &middot; physios &middot; sports injury'}
+  ];
+
+  function buildModal(opts){
     var back=document.createElement('div'); back.className='ibackdrop';
     back.innerHTML='<div class="imodal" role="dialog" aria-modal="true" aria-label="Choose your industry">'+
       '<div class="itop"><button class="iclose" type="button" aria-label="Close">&times;</button></div>'+
-      '<h2>We built <span style="color:var(--amber)">Relance</span> specifically for businesses like yours</h2>'+
-      '<p class="isub">Choose your industry and see what it recovers.</p>'+
-      '<div class="icards">'+ INDUSTRIES.map(function(i){
-        return '<a class="icard" href="'+i.href+'" data-ind="'+i.href+'">'+
+      '<h2>'+opts.title+'</h2>'+
+      '<p class="isub">'+opts.sub+'</p>'+
+      '<div class="icards">'+ TRADES.map(function(i){
+        return '<a class="icard" href="'+opts.hrefFor(i)+'" data-ind="'+i.key+'">'+
           '<img class="iimg" src="'+i.img+'" alt="" aria-hidden="true">'+
           '<span class="iscrim"></span>'+
           '<h3>'+i.name+' <span>&rsaquo;</span></h3><p>'+i.sub+'</p></a>';
       }).join('') +'</div>'+
-      '<a class="iother" href="book.html">I\'m in a different industry &rarr;</a>'+
-      '<p class="ifoot">We remember your choice so you only see this once.</p>'+
+      '<a class="iother" href="'+opts.otherHref+'">'+opts.otherLabel+'</a>'+
+      '<p class="ifoot">'+opts.foot+'</p>'+
       '</div>';
     document.body.appendChild(back);
     requestAnimationFrame(function(){ back.classList.add('show'); });
-    function remember(v){ try{ localStorage.setItem('relance-industry', v||'skipped'); }catch(e){} }
+    function remember(v){ if(!opts.remember) return; try{ localStorage.setItem('relance-industry', v||'skipped'); }catch(e){} }
     function close(){ remember('skipped'); back.classList.remove('show'); setTimeout(function(){ back.remove(); },300); }
     back.querySelector('.iclose').addEventListener('click', close);
     back.addEventListener('click', function(e){ if(e.target===back) close(); });
@@ -34,7 +34,41 @@
       a.addEventListener('click', function(){ remember(a.getAttribute('data-ind')||'other'); });
     });
   }
+
+  // First visit: point people at the page for their trade.
+  function industryModal(){
+    if(document.body.hasAttribute('data-no-modal')) return;
+    try{ if(localStorage.getItem('relance-industry')) return; }catch(e){}
+    buildModal({
+      title: 'We built <span style="color:var(--amber)">Relance</span> specifically for businesses like yours',
+      sub: 'Choose your industry and see what it recovers.',
+      hrefFor: function(i){ return i.page; },
+      otherHref: 'book.html',
+      otherLabel: "I'm in a different industry &rarr;",
+      foot: 'We remember your choice so you only see this once.',
+      remember: true
+    });
+  }
   setTimeout(industryModal, 900);
+
+  // Watch the demo: same modal, but every card goes to the film for that trade.
+  function demoModal(){
+    buildModal({
+      title: 'Which film do you want to see?',
+      sub: 'Pick your trade and we will show you Relance working in it.',
+      hrefFor: function(i){ return 'see-it.html?ind=' + i.key; },
+      otherHref: 'see-it.html?ind=other',
+      otherLabel: "I'm in a different industry &rarr;",
+      foot: 'Two minutes. No sales call attached.',
+      remember: false
+    });
+  }
+  document.addEventListener('click', function(e){
+    var t = e.target.closest ? e.target.closest('[data-demo-picker]') : null;
+    if(!t) return;
+    e.preventDefault();
+    demoModal();
+  });
 
   // ---- scroll reveals ----
   var io = new IntersectionObserver(function(es){

@@ -72,6 +72,7 @@
       <span class="eyebrow">One more thing</span>
       <h1 style="margin-top:12px;font-size:clamp(1.6rem,3.6vw,2.2rem)">What kind of business is it?</h1>
       <p style="margin-top:12px">So we show you your own trade, in your own language, with real numbers from it.</p>
+      <p class="gatenote hide" id="backnote" style="margin-top:0;margin-bottom:18px">Welcome back. We already have your details, so just pick your trade.</p>
       <div class="indpicks">
         <button type="button" class="pick" data-ind="heating">Heating &amp; renewables</button>
         <button type="button" class="pick" data-ind="aesthetics">Beauty &amp; aesthetics</button>
@@ -126,6 +127,60 @@ function show(id) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// If they have already given us their details, we are not asking twice.
+function savedLead() {
+  try {
+    var raw = localStorage.getItem('relance-lead');
+    if (!raw) return null;
+    var l = JSON.parse(raw);
+    if (l && l.firstName && l.email && l.phone && l.consent) return l;
+  } catch (e) {}
+  return null;
+}
+
+function sendLead(attempt) {
+  fetch(ENDPOINT, {
+    method: 'POST',
+    keepalive: true,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(lead)
+  }).then(function (r) {
+    if (!r.ok && attempt < 2) setTimeout(function () { sendLead(attempt + 1); }, 1200);
+  }).catch(function () {
+    if (attempt < 2) setTimeout(function () { sendLead(attempt + 1); }, 1200);
+  });
+}
+
+function playFilm(ind, alreadySent) {
+  lead.industry = ind;
+  try { localStorage.setItem('relance-industry', ind === 'other' ? 'heating' : ind); } catch (e) {}
+  if (!alreadySent) sendLead(1);
+
+  var film = FILMS[ind] || FILMS.other;
+  document.getElementById('filmkicker').textContent = film.kicker;
+  document.getElementById('filmtitle').textContent = film.title;
+  var v = document.getElementById('film');
+  v.poster = film.poster;
+  v.src = film.src;
+  show('step3');
+  setTimeout(function () {
+    try { document.getElementById('step3').scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {}
+    v.play().catch(function () {});
+  }, 350);
+  v.addEventListener('click', function () { if (v.paused) v.play().catch(function () {}); });
+}
+
+// Trade can arrive in the link, from the Watch the demo picker.
+var params = new URLSearchParams(window.location.search);
+var wanted = params.get('ind');
+if (!FILMS[wanted]) wanted = null;
+
+var known = savedLead();
+if (known) {
+  lead = known;
+  document.getElementById('backnote').classList.remove('hide');
+}
+
 document.getElementById('leadform').addEventListener('submit', function (e) {
   e.preventDefault();
   var f = e.target, err = document.getElementById('err');
@@ -146,45 +201,21 @@ document.getElementById('leadform').addEventListener('submit', function (e) {
   if (!lead.consent) { err.textContent = 'Please tick the box so we know we may contact you.'; return; }
 
   try { localStorage.setItem('relance-lead', JSON.stringify(lead)); } catch (e2) {}
-  show('step2');
+  if (wanted) playFilm(wanted); else show('step2');
 });
 
 document.querySelectorAll('.pick').forEach(function (b) {
-  b.addEventListener('click', function () {
-    var ind = b.dataset.ind;
-    lead.industry = ind;
-    try { localStorage.setItem('relance-industry', ind === 'other' ? 'heating' : ind); } catch (e) {}
-
-    // Send in the background. The film starts either way, but try twice,
-    // because a lead lost to a flaky network is a lead you never hear about.
-    function sendLead(attempt) {
-      fetch(ENDPOINT, {
-        method: 'POST',
-        keepalive: true,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(lead)
-      }).then(function (r) {
-        if (!r.ok && attempt < 2) setTimeout(function () { sendLead(attempt + 1); }, 1200);
-      }).catch(function () {
-        if (attempt < 2) setTimeout(function () { sendLead(attempt + 1); }, 1200);
-      });
-    }
-    sendLead(1);
-
-    var film = FILMS[ind] || FILMS.other;
-    document.getElementById('filmkicker').textContent = film.kicker;
-    document.getElementById('filmtitle').textContent = film.title;
-    var v = document.getElementById('film');
-    v.poster = film.poster;
-    v.src = film.src;
-    show('step3');
-    setTimeout(function () {
-      try { document.getElementById('step3').scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {}
-      v.play().catch(function () {});
-    }, 350);
-    v.addEventListener('click', function () { if (v.paused) v.play().catch(function () {}); });
-  });
+  b.addEventListener('click', function () { playFilm(b.dataset.ind, !!known && !!lead.sent); });
 });
+
+// Decide where to drop them.
+if (known && wanted) {
+  playFilm(wanted, true);           // knows them, knows the trade: straight to the film
+} else if (known) {
+  show('step2');                    // knows them: just ask the trade
+} else if (wanted) {
+  show('step1');                    // new to us, trade already picked: details only
+}
 </script>
 
 <script src="site.js" defer></script>
