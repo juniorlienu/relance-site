@@ -40,6 +40,8 @@ a{color:var(--amber)}
 section{padding:84px 0}
 .center{text-align:center}
 .rl{color:var(--amber);font-weight:700}
+/* inside a button the brand colour would vanish into the background, so inherit */
+.btn .rl{color:inherit}
 
 /* reveals */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
@@ -425,3 +427,10 @@ footer .brand{color:#fff;justify-content:center;margin-bottom:8px}
 .filmwrap video{display:block;width:100%;height:auto;background:#0b1420;cursor:pointer}
 .filmhead{font-size:clamp(1.7rem,4vw,2.6rem);line-height:1.1;margin-top:12px}
 .filmnote{margin-top:14px;color:var(--slate,#93a7bc);font-size:.95rem}
+
+/* the ACV question sits with the rest of the form */
+.gate select{width:100%;margin-top:8px;padding:14px 16px;border-radius:12px;border:1px solid var(--line);
+  background:#0e1a29;color:#eef4fa;font:inherit;font-size:1rem;appearance:none;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,#93a7bc 50%),linear-gradient(135deg,#93a7bc 50%,transparent 50%);
+  background-position:calc(100% - 22px) 22px,calc(100% - 16px) 22px;background-size:6px 6px,6px 6px;background-repeat:no-repeat}
+.gate select:focus{outline:none;border-color:var(--amber)}
