@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What are missed enquiries costing you? | Relance</title>
+<meta name="description" content="Three questions, about sixty seconds. See what the enquiries you miss are worth over a year, and how many you would need back to cover Relance.">
+<link rel="canonical" href="https://www.relance.co.uk/forecast.html">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Relance">
+<meta property="og:url" content="https://www.relance.co.uk/forecast.html">
+<meta property="og:title" content="What are missed enquiries costing you?">
+<meta property="og:description" content="Three questions, about sixty seconds. Built on your numbers, not ours.">
+<meta property="og:image" content="https://www.relance.co.uk/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="relance-favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .fc-wrap{padding:70px 0 90px}
+  .fc-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;margin-top:38px;align-items:start}
+  @media(max-width:900px){.fc-grid{grid-template-columns:1fr}}
+
+  .fc-card{background:var(--panel,#121f30);border:1px solid var(--line,#213048);border-radius:20px;padding:30px}
+
+  .fc-step{display:none}
+  .fc-step.on{display:block}
+  .fc-count{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--slate,#93a7bc);font-weight:700}
+  .fc-q{font-size:clamp(1.3rem,2.6vw,1.75rem);line-height:1.2;margin:12px 0 8px}
+  .fc-help{color:var(--slate,#93a7bc);font-size:.95rem;margin-bottom:22px}
+
+  .fc-input{position:relative}
+  .fc-input .pfx{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--slate,#93a7bc);font-size:1.35rem;font-weight:700;pointer-events:none}
+  .fc-input input{width:100%;padding:18px 18px 18px 44px;font-size:1.5rem;font-weight:700;border-radius:14px;
+    border:1px solid var(--line,#213048);background:#0e1a29;color:#eef4fa;font-family:inherit;
+    font-variant-numeric:tabular-nums;-moz-appearance:textfield}
+  .fc-input.plain input{padding-left:18px}
+  .fc-input input::-webkit-outer-spin-button,.fc-input input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .fc-input input:focus{outline:none;border-color:var(--amber,#ff7a1a)}
+
+  .fc-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .fc-chip{background:transparent;border:1px solid var(--line,#213048);color:var(--slate,#93a7bc);
+    padding:8px 14px;border-radius:999px;font:inherit;font-size:.87rem;cursor:pointer;transition:.15s}
+  .fc-chip:hover{border-color:var(--amber,#ff7a1a);color:#eef4fa}
+
+  .fc-nav{display:flex;gap:12px;align-items:center;margin-top:26px}
+  .fc-back{background:none;border:0;color:var(--slate,#93a7bc);font:inherit;cursor:pointer;padding:8px 4px}
+  .fc-back:hover{color:#eef4fa}
+  .fc-err{color:#e24b4a;font-size:.9rem;min-height:1.2em;margin-top:10px}
+
+  .fc-dots{display:flex;gap:7px;margin-top:26px}
+  .fc-dot{width:28px;height:4px;border-radius:2px;background:var(--line,#213048)}
+  .fc-dot.on{background:var(--amber,#ff7a1a)}
+
+  /* the result panel */
+  .fc-res{background:var(--panel2,#16273b);border:1px solid var(--line,#213048);border-radius:20px;padding:30px;position:relative;overflow:hidden}
+  .fc-res .eyebrow{display:block}
+  .fc-locked .fc-blur{filter:blur(11px);opacity:.5;user-select:none}
+  .fc-lockmsg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:26px;gap:8px}
+  .fc-lockmsg b{font-size:1.05rem}
+  .fc-lockmsg span{color:var(--slate,#93a7bc);font-size:.92rem}
+  .fc-res:not(.fc-locked) .fc-lockmsg{display:none}
+
+  .fc-big{font-size:clamp(2.6rem,7vw,4.1rem);font-weight:800;color:var(--amber,#ff7a1a);line-height:1;
+    margin:14px 0 6px;font-variant-numeric:tabular-nums}
+  .fc-cap{color:var(--slate,#93a7bc);font-size:.95rem}
+  .fc-line{height:1px;background:var(--line,#213048);margin:24px 0}
+  .fc-row{display:flex;justify-content:space-between;gap:14px;padding:9px 0;font-size:.95rem}
+  .fc-row span:last-child{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .fc-punch{background:rgba(255,122,26,.1);border:1px solid rgba(255,122,26,.35);border-radius:14px;
+    padding:18px;margin-top:22px}
+  .fc-punch b{color:var(--amber,#ff7a1a);font-size:1.15rem}
+  .fc-note{color:var(--slate,#93a7bc);font-size:.83rem;margin-top:18px;line-height:1.5}
+</style>
+</head>
+<body data-no-modal>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg width="30" height="30" viewBox="0 0 100 100" aria-hidden="true" style="flex:0 0 auto"><rect width="100" height="100" rx="26" fill="#0e1b2b"/><circle cx="50" cy="50" r="22" fill="none" stroke="#ff7a1a" stroke-width="9" stroke-linecap="round" stroke-dasharray="107 31" transform="rotate(-50 50 50)"/><circle cx="50" cy="50" r="6.4" fill="#ff7a1a"/></svg>Relance</a>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="lance.html">Meet Lance</a>
+      <a href="see-it.html">See it</a>
+      <a href="app.html">The app</a>
+      <a href="fees.html">Fees</a>
+      <a href="about.html">About</a>
+      <a href="book.html" class="btn btn-dark">Book a call</a>
+    </div>
+  </div>
+</nav>
+
+<section class="fc-wrap">
+  <div class="wrap" style="max-width:1080px">
+    <div class="center" style="max-width:680px;margin:0 auto">
+      <span class="eyebrow">The forecast</span>
+      <h1 style="margin-top:12px;font-size:clamp(1.8rem,4vw,2.6rem)">What are the enquiries you miss actually worth?</h1>
+      <p style="margin-top:14px">Three questions, about sixty seconds. Built on your numbers, not ours.</p>
+    </div>
+
+    <div class="fc-grid">
+
+      <!-- questions -->
+      <div class="fc-card">
+
+        <div class="fc-step on" data-step="1">
+          <div class="fc-count">Question 1 of 3</div>
+          <h2 class="fc-q">What's one customer worth to you?</h2>
+          <p class="fc-help">Everything they spend with you over time, not one job. A rough figure is fine.</p>
+          <div class="fc-input">
+            <span class="pfx">&pound;</span>
+            <input type="number" id="q1" inputmode="numeric" placeholder="2,500" min="1">
+          </div>
+          <div class="fc-chips" data-for="q1">
+            <button type="button" class="fc-chip" data-v="900">About &pound;900</button>
+            <button type="button" class="fc-chip" data-v="2600">About &pound;2,600</button>
+            <button type="button" class="fc-chip" data-v="6500">About &pound;6,500</button>
+            <button type="button" class="fc-chip" data-v="11000">About &pound;11,000</button>
+          </div>
+          <div class="fc-err" id="e1"></div>
+          <div class="fc-nav"><button type="button" class="btn btn-primary fc-next">Next &rarr;</button></div>
+        </div>
+
+        <div class="fc-step" data-step="2">
+          <div class="fc-count">Question 2 of 3</div>
+          <h2 class="fc-q">How many enquiries do you get in a week?</h2>
+          <p class="fc-help">Calls, texts, DMs, web forms, the lot. Your best guess.</p>
+          <div class="fc-input plain">
+            <input type="number" id="q2" inputmode="numeric" placeholder="25" min="1">
+          </div>
+          <div class="fc-chips" data-for="q2">
+            <button type="button" class="fc-chip" data-v="10">Around 10</button>
+            <button type="button" class="fc-chip" data-v="25">Around 25</button>
+            <button type="button" class="fc-chip" data-v="50">Around 50</button>
+            <button type="button" class="fc-chip" data-v="80">80 or more</button>
+          </div>
+          <div class="fc-err" id="e2"></div>
+          <div class="fc-nav">
+            <button type="button" class="btn btn-primary fc-next">Next &rarr;</button>
+            <button type="button" class="fc-back">Back</button>
+          </div>
+        </div>
+
+        <div class="fc-step" data-step="3">
+          <div class="fc-count">Question 3 of 3</div>
+          <h2 class="fc-q">How many of those go unanswered?</h2>
+          <p class="fc-help">Rings out, sits in the inbox until tomorrow, or nobody ever gets back to them. Be honest, nobody else sees this.</p>
+          <div class="fc-input plain">
+            <input type="number" id="q3" inputmode="numeric" placeholder="6" min="0">
+          </div>
+          <div class="fc-chips" data-for="q3">
+            <button type="button" class="fc-chip" data-v="2">A couple</button>
+            <button type="button" class="fc-chip" data-v="5">A handful</button>
+            <button type="button" class="fc-chip" data-v="10">About ten</button>
+            <button type="button" class="fc-chip" data-v="20">More than I'd like</button>
+          </div>
+          <div class="fc-err" id="e3"></div>
+          <div class="fc-nav">
+            <button type="button" class="btn btn-primary" id="fcGo">Show me the number &rarr;</button>
+            <button type="button" class="fc-back">Back</button>
+          </div>
+        </div>
+
+        <div class="fc-dots">
+          <span class="fc-dot on"></span><span class="fc-dot"></span><span class="fc-dot"></span>
+        </div>
+      </div>
+
+      <!-- result -->
+      <div class="fc-res fc-locked" id="fcRes">
+        <div class="fc-lockmsg">
+          <b>Answer 3 questions to unlock</b>
+          <span>Takes about sixty seconds</span>
+        </div>
+
+        <div class="fc-blur">
+          <span class="eyebrow">Going unanswered each year</span>
+          <div class="fc-big" id="rBig">&pound;000,000</div>
+          <div class="fc-cap" id="rCap">across 000 missed enquiries a year</div>
+
+          <div class="fc-line"></div>
+
+          <div class="fc-row"><span>Enquiries a year</span><span id="rTotal">0</span></div>
+          <div class="fc-row"><span>Of those, unanswered</span><span id="rMissed">0</span></div>
+          <div class="fc-row"><span>What one customer is worth</span><span id="rAcv">&pound;0</span></div>
+          <div class="fc-row"><span>Relance, per year</span><span id="rCost">&pound;5,964</span></div>
+
+          <div class="fc-punch">
+            <b id="rPunch">Recover one and it has paid for itself.</b>
+            <div class="fc-cap" style="margin-top:6px" id="rPunchSub">&pound;497 a month. No setup fee. Cancel any time.</div>
+          </div>
+
+          <div style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap">
+            <a href="see-it.html" class="btn btn-demo">Watch the demo</a>
+            <a href="book.html" class="btn btn-primary">Book a call &rarr;</a>
+          </div>
+
+          <p class="fc-note">This is your arithmetic, not a promise. It shows what the enquiries you miss are worth over a year and how many you would need back to cover the cost. It does not claim how many Relance will recover, because nobody can know that before we start.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true" style="flex:0 0 auto"><circle cx="50" cy="50" r="34" fill="none" stroke="#ff7a1a" stroke-width="11" stroke-linecap="round" stroke-dasharray="165 49" transform="rotate(-50 50 50)"/><circle cx="50" cy="50" r="9" fill="#ff7a1a"/></svg>Relance</a>
+    <div>Turn missed enquiries into booked revenue. For UK businesses where every enquiry counts.</div>
+    <div class="footlinks"><a href="index.html">Home</a><a href="see-it.html">See it</a><a href="lance.html">Meet Lance</a><a href="app.html">The app</a><a href="fees.html">Fees</a><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="book.html">Book a call</a></div>
+    <div style="margin-top:8px;opacity:.7">&copy; 2026 <b class="rl">Relance</b>.</div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var YEARLY_COST = 497 * 12;         // 5964
+  var step = 1;
+  var steps = document.querySelectorAll('.fc-step');
+  var dots  = document.querySelectorAll('.fc-dot');
+
+  function money(n) { return '£' + Math.round(n).toLocaleString('en-GB'); }
+  function num(n)   { return Math.round(n).toLocaleString('en-GB'); }
+  function val(id)  { var v = parseFloat(document.getElementById(id).value); return isFinite(v) ? v : NaN; }
+
+  function show(n) {
+    step = n;
+    steps.forEach(function (s) { s.classList.toggle('on', +s.dataset.step === n); });
+    dots.forEach(function (d, i) { d.classList.toggle('on', i < n); });
+    var input = document.querySelector('.fc-step.on input');
+    if (input) setTimeout(function () { input.focus(); }, 60);
+  }
+
+  // the quick-pick chips just fill the box
+  document.querySelectorAll('.fc-chips').forEach(function (row) {
+    row.addEventListener('click', function (e) {
+      var b = e.target.closest('.fc-chip');
+      if (!b) return;
+      document.getElementById(row.dataset.for).value = b.dataset.v;
+      document.getElementById('e' + row.dataset.for.slice(1)).textContent = '';
+    });
+  });
+
+  function check(n) {
+    var v = val('q' + n), err = document.getElementById('e' + n);
+    if (!isFinite(v) || v < 0) { err.textContent = 'Pop a rough number in and we will do the rest.'; return false; }
+    if (n === 1 && v < 1)  { err.textContent = 'A customer has to be worth something.'; return false; }
+    if (n === 2 && v < 1)  { err.textContent = 'You must be getting at least one a week.'; return false; }
+    if (n === 3 && v > val('q2')) { err.textContent = 'That is more than you said you get. Have another go.'; return false; }
+    err.textContent = '';
+    return true;
+  }
+
+  document.querySelectorAll('.fc-next').forEach(function (b) {
+    b.addEventListener('click', function () { if (check(step)) show(step + 1); });
+  });
+  document.querySelectorAll('.fc-back').forEach(function (b) {
+    b.addEventListener('click', function () { show(step - 1); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter') return;
+    if (!document.querySelector('.fc-step.on input:focus')) return;
+    e.preventDefault();
+    if (step < 3) { if (check(step)) show(step + 1); }
+    else { document.getElementById('fcGo').click(); }
+  });
+
+  document.getElementById('fcGo').addEventListener('click', function () {
+    if (!check(1) || !check(2) || !check(3)) return;
+
+    var acv = val('q1'), perWeek = val('q2'), missedWeek = val('q3');
+    var missedYear = missedWeek * 52;
+    var totalYear  = perWeek * 52;
+    var atStake    = missedYear * acv;
+    var needBack   = Math.max(1, Math.ceil(YEARLY_COST / acv));
+
+    document.getElementById('rBig').textContent = money(atStake);
+    document.getElementById('rCap').textContent = 'across ' + num(missedYear) + ' missed enquiries a year';
+    document.getElementById('rTotal').textContent = num(totalYear);
+    document.getElementById('rMissed').textContent = num(missedYear);
+    document.getElementById('rAcv').textContent = money(acv);
+    document.getElementById('rCost').textContent = money(YEARLY_COST);
+
+    var punch, sub;
+    if (missedYear < needBack) {
+      punch = 'On these numbers the maths is tight.';
+      sub = 'You would need ' + num(needBack) + ' of them back to cover the cost, and you are only missing ' + num(missedYear) + ' a year. Worth a conversation before you spend anything.';
+    } else if (needBack === 1) {
+      punch = 'Recover one and it has paid for itself.';
+      sub = 'One customer out of the ' + num(missedYear) + ' you miss a year covers Relance for twelve months. Everything after that is money you were losing.';
+    } else {
+      punch = 'Recover ' + num(needBack) + ' and it has paid for itself.';
+      sub = num(needBack) + ' out of the ' + num(missedYear) + ' you miss a year covers Relance for twelve months. Everything after that is money you were losing.';
+    }
+    document.getElementById('rPunch').textContent = punch;
+    document.getElementById('rPunchSub').textContent = sub;
+
+    var res = document.getElementById('fcRes');
+    res.classList.remove('fc-locked');
+    try { res.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+  });
+})();
+</script>
+
+<script src="site.js" defer></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
