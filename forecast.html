@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>What would another install a month be worth? | Relance</title>
-<meta name="description" content="Build your picture, see your number. What the enquiries you miss are worth over a year, and how many you would need back to cover Relance.">
+<meta name="description" content="Build your picture, see your number. What the enquiries you miss are worth over a year, and what one more install a month would mean.">
 <link rel="canonical" href="https://www.relance.co.uk/forecast.html">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
@@ -92,7 +92,7 @@
       <a href="see-it.html">See it</a>
       <a href="index.html#industries">Industries</a>
       <a href="forecast.html" aria-current="page">The cost</a>
-      <a href="fees.html">Fees</a>
+      <a href="fees.html">What's included</a>
       <a href="about.html">About</a>
       <a href="book.html" class="btn btn-dark">Book a call</a>
     </div>
@@ -185,13 +185,13 @@
             <div class="prow"><span>Enquiries a year</span><span id="rTotal">0</span></div>
             <div class="prow"><span>Of those, unanswered</span><span id="rMissed">0</span></div>
             <div class="prow"><span>Average install value</span><span id="rAcv">&pound;0</span></div>
-            <div class="prow"><span>Relance, per year</span><span id="rCost">&pound;5,964</span></div>
+            <div class="prow"><span>One more a month, over a year</span><span id="rCost">&pound;0</span></div>
           </div>
         </div>
 
         <div class="ppunch">
-          <b id="rPunch">Recover one and it has paid for itself.</b>
-          <p id="rSub">&pound;497 a month. No setup fee. Cancel any time.</p>
+          <b id="rPunch">One more a month changes the year.</b>
+          <p id="rSub">No setup fee, no tie-in. Book fifteen minutes and we'll go through your numbers and the price together.</p>
         </div>
 
         <div class="cta-row" style="margin-top:26px">
@@ -199,7 +199,7 @@
           <a href="see-it.html" class="btn btn-demo">Watch the demo</a>
         </div>
 
-        <p class="pnote">This is your arithmetic, not a promise. It shows what the enquiries you miss are worth over a year and how many you'd need back to cover the cost. It doesn't claim how many Relance will recover, because nobody can know that before we start.</p>
+        <p class="pnote">This is your arithmetic, not a promise. It shows what the enquiries you miss are worth over a year, on your own figures. It doesn't claim how many Relance will recover, because nobody can know that before we start.</p>
       </div>
     </div>
 
@@ -210,14 +210,13 @@
   <div class="wrap">
     <a class="brand" href="index.html"><svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true" style="flex:0 0 auto"><circle cx="50" cy="50" r="34" fill="none" stroke="#ff7a1a" stroke-width="11" stroke-linecap="round" stroke-dasharray="165 49" transform="rotate(-50 50 50)"/><circle cx="50" cy="50" r="9" fill="#ff7a1a"/></svg>Relance</a>
     <div>Turn missed enquiries into booked revenue. Built for UK renewables installers.</div>
-    <div class="footlinks"><a href="index.html">Home</a><a href="heating.html">Heat pumps</a><a href="solar.html">Solar</a><a href="see-it.html">See it</a><a href="forecast.html">The cost</a><a href="fees.html">Fees</a><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="book.html">Book a call</a></div>
+    <div class="footlinks"><a href="index.html">Home</a><a href="heating.html">Heat pumps</a><a href="solar.html">Solar</a><a href="see-it.html">See it</a><a href="forecast.html">The cost</a><a href="fees.html">What's included</a><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="book.html">Book a call</a></div>
     <div style="margin-top:8px;opacity:.7">&copy; 2026 <b class="rl">Relance</b>.</div>
   </div>
 </footer>
 
 <script>
 (function () {
-  var YEARLY = 497 * 12;
   var what = 'heating', now = '';
 
   function money(n) { return '£' + Math.round(n).toLocaleString('en-GB'); }
@@ -284,25 +283,22 @@
     var missedYear = missedWeek * 52;
     var totalYear  = perWeek * 52;
     var atStake    = missedYear * acv;
-    var needBack   = Math.max(1, Math.ceil(YEARLY / acv));
+    var oneMore    = acv * 12;
 
     document.getElementById('rBig').textContent = money(atStake);
     document.getElementById('rCap').textContent = 'across ' + num(missedYear) + ' missed enquiries a year';
     document.getElementById('rTotal').textContent = num(totalYear);
     document.getElementById('rMissed').textContent = num(missedYear);
     document.getElementById('rAcv').textContent = money(acv);
-    document.getElementById('rCost').textContent = money(YEARLY);
+    document.getElementById('rCost').textContent = money(oneMore);
 
     var punch, sub;
-    if (missedYear < needBack) {
-      punch = 'On these numbers the maths is tight.';
-      sub = "You'd need " + num(needBack) + " of them back to cover the cost, and you're only missing " + num(missedYear) + " a year. Worth a conversation before you spend anything.";
-    } else if (needBack === 1) {
-      punch = 'Recover one and it has paid for itself.';
-      sub = 'One install out of the ' + num(missedYear) + " enquiries you miss a year covers Relance for twelve months. Everything after that is money you were losing.";
+    if (missedYear < 12) {
+      punch = 'One more a month is ' + money(oneMore) + ' a year.';
+      sub = "You're missing " + num(missedYear) + " a year, so every single one counts. Book fifteen minutes and we'll go through your numbers and the price together.";
     } else {
-      punch = 'Recover ' + num(needBack) + ' and it has paid for itself.';
-      sub = num(needBack) + ' out of the ' + num(missedYear) + " enquiries you miss a year covers Relance for twelve months. Everything after that is money you were losing.";
+      punch = 'One more a month is ' + money(oneMore) + ' a year.';
+      sub = "And you're letting " + num(missedYear) + " enquiries a year go unanswered. Book fifteen minutes and we'll go through your numbers and the price together.";
     }
     document.getElementById('rPunch').textContent = punch;
     document.getElementById('rSub').textContent = sub;
