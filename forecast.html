@@ -72,6 +72,12 @@
     padding:18px;margin-top:22px}
   .fc-punch b{color:var(--amber,#ff7a1a);font-size:1.15rem}
   .fc-note{color:var(--slate,#93a7bc);font-size:.83rem;margin-top:18px;line-height:1.5}
+  .fclab{display:block;margin-bottom:12px;font-size:.88rem;color:var(--slate,#93a7bc);font-weight:600}
+  .fclab input,.fclab select{width:100%;margin-top:6px;padding:13px 15px;border-radius:11px;border:1px solid var(--line,#213048);
+    background:#0e1a29;color:#eef4fa;font:inherit;font-size:1rem}
+  .fclab input:focus,.fclab select:focus{outline:none;border-color:var(--amber,#ff7a1a)}
+  .fcconsent{display:flex;gap:10px;align-items:flex-start;margin:14px 0 4px;font-size:.86rem;color:var(--slate,#93a7bc);line-height:1.5}
+  .fcconsent input{margin-top:3px;flex:0 0 auto;width:17px;height:17px;accent-color:var(--amber,#ff7a1a)}
 </style>
 </head>
 <body data-no-modal>
@@ -82,7 +88,6 @@
       <a href="index.html">Home</a>
       <a href="lance.html">Meet Lance</a>
       <a href="see-it.html">See it</a>
-      <a href="app.html">The app</a>
       <a href="fees.html">Fees</a>
       <a href="about.html">About</a>
       <a href="book.html" class="btn btn-dark">Book a call</a>
@@ -93,7 +98,7 @@
 <section class="fc-wrap">
   <div class="wrap" style="max-width:1080px">
     <div class="center" style="max-width:680px;margin:0 auto">
-      <span class="eyebrow">The forecast</span>
+      <span class="eyebrow">The cost of a missed enquiry</span>
       <h1 style="margin-top:12px;font-size:clamp(1.8rem,4vw,2.6rem)">What are the enquiries you miss actually worth?</h1>
       <p style="margin-top:14px">Three questions, about sixty seconds. Built on your numbers, not ours.</p>
     </div>
@@ -156,13 +161,43 @@
           </div>
           <div class="fc-err" id="e3"></div>
           <div class="fc-nav">
+            <button type="button" class="btn btn-primary fc-next">Next &rarr;</button>
+            <button type="button" class="fc-back">Back</button>
+          </div>
+        </div>
+
+        <div class="fc-step" data-step="4">
+          <div class="fc-count">Last bit</div>
+          <h2 class="fc-q">Where shall we send it?</h2>
+          <p class="fc-help">Your number is ready. Tell us who you're and it appears, along with a copy by email.</p>
+
+          <label class="fclab">First name<input type="text" id="fName" autocomplete="given-name" placeholder="Dave"></label>
+          <label class="fclab">Business name<input type="text" id="fCo" autocomplete="organization" placeholder="Whitmore Renewables"></label>
+          <label class="fclab">Email<input type="email" id="fEmail" autocomplete="email" placeholder="you@yourbusiness.co.uk"></label>
+          <label class="fclab">Mobile<input type="tel" id="fPhone" autocomplete="tel" placeholder="07…"></label>
+
+          <label class="fclab" style="margin-top:6px">What do you install?
+            <select id="fInd">
+              <option value="heating">Heat pumps and boilers</option>
+              <option value="solar">Solar and battery</option>
+              <option value="other">Something else</option>
+            </select>
+          </label>
+
+          <label class="fcconsent">
+            <input type="checkbox" id="fConsent">
+            <span>I agree that <b class="rl">Relance</b> may contact me by email and text about <b class="rl">Relance</b>. I can opt out any time by replying STOP or clicking unsubscribe. <a href="privacy.html" target="_blank" rel="noopener">Privacy</a>.</span>
+          </label>
+
+          <div class="fc-err" id="e4"></div>
+          <div class="fc-nav">
             <button type="button" class="btn btn-primary" id="fcGo">Show me the number &rarr;</button>
             <button type="button" class="fc-back">Back</button>
           </div>
         </div>
 
         <div class="fc-dots">
-          <span class="fc-dot on"></span><span class="fc-dot"></span><span class="fc-dot"></span>
+          <span class="fc-dot on"></span><span class="fc-dot"></span><span class="fc-dot"></span><span class="fc-dot"></span>
         </div>
       </div>
 
@@ -195,7 +230,7 @@
             <a href="book.html" class="btn btn-primary">Book a call &rarr;</a>
           </div>
 
-          <p class="fc-note">This is your arithmetic, not a promise. It shows what the enquiries you miss are worth over a year and how many you would need back to cover the cost. It does not claim how many Relance will recover, because nobody can know that before we start.</p>
+          <p class="fc-note">This is your arithmetic, not a promise. It shows what the enquiries you miss are worth over a year and how many you would need back to cover the cost. It doesn't claim how many Relance will recover, because nobody can know that before we start.</p>
         </div>
       </div>
 
@@ -207,7 +242,7 @@
   <div class="wrap">
     <a class="brand" href="index.html"><svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true" style="flex:0 0 auto"><circle cx="50" cy="50" r="34" fill="none" stroke="#ff7a1a" stroke-width="11" stroke-linecap="round" stroke-dasharray="165 49" transform="rotate(-50 50 50)"/><circle cx="50" cy="50" r="9" fill="#ff7a1a"/></svg>Relance</a>
     <div>Turn missed enquiries into booked revenue. For UK businesses where every enquiry counts.</div>
-    <div class="footlinks"><a href="index.html">Home</a><a href="see-it.html">See it</a><a href="lance.html">Meet Lance</a><a href="app.html">The app</a><a href="fees.html">Fees</a><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="book.html">Book a call</a></div>
+    <div class="footlinks"><a href="index.html">Home</a><a href="heating.html">Heat pumps</a><a href="solar.html">Solar</a><a href="see-it.html">See it</a><a href="forecast.html">The cost</a><a href="fees.html">Fees</a><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="book.html">Book a call</a></div>
     <div style="margin-top:8px;opacity:.7">&copy; 2026 <b class="rl">Relance</b>.</div>
   </div>
 </footer>
@@ -246,7 +281,7 @@
     if (!isFinite(v) || v < 0) { err.textContent = 'Pop a rough number in and we will do the rest.'; return false; }
     if (n === 1 && v < 1)  { err.textContent = 'A customer has to be worth something.'; return false; }
     if (n === 2 && v < 1)  { err.textContent = 'You must be getting at least one a week.'; return false; }
-    if (n === 3 && v > val('q2')) { err.textContent = 'That is more than you said you get. Have another go.'; return false; }
+    if (n === 3 && v > val('q2')) { err.textContent = 'That's more than you said you get. Have another go.'; return false; }
     err.textContent = '';
     return true;
   }
@@ -262,11 +297,48 @@
     if (!document.querySelector('.fc-step.on input:focus')) return;
     e.preventDefault();
     if (step < 3) { if (check(step)) show(step + 1); }
+    else if (step === 3) { if (check(3)) show(4); }
     else { document.getElementById('fcGo').click(); }
   });
 
+  function checkForm() {
+    var err = document.getElementById('e4');
+    var n = document.getElementById('fName').value.trim();
+    var e = document.getElementById('fEmail').value.trim();
+    var p = document.getElementById('fPhone').value.trim();
+    if (!n) { err.textContent = 'We just need a first name.'; return false; }
+    if (!/^[^@\s]+@[^@\s.]+\.[^@\s]+$/.test(e)) { err.textContent = 'That email doesn't look right.'; return false; }
+    if (p.replace(/[^\d]/g, '').length < 10) { err.textContent = 'That mobile number doesn't look right.'; return false; }
+    if (!document.getElementById('fConsent').checked) { err.textContent = 'Please tick the box so we know we may contact you.'; return false; }
+    err.textContent = '';
+    return true;
+  }
+
+  function sendLead(lead, attempt) {
+    fetch('https://missed-call-router.vercel.app/api/lead', {
+      method: 'POST', keepalive: true,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(lead)
+    }).then(function (r) {
+      if (!r.ok && attempt < 2) setTimeout(function () { sendLead(lead, attempt + 1); }, 1200);
+    }).catch(function () {
+      if (attempt < 2) setTimeout(function () { sendLead(lead, attempt + 1); }, 1200);
+    });
+  }
+
   document.getElementById('fcGo').addEventListener('click', function () {
     if (!check(1) || !check(2) || !check(3)) return;
+    if (!checkForm()) return;
+
+    sendLead({
+      firstName: document.getElementById('fName').value.trim(),
+      company: document.getElementById('fCo').value.trim(),
+      email: document.getElementById('fEmail').value.trim(),
+      phone: document.getElementById('fPhone').value.trim(),
+      industry: document.getElementById('fInd').value,
+      acv: String(val('q1')),
+      consent: true
+    }, 1);
 
     var acv = val('q1'), perWeek = val('q2'), missedWeek = val('q3');
     var missedYear = missedWeek * 52;
@@ -284,13 +356,13 @@
     var punch, sub;
     if (missedYear < needBack) {
       punch = 'On these numbers the maths is tight.';
-      sub = 'You would need ' + num(needBack) + ' of them back to cover the cost, and you are only missing ' + num(missedYear) + ' a year. Worth a conversation before you spend anything.';
+      sub = 'You would need ' + num(needBack) + ' of them back to cover the cost, and you're only missing ' + num(missedYear) + ' a year. Worth a conversation before you spend anything.';
     } else if (needBack === 1) {
       punch = 'Recover one and it has paid for itself.';
-      sub = 'One customer out of the ' + num(missedYear) + ' you miss a year covers Relance for twelve months. Everything after that is money you were losing.';
+      sub = 'One customer out of the ' + num(missedYear) + ' you miss a year covers Relance for twelve months. Everything after that's money you were losing.';
     } else {
       punch = 'Recover ' + num(needBack) + ' and it has paid for itself.';
-      sub = num(needBack) + ' out of the ' + num(missedYear) + ' you miss a year covers Relance for twelve months. Everything after that is money you were losing.';
+      sub = num(needBack) + ' out of the ' + num(missedYear) + ' you miss a year covers Relance for twelve months. Everything after that's money you were losing.';
     }
     document.getElementById('rPunch').textContent = punch;
     document.getElementById('rPunchSub').textContent = sub;
