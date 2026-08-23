@@ -1,0 +1,64 @@
+<svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Solar and battery installations">
+  <defs>
+    <linearGradient id="sbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#20344c"/><stop offset="1" stop-color="#101d2e"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1b3b57" stop-opacity="0"/><stop offset="1" stop-color="#0d1826"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#ff7a1a"/><stop offset="1" stop-color="#ffc46b"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="280" fill="url(#sbg)"/>
+
+  <!-- faint circuitry, same language as the heating card -->
+  <g opacity=".28" stroke="#ff7a1a" fill="none" stroke-width="2">
+    <path d="M44 252 v-52 a14 14 0 0 1 14-14 h52"/>
+    <path d="M356 252 v-74 a14 14 0 0 0-14-14 h-46"/>
+    <circle cx="44" cy="186" r="5" fill="#ff7a1a" stroke="none"/>
+    <circle cx="356" cy="164" r="5" fill="#ff7a1a" stroke="none"/>
+  </g>
+
+  <!-- the sun -->
+  <circle cx="304" cy="70" r="24" fill="url(#sun)"/>
+  <g stroke="#ffc46b" stroke-width="3" stroke-linecap="round" opacity=".85">
+    <path d="M304 26 v-12"/><path d="M304 126 v12"/>
+    <path d="M260 70 h-12"/><path d="M348 70 h12"/>
+    <path d="M273 39 l-9-9"/><path d="M335 101 l9 9"/>
+    <path d="M335 39 l9-9"/><path d="M273 101 l-9 9"/>
+  </g>
+
+  <!-- the array, on a pitched roof -->
+  <g transform="skewY(-11)">
+    <rect x="52" y="118" width="196" height="112" rx="8" fill="#16273c" stroke="rgba(255,255,255,.16)" stroke-width="2"/>
+    <g fill="#0d1826" stroke="rgba(255,122,26,.34)" stroke-width="1.6">
+      <rect x="62" y="128" width="56" height="42" rx="3"/>
+      <rect x="122" y="128" width="56" height="42" rx="3"/>
+      <rect x="182" y="128" width="56" height="42" rx="3"/>
+      <rect x="62" y="176" width="56" height="42" rx="3"/>
+      <rect x="122" y="176" width="56" height="42" rx="3"/>
+      <rect x="182" y="176" width="56" height="42" rx="3"/>
+    </g>
+    <!-- a couple of cells catching the light -->
+    <rect x="122" y="128" width="56" height="42" rx="3" fill="#ff7a1a" opacity=".22"/>
+    <rect x="182" y="176" width="56" height="42" rx="3" fill="#ff7a1a" opacity=".14"/>
+  </g>
+
+  <!-- battery, wall mounted -->
+  <rect x="286" y="150" width="66" height="94" rx="12" fill="#16273c" stroke="rgba(255,255,255,.16)" stroke-width="2"/>
+  <rect x="300" y="166" width="38" height="10" rx="5" fill="#0d1826"/>
+  <g fill="#ff7a1a">
+    <rect x="300" y="190" width="38" height="9" rx="4.5"/>
+    <rect x="300" y="205" width="38" height="9" rx="4.5" opacity=".7"/>
+    <rect x="300" y="220" width="38" height="9" rx="4.5" opacity=".38"/>
+  </g>
+
+  <!-- the tie between array and battery -->
+  <path d="M250 214 h22 a14 14 0 0 1 14 14" fill="none" stroke="#ff7a1a" stroke-width="2.4" opacity=".65"/>
+  <circle cx="250" cy="214" r="4.5" fill="#ff7a1a" opacity=".8"/>
+
+  <!-- ground -->
+  <rect x="0" y="252" width="400" height="28" fill="#0b1420" opacity=".55"/>
+</svg>

@@ -4,7 +4,7 @@
   // Two uses: once on a first visit, and any time someone asks to watch the demo.
   var TRADES = [
     {key:'heating', page:'heating.html', img:'ind-heating.svg', name:'Heat Pump &amp; Boiler Installations', sub:'ASHP &middot; oil swaps &middot; boiler replacements'},
-    {key:'solar',   page:'solar.html',   img:'ind-heating.svg', name:'Solar &amp; Battery Installations',    sub:'Solar PV &middot; battery storage &middot; retrofits'}
+    {key:'solar',   page:'solar.html',   img:'ind-solar.svg',   name:'Solar &amp; Battery Installations',    sub:'Solar PV &middot; battery storage &middot; retrofits'}
   ];
 
   function buildModal(opts){
