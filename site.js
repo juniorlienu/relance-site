@@ -3,9 +3,8 @@
   // ---- industry selector modal ----
   // Two uses: once on a first visit, and any time someone asks to watch the demo.
   var TRADES = [
-    {key:'heating',    page:'heating.html',    img:'ind-heating.svg',    name:'Heating &amp; Home Services', sub:'Boilers &middot; heat pumps &middot; plumbing'},
-    {key:'aesthetics', page:'aesthetics.html', img:'ind-aesthetics.svg', name:'Beauty &amp; Aesthetics',     sub:'Clinics &middot; injectors &middot; academies'},
-    {key:'clinics',    page:'clinics.html',    img:'ind-clinics.svg',    name:'Clinics &amp; Therapists',    sub:'Chiropractors &middot; physios &middot; sports injury'}
+    {key:'heating', page:'heating.html', img:'ind-heating.svg', name:'Heat Pump &amp; Boiler Installations', sub:'ASHP &middot; oil swaps &middot; boiler replacements'},
+    {key:'solar',   page:'solar.html',   img:'ind-heating.svg', name:'Solar &amp; Battery Installations',    sub:'Solar PV &middot; battery storage &middot; retrofits'}
   ];
 
   function buildModal(opts){
@@ -84,6 +83,12 @@
          ['in',"We'll get an engineer to you as quickly as we can. Is anyone vulnerable in the property?"],
          ['out',"Yes, my son is 8"],
          ['in',"Thanks for letting us know. The team will call you shortly to get someone out."]]},
+    solar: {name:'Westfield Renewables', sub:'replies in seconds', tag:'Survey booked',
+      m:[['in',"Sorry we missed your call. What can we help with?"],
+         ['out',"Looking at solar panels, maybe a battery too"],
+         ['in',"Good time for it. Are you mainly after cutting the bills, or storing power as well?"],
+         ['out',"Bills mostly, they've gone mad"],
+         ['in',"Understood. A survey is the next step so we can size it properly. The team will ring you shortly to book you in."]]},
     aesthetics: {name:'Lumiere Aesthetics', sub:'replies in seconds', tag:'Consultation booked',
       m:[['in',"Sorry we missed you. How can we help?"],
          ['out',"How much is lip filler?"],

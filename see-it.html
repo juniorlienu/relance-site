@@ -31,6 +31,7 @@
       <a href="lance.html">Meet Lance</a>
       <a href="see-it.html">See it</a>
       <a href="app.html">The app</a>
+      <a href="forecast.html">Forecast</a>
       <a href="fees.html">Fees</a>
       <a href="about.html">About</a>
       <a href="book.html" class="btn btn-dark">Book a call</a>
@@ -57,6 +58,9 @@
         <label>Email<input type="email" name="email" autocomplete="email" required placeholder="you@yourbusiness.co.uk"></label>
         <label>Mobile<input type="tel" name="phone" autocomplete="tel" required placeholder="07…"></label>
 
+        <label>What's one customer worth to you?<input type="text" name="acv" inputmode="numeric" required placeholder="£"></label>
+        <p class="gatenote" style="margin-top:-6px;margin-bottom:2px;text-align:left">Everything they spend with you over time, not one job. It changes what the film shows you.</p>
+
         <label class="consent">
           <input type="checkbox" name="consent" required>
           <span>I agree that <b class="rl">Relance</b> may contact me by email and text about <b class="rl">Relance</b>. My details will not be passed to anyone else, and I can opt out at any time by replying STOP or clicking unsubscribe. <a href="privacy.html" target="_blank" rel="noopener">Privacy</a>.</span>
@@ -74,9 +78,8 @@
       <h1 style="margin-top:12px;font-size:clamp(1.6rem,3.6vw,2.2rem)">What kind of business is it?</h1>
       <p style="margin-top:12px">So we show you your own trade, in your own language, with real numbers from it.</p>
       <div class="indpicks">
-        <button type="button" class="pick" data-ind="heating">Heating &amp; renewables</button>
-        <button type="button" class="pick" data-ind="aesthetics">Beauty &amp; aesthetics</button>
-        <button type="button" class="pick" data-ind="clinics">Clinics &amp; therapists</button>
+        <button type="button" class="pick" data-ind="heating">Heat pumps &amp; boilers</button>
+        <button type="button" class="pick" data-ind="solar">Solar &amp; battery</button>
         <button type="button" class="pick" data-ind="other">Something else</button>
       </div>
     </div>
@@ -114,10 +117,9 @@ var ENDPOINT = 'https://missed-call-router.vercel.app/api/lead';
 var lead = {};
 
 var FILMS = {
-  heating:    { src: 'relance-demo-heating.mp4',    poster: 'poster-heating.jpg',    kicker: 'Heating and renewables', title: 'The enquiry you never knew you lost.' },
-  aesthetics: { src: 'relance-demo-aesthetics.mp4', poster: 'poster-aesthetics.jpg', kicker: 'Beauty and aesthetics',  title: 'She messaged three places. One replied first.' },
-  clinics:    { src: 'relance-demo-clinics.mp4',    poster: 'poster-clinics.jpg',    kicker: 'Clinics and therapists', title: 'The enquiry you never knew you lost.' },
-  other:      { src: 'relance-demo-general.mp4',    poster: 'poster-general.jpg',    kicker: 'Your business',          title: 'Here is what happens to the enquiries you miss.' }
+  heating: { src: 'relance-demo-heating.mp4', poster: 'poster-heating.jpg', kicker: 'Heat pumps and boilers', title: 'The survey you never knew you lost.' },
+  solar:   { src: 'relance-demo-general.mp4', poster: 'poster-general.jpg', kicker: 'Solar and battery',      title: 'The survey you never knew you lost.' },
+  other:   { src: 'relance-demo-general.mp4', poster: 'poster-general.jpg', kicker: 'Your business',          title: 'Here is what happens to the enquiries you miss.' }
 };
 
 function show(id) {
@@ -153,7 +155,7 @@ function sendLead(attempt) {
 
 function playFilm(ind, alreadySent) {
   lead.industry = ind;
-  try { localStorage.setItem('relance-industry', ind === 'other' ? 'heating' : ind); } catch (e) {}
+  try { localStorage.setItem('relance-industry', 'heating'); } catch (e) {}
   if (!alreadySent) sendLead(1);
 
   var film = FILMS[ind] || FILMS.other;
@@ -180,7 +182,7 @@ if (!FILMS[wanted]) wanted = null;
 var known = savedLead();
 if (known) {
   var f0 = document.getElementById('leadform');
-  ['firstName', 'lastName', 'company', 'email', 'phone'].forEach(function (k) {
+  ['firstName', 'lastName', 'company', 'email', 'phone', 'acv'].forEach(function (k) {
     if (f0[k] && known[k]) f0[k].value = known[k];
   });
   document.getElementById('backnote').classList.remove('hide');
@@ -197,12 +199,14 @@ document.getElementById('leadform').addEventListener('submit', function (e) {
     company: f.company.value.trim(),
     email: f.email.value.trim(),
     phone: f.phone.value.trim(),
+    acv: f.acv.value,
     consent: f.consent.checked
   };
 
   if (!lead.firstName) { err.textContent = 'We just need a first name.'; return; }
   if (!/^[^@\s]+@[^@\s.]+\.[^@\s]+$/.test(lead.email)) { err.textContent = 'That email does not look right.'; return; }
   if (lead.phone.replace(/[^\d]/g, '').length < 10) { err.textContent = 'That mobile number does not look right.'; return; }
+  if (!/\d/.test(lead.acv)) { err.textContent = 'Roughly what is one customer worth? A number is fine.'; return; }
   if (!lead.consent) { err.textContent = 'Please tick the box so we know we may contact you.'; return; }
 
   try { localStorage.setItem('relance-lead', JSON.stringify(lead)); } catch (e2) {}
