@@ -20,6 +20,63 @@
 <meta name="twitter:image" content="https://www.relance.co.uk/og-image.png">
 <link rel="icon" type="image/svg+xml" href="relance-favicon.svg">
 <link rel="stylesheet" href="styles.css">
+
+<style>
+  /* qualification beside the diary */
+  .qd{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px;align-items:start}
+  @media(max-width:900px){.qd{grid-template-columns:1fr}}
+  .qasks{list-style:none;display:flex;flex-direction:column;gap:0}
+  .qasks li{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);align-items:flex-start}
+  .qasks li:last-child{border-bottom:0}
+  .qasks .qn{flex:0 0 26px;height:26px;border-radius:50%;background:rgba(255,122,26,.14);color:var(--amber);
+    display:grid;place-items:center;font-size:.78rem;font-weight:800;margin-top:2px}
+  .qasks b{color:#fff;display:block;font-size:1rem}
+  .qasks span.qs{color:var(--slate);font-size:.9rem}
+
+  /* the diary card, styled like the owner dashboard */
+  .diary{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px;position:sticky;top:90px}
+  @media(max-width:900px){.diary{position:static}}
+  .diary h4{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:4px}
+  .diary .dsub{color:var(--slate);font-size:.85rem;margin-bottom:16px}
+  .drow{display:flex;gap:13px;padding:14px 0;border-top:1px solid var(--line)}
+  .dwhen{flex:0 0 62px;font-size:.78rem;color:var(--slate);line-height:1.35}
+  .dwhen b{display:block;color:#fff;font-size:.95rem}
+  .dwhat{color:#fff;font-weight:700;font-size:.95rem}
+  .dwhere{color:var(--slate);font-size:.83rem;margin-top:1px}
+  .dval{margin-left:auto;color:var(--amber);font-weight:800;font-size:.95rem;white-space:nowrap}
+  .dflags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .dflags i{font-style:normal;background:rgba(255,122,26,.13);border:1px solid rgba(255,122,26,.3);
+    color:#ffc46b;font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:999px}
+
+  /* the calendar week */
+  .calweek{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:32px}
+  @media(max-width:760px){.calweek{grid-template-columns:repeat(2,1fr)}}
+  .cday{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:13px 12px;min-height:120px}
+  .cday h5{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:10px}
+  .cslot{border-radius:9px;padding:8px 9px;margin-bottom:7px;font-size:.78rem;line-height:1.35}
+  .cslot.ai{background:rgba(255,122,26,.13);border:1px solid rgba(255,122,26,.36)}
+  .cslot.you{background:rgba(255,255,255,.05);border:1px solid var(--line)}
+  .cslot b{display:block;color:#fff;font-size:.82rem}
+  .cslot span{color:var(--slate)}
+  .cfree{color:#5d7089;font-size:.76rem;font-style:italic;padding:6px 2px}
+  .clegend{display:flex;gap:18px;justify-content:center;margin-top:18px;font-size:.83rem;color:var(--slate);flex-wrap:wrap}
+  .clegend i{width:11px;height:11px;border-radius:3px;display:inline-block;margin-right:7px;vertical-align:-1px}
+  .clegend i.a{background:rgba(255,122,26,.6);border:1px solid var(--amber)}
+  .clegend i.b{background:rgba(255,255,255,.12);border:1px solid var(--line)}
+
+  /* multi channel */
+  .chans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+  @media(max-width:860px){.chans{grid-template-columns:1fr}}
+  .chan{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+  .chan .ctop{display:flex;align-items:center;gap:9px;margin-bottom:13px}
+  .chan .cico{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;font-size:.72rem;font-weight:800;color:#fff}
+  .chan .cname{font-size:.83rem;font-weight:700;color:#fff}
+  .chan .ctime{margin-left:auto;font-size:.72rem;color:#5d7089}
+  .bub{border-radius:12px;padding:9px 12px;font-size:.85rem;line-height:1.45;margin-bottom:8px;max-width:92%}
+  .bub.in{background:rgba(255,255,255,.06);color:#dce6f0;border-bottom-left-radius:4px}
+  .bub.out{background:var(--amber);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
+  .creply{font-size:.73rem;color:#5d7089;text-align:right;margin-top:2px}
+</style>
 </head>
 <body data-no-modal>
 <nav>
@@ -92,16 +149,41 @@
   <div class="wrap">
     <div class="center rv" style="max-width:660px;margin:0 auto">
       <span class="eyebrow">Not just an auto reply</span>
-      <h2 style="margin-top:12px">It qualifies the job before it reaches you.</h2>
-      <p style="margin-top:14px">One question at a time, the way a good office manager would. By the time the survey lands in your diary you already know:</p>
+      <h2 style="margin-top:12px">It qualifies the job, then books the survey.</h2>
+      <p style="margin-top:14px">One question at a time, the way a good office manager would. Never a price, because nobody has seen the job yet.</p>
     </div>
-    <ul class="setup-list rv" style="margin-top:26px">
-      <li><span class="c">&check;</span> What they are heating with now, because an oil household is the strongest enquiry you get</li>
-      <li><span class="c">&check;</span> How old the boiler is, so a repair call becomes a replacement survey</li>
-      <li><span class="c">&check;</span> Whether it's their own home or a rental</li>
-      <li><span class="c">&check;</span> Timescale, and whether they want to spread the cost</li>
-    </ul>
-    <p class="fee-note rv" style="margin-top:22px">Every survey arrives flagged. <b class="rl">On oil &middot; High bills &middot; Twelve years old &middot; Ready now</b></p>
+    <div class="qd">
+      <ul class="qasks rv">
+        <li><span class="qn">1</span><span><b>What are you heating with now?</b><span class="qs">Oil is the strongest enquiry you get. It gets flagged before it reaches you.</span></span></li>
+        <li><span class="qn">2</span><span><b>How old is the boiler?</b><span class="qs">Turns a repair call into a replacement survey.</span></span></li>
+        <li><span class="qn">3</span><span><b>Is there a timescale?</b><span class="qs">Before winter is a buyer. Just looking is not.</span></span></li>
+        <li><span class="qn">4</span><span><b>Would you spread the cost?</b><span class="qs">Removes the objection before you ever hear it.</span></span></li>
+        <li><span class="qn">5</span><span><b>What's the postcode?</b><span class="qs">So nobody drives to a job outside your patch.</span></span></li>
+      </ul>
+      <div class="diary rv">
+        <h4>Your diary, Monday morning</h4>
+        <div class="dsub">Every survey arrives with what it learned attached.</div>
+        <div class="drow">
+          <div class="dwhen">Tue<b>09:00</b></div>
+          <div><div class="dwhat">Heat pump survey</div><div class="dwhere">Exeter, 4 bed detached</div>
+            <div class="dflags"><i>On oil</i> <i>High bills</i> <i>Ready now</i></div></div>
+          <div class="dval">£11,000</div>
+        </div>
+        <div class="drow">
+          <div class="dwhen">Wed<b>10:00</b></div>
+          <div><div class="dwhat">Heat pump survey</div><div class="dwhere">Truro, 4 bed barn</div>
+            <div class="dflags"><i>On oil</i> <i>Wants finance</i></div></div>
+          <div class="dval">£11,000</div>
+        </div>
+        <div class="drow">
+          <div class="dwhen">Thu<b>08:30</b></div>
+          <div><div class="dwhat">Boiler replacement</div><div class="dwhere">Banbury, 3 bed semi</div>
+            <div class="dflags"><i>12+ years old</i> <i>Broken before</i></div></div>
+          <div class="dval">£2,600</div>
+        </div>
+      </div>
+    </div>
+    <p class="fee-note rv">You know which one to go to first before you have opened the van.</p>
   </div>
 </section>
 
@@ -113,7 +195,7 @@
         <h3>Ring the number. Hang up. Watch your phone.</h3>
         <p>This is the live system, right now. Call it, let it ring out like a missed call, then wait a few seconds.</p>
         <a class="num" href="tel:+447576584993"><span>&#128222;</span><span>+44 7576 584993<small>Call, then let it ring out</small></span></a>
-        <p class="note">The demo runs on a sample firm, Meridian Heating, so the reply mentions them. Imagine your name, your prices, your voice.</p>
+        <p class="note">The demo runs on a sample firm, Meridian Heating, so the reply mentions them. Imagine your name, your patch, your voice.</p>
       </div>
       <ul class="steps">
         <li><span class="n">1</span><span><b>Call and let it ring out.</b></span></li>
@@ -122,6 +204,75 @@
         <li><span class="n">4</span><span><b>Push it.</b> Change your mind, be vague, ask a follow up. Then ask how many of those went unanswered last month.</span></li>
       </ul>
     </div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="wrap">
+    <div class="center rv" style="max-width:640px;margin:0 auto">
+      <span class="eyebrow">Real slots, not guesses</span>
+      <h2 style="margin-top:12px">It books into the diary you actually keep.</h2>
+      <p style="margin-top:14px">Two way synced, so a job you took on Tuesday blocks the slot before anyone can offer it. It never names a time it cannot see.</p>
+    </div>
+    <div class="calweek rv">
+    <div class="cday"><h5>Mon</h5>
+      <div class="cslot you"><b>08:00</b><span>Install, day 2</span></div>
+      <div class="cfree">10:00 onwards free</div>
+    </div>
+    <div class="cday"><h5>Tue</h5>
+      <div class="cslot ai"><b>09:00</b><span>Heat pump survey</span></div>
+      <div class="cfree">11:00 free</div>
+      <div class="cslot ai"><b>14:00</b><span>Boiler survey</span></div>
+    </div>
+    <div class="cday"><h5>Wed</h5>
+      <div class="cslot ai"><b>10:00</b><span>Heat pump survey</span></div>
+      <div class="cslot you"><b>15:00</b><span>Service call</span></div>
+    </div>
+    <div class="cday"><h5>Thu</h5>
+      <div class="cslot ai"><b>08:30</b><span>Boiler replacement</span></div>
+      <div class="cfree">12:00 onwards free</div>
+    </div>
+    <div class="cday"><h5>Fri</h5>
+      <div class="cslot you"><b>09:00</b><span>Install, day 1</span></div>
+      <div class="cfree">14:00 free</div>
+    </div>
+    </div>
+    <div class="clegend"><span><i class="a"></i>Booked while you were working</span><span><i class="b"></i>Booked by you</span></div>
+    <p class="fee-note rv">Ninety minutes a survey, an hour between them for travel, and never sooner than tomorrow.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="center rv" style="max-width:660px;margin:0 auto">
+      <span class="eyebrow">Every way they reach you</span>
+      <h2 style="margin-top:12px">One brain, wherever the enquiry lands.</h2>
+      <p style="margin-top:14px">Missed calls, texts, Instagram, Facebook, WhatsApp, web chat, Google and email. Same voice, same questions, same diary.</p>
+    </div>
+    <div class="chans">
+    <div class="chan rv">
+      <div class="ctop"><span class="cico" style="background:#2fd07a">SMS</span><span class="cname">Missed call, then text</span><span class="ctime">19:42</span></div>
+      <div class="bub in">Rang earlier about a heat pump, we're on oil and the bills are frightening</div>
+      <div class="bub out">Oil is exactly where a heat pump makes the biggest difference. Is there a timescale you're working to?</div>
+      <div class="bub in">Before winter ideally</div>
+      <div class="creply">Flagged: On oil, Ready now</div>
+    </div>
+    <div class="chan rv">
+      <div class="ctop"><span class="cico" style="background:#c13584">IG</span><span class="cname">Instagram DM</span><span class="ctime">21:26</span></div>
+      <div class="bub in">hi do you do heat pumps? 👋</div>
+      <div class="bub out">We do. What are you heating with at the moment?</div>
+      <div class="bub in">oil, it's costing us a fortune</div>
+      <div class="creply">Flagged: On oil, High bills</div>
+    </div>
+    <div class="chan rv">
+      <div class="ctop"><span class="cico" style="background:#25d366">WA</span><span class="cname">WhatsApp</span><span class="ctime">07:15</span></div>
+      <div class="bub in">Morning, boiler's packed in again. Third time this year</div>
+      <div class="bub out">Sorry to hear that. How old is it, roughly?</div>
+      <div class="bub in">About 14 years</div>
+      <div class="creply">Flagged: 12+ years old, Broken before</div>
+    </div>
+    </div>
+    <p class="fee-note rv">Every one of those arrived outside office hours. All three were answered, qualified, and offered a slot.</p>
   </div>
 </section>
 
