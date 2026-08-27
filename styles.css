@@ -84,7 +84,8 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-
 .phone .pav{width:34px;height:34px;border-radius:50%;background:var(--amber);display:grid;place-items:center;font-weight:800;color:#fff;font-size:.85rem}
 .phone .pname{color:#fff;font-weight:700;font-size:.92rem;line-height:1.1}
 .phone .psub{color:var(--slate);font-size:.72rem}
-.pmsgs{display:flex;flex-direction:column;gap:9px;padding:14px 4px 4px;min-height:300px}
+.pmsgs{display:flex;flex-direction:column;justify-content:flex-end;gap:9px;padding:14px 4px 4px;height:470px;overflow:hidden}
+@media(max-width:640px){.pmsgs{height:500px}}
 .pb{max-width:82%;padding:10px 13px;border-radius:16px;font-size:.86rem;line-height:1.4;opacity:0;transform:translateY(10px) scale(.97);transition:opacity .45s ease,transform .45s ease}
 .pb.show{opacity:1;transform:none}
 .pb.in{background:#223349;color:#eef4fa;border-bottom-left-radius:5px;align-self:flex-start}
