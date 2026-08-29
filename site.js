@@ -143,11 +143,15 @@
   document.querySelectorAll('.phone[data-convo]').forEach(runPhone);
 
   // ---- floating demo bubble ----
-  if(!document.body.hasAttribute('data-no-fab')){
+    if(!document.body.hasAttribute('data-no-fab')){
+    // Each vertical has its own sub-account and its own number. A page can name
+    // its own with data-demo-tel and data-demo-num; the heating line is the default.
+    var demoTel = document.body.getAttribute('data-demo-tel') || '+447576584993';
+    var demoNum = document.body.getAttribute('data-demo-num') || '+44 7576 584993';
     var fab = document.createElement('div'); fab.className = 'fab';
     fab.innerHTML = '<div class="fab-pop"><b>See it answer for real</b>'+
       '<p>Ring our demo line, let it ring out, and watch the reply land on your phone in seconds.</p>'+
-      '<a href="tel:+447576584993">Call +44 7576 584993</a></div>'+
+      '<a href="tel:'+demoTel+'">Call '+demoNum+'</a></div>'+
       '<button class="fab-btn" type="button">&#128222;&nbsp; Try the live demo</button>';
     document.body.appendChild(fab);
     fab.querySelector('.fab-btn').addEventListener('click', function(){ fab.classList.toggle('open'); });
