@@ -21,23 +21,29 @@
 <meta name="twitter:image" content="https://www.relance.co.uk/og-image.png">
 <link rel="icon" type="image/svg+xml" href="relance-favicon.svg">
 <link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body data-no-modal>
+<a class="skip" href="#main">Skip to content</a>
 <nav>
   <div class="wrap">
     <a class="brand" href="index.html"><svg width="30" height="30" viewBox="0 0 100 100" aria-hidden="true" style="flex:0 0 auto"><rect width="100" height="100" rx="26" fill="#0e1b2b"/><circle cx="50" cy="50" r="22" fill="none" stroke="#ff7a1a" stroke-width="9" stroke-linecap="round" stroke-dasharray="107 31" transform="rotate(-50 50 50)"/><circle cx="50" cy="50" r="6.4" fill="#ff7a1a"/></svg>Relance</a>
     <div class="navlinks">
-      <a href="index.html">Home</a>
-      <a href="lance.html">Meet Lance</a>
       <a href="see-it.html">See it</a>
-      <a href="index.html#industries" aria-current="page">Industries</a>
-      <a href="forecast.html">The cost</a>
       <a href="fees.html">What's included</a>
-      <a href="about.html">About</a>
       <a href="book.html" class="btn btn-dark">Book a call</a>
     </div>
+    <button class="menubtn" type="button" aria-expanded="false" aria-controls="mobmenu">Menu</button>
+  </div>
+  <div class="menupanel" id="mobmenu">
+    <a href="see-it.html">See it</a>
+    <a href="fees.html">What's included</a>
+    <a href="forecast.html">The cost</a>
+    <a href="about.html">About</a>
+    <a href="book.html">Book a call</a>
   </div>
 </nav>
+<main id="main">
 <header class="pagehead">
   <div class="wrap">
     <span class="eyebrow">Lead recovery for chiropractors, physios &amp; sports therapists</span>
@@ -66,17 +72,14 @@
     </div>
     <div class="grid-3" style="margin-top:44px">
       <div class="card rv">
-        <div class="ic">🦴</div>
         <h3>Patients are worth a course, not a session</h3>
         <p>A new patient isn't one <span class="stat">£50 to £80</span> appointment. It's an assessment, a treatment plan, and often <span class="stat">six to twelve sessions</span>. Losing the first call loses the whole course of care.</p>
       </div>
       <div class="card rv">
-        <div class="ic">🤕</div>
         <h3>Pain doesn't wait politely</h3>
         <p>Someone with an acute back is ringing down a list, and they book the first practice that responds. Being the best clinician doesn't matter if a competitor's phone gets answered and yours doesn't.</p>
       </div>
       <div class="card rv">
-        <div class="ic">🕐</div>
         <h3>You're booked solid, so you miss the most</h3>
         <p>The fuller your diary, the more calls you miss, and the more your growth quietly stalls. The busiest practices leak the most new patients. That's the trap <b class="rl">Relance</b> closes.</p>
       </div>
@@ -106,7 +109,7 @@
       <h2 style="margin-top:12px">Try the live demonstration</h2>
       <p style="margin-top:14px">Our public demo line currently runs on a sample heating company, but it's the same engine that would answer for your practice: your services, your prices, your voice. Ring it, let it ring out, and watch how it holds a conversation. Then <a href="book.html">book a call</a> and we'll map it to your clinic.</p>
       <div class="center" style="margin-top:26px">
-        <a class="num" href="tel:+447576584993" style="background:var(--navy);color:#fff"><span>📞</span><span>+44 7576 584993<small style="color:var(--amber)">Call, then let it ring out</small></span></a>
+        <a class="num" href="tel:+447576584993" style="background:var(--navy);color:#fff"><span>+44 7576 584993<small style="color:var(--amber)">Call, then let it ring out</small></span></a>
       </div>
       <div class="center" style="margin-top:30px">
         <a href="book.html" class="btn btn-primary">Book a call about your practice &rarr;</a>
@@ -130,11 +133,12 @@
     <p class="dashnote">Sample data shown. Yours fills with your own enquiries from day one. <a href="https://missed-call-router.vercel.app/api/digest?demo=1" target="_blank" rel="noopener">Open it full screen &rarr;</a></p>
   </div>
 </section>
+</main>
 <footer>
   <div class="wrap">
     <a class="brand" href="index.html"><svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true" style="flex:0 0 auto"><circle cx="50" cy="50" r="34" fill="none" stroke="#ff7a1a" stroke-width="11" stroke-linecap="round" stroke-dasharray="165 49" transform="rotate(-50 50 50)"/><circle cx="50" cy="50" r="9" fill="#ff7a1a"/></svg>Relance</a>
     <div>Turn missed enquiries into booked revenue. For UK businesses where every enquiry counts.</div>
-    <div class="footlinks"><a href="index.html">Home</a><a href="heating.html">Heat pumps</a><a href="solar.html">Solar</a><a href="see-it.html">See it</a><a href="forecast.html">The cost</a><a href="fees.html">What's included</a><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="book.html">Book a call</a></div>
+    <div class="footlinks"><a href="see-it.html">See it</a><a href="fees.html">What's included</a><a href="forecast.html">The cost</a><a href="about.html">About</a><a href="privacy.html">Privacy</a></div>
     <div style="margin-top:8px;opacity:.7">&copy; 2026 <b class="rl">Relance</b>. Demo line runs on a sample company for illustration.</div>
   </div>
 </footer>

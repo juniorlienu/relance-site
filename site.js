@@ -70,10 +70,19 @@
   });
 
   // ---- scroll reveals ----
+  // Legacy, still used by the vertical pages. The homepage does not use it.
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   },{threshold:.15});
   document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+  // ---- editorial entrances ----
+  // Deliberately an attribute, not a class, and used exactly three times on
+  // the homepage. If this ever needs a fourth, the answer is probably no.
+  var enterIO = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('seen'); enterIO.unobserve(e.target); } });
+  },{threshold:.25});
+  document.querySelectorAll('[data-enter]').forEach(function(el){ enterIO.observe(el); });
 
   // ---- animated phone conversations ----
   var CONVOS = {
@@ -110,15 +119,31 @@
     var head = el.querySelector('.pname'), sub = el.querySelector('.psub'),
         av = el.querySelector('.pav'), box = el.querySelector('.pmsgs'),
         tag = el.querySelector('.ptag');
+    // The four stages read alongside the phone are the product, not decoration.
+    // They light in step with the conversation so the workflow is watched
+    // rather than explained: rings out, answered, qualified, booked.
+    var unit = el.parentElement,
+        stages = unit ? unit.querySelectorAll('.stages li') : [],
+        miss = el.querySelector('.pmiss');
+    function stage(n){
+      for(var s = 0; s < stages.length; s++){ stages[s].classList.toggle('on', s <= n); }
+    }
     var ki = 0;
     function cycle(){
       var c = CONVOS[kinds[ki % kinds.length]]; ki++;
       head.textContent = c.name; sub.textContent = c.sub;
       av.textContent = c.name.charAt(0);
       box.innerHTML = ''; if(tag){ tag.classList.remove('show'); }
+      // A missed call is what starts all of this, so the thread says so first
+      // and everything else waits a beat behind it.
+      if(miss){ miss.classList.remove('show'); setTimeout(function(){ miss.classList.add('show'); }, 260); }
+      stage(0);
+      var qualifiedAt = Math.max(1, c.m.length - 3);
       var i = 0;
       function next(){
-        if(i >= c.m.length){ if(tag){ tag.textContent = c.tag; tag.classList.add('show'); } setTimeout(cycle, 3400); return; }
+        if(i >= c.m.length){ if(tag){ tag.textContent = c.tag; tag.classList.add('show'); } stage(3); setTimeout(cycle, 3400); return; }
+        if(i === 1) stage(1);
+        if(i === qualifiedAt) stage(2);
         var m = c.m[i++];
         if(m[0] === 'in'){
           var t = document.createElement('div'); t.className = 'pb in typing show';
@@ -142,8 +167,32 @@
   }
   document.querySelectorAll('.phone[data-convo]').forEach(runPhone);
 
+
+  // ---- mobile menu ----
+  // The nav collapses to a single CTA under 640px, so this is the only route
+  // to the rest of the site on a phone. A disclosure, not a takeover.
+  (function(){
+    var nav = document.querySelector('nav'),
+        btn = nav && nav.querySelector('.menubtn');
+    if(!btn) return;
+    function set(open){
+      nav.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    btn.addEventListener('click', function(){ set(!nav.classList.contains('open')); });
+    nav.querySelectorAll('.menupanel a').forEach(function(a){
+      a.addEventListener('click', function(){ set(false); });
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && nav.classList.contains('open')){ set(false); btn.focus(); }
+    });
+    document.addEventListener('click', function(e){
+      if(nav.classList.contains('open') && !nav.contains(e.target)) set(false);
+    });
+  })();
+
   // ---- floating demo bubble ----
-    if(!document.body.hasAttribute('data-no-fab')){
+  if(!document.body.hasAttribute('data-no-fab')){
     // Each vertical has its own sub-account and its own number. A page can name
     // its own with data-demo-tel and data-demo-num; the heating line is the default.
     var demoTel = document.body.getAttribute('data-demo-tel') || '+447576584993';
@@ -152,7 +201,7 @@
     fab.innerHTML = '<div class="fab-pop"><b>See it answer for real</b>'+
       '<p>Ring our demo line, let it ring out, and watch the reply land on your phone in seconds.</p>'+
       '<a href="tel:'+demoTel+'">Call '+demoNum+'</a></div>'+
-      '<button class="fab-btn" type="button">&#128222;&nbsp; Try the live demo</button>';
+      '<button class="fab-btn" type="button">Try the live demo</button>';
     document.body.appendChild(fab);
     fab.querySelector('.fab-btn').addEventListener('click', function(){ fab.classList.toggle('open'); });
   }

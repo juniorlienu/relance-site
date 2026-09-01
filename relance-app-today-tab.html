@@ -1,0 +1,224 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1"><meta name="theme-color" content="#0b1420"><title>Your Relance dashboard</title>
+<style>
+:root{--bg:#0b1420;--panel:#121f30;--panel2:#16263a;--line:rgba(255,255,255,.09);--ink:#eef4fa;--slate:#93a7bc;--amber:#ff7a1a;--green:#2fd07a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Schibsted Grotesk','Inter',-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);padding:34px 18px 60px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:1.05rem}
+.live{display:flex;align-items:center;gap:8px;color:var(--slate);font-size:.82rem}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pl 1.8s infinite}
+@keyframes pl{0%,100%{box-shadow:0 0 0 0 rgba(47,208,122,.5)}55%{box-shadow:0 0 0 8px rgba(47,208,122,0)}}
+.eyebrow{color:var(--slate);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+/* hero */
+.hero{background:linear-gradient(135deg,#16263a,#101d2e);border:1px solid var(--line);border-radius:22px;padding:34px 32px;margin-bottom:16px;position:relative;overflow:hidden}
+.hero:after{content:'';position:absolute;right:-70px;top:-70px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(255,122,26,.18),transparent 70%)}
+.hero .big{font-size:clamp(2.8rem,8vw,4.4rem);font-weight:800;letter-spacing:-.035em;line-height:1;margin:10px 0 8px;font-variant-numeric:tabular-nums;color:var(--amber)}
+.hero p{color:var(--slate);font-size:1rem;max-width:46ch}
+.hero b{color:var(--ink)}
+.controls{display:flex;gap:8px;margin:22px 0 20px}
+.seg{border:1.5px solid var(--line);background:transparent;color:var(--slate);border-radius:99px;padding:8px 18px;font-weight:700;font-size:.84rem;cursor:pointer;font-family:inherit;transition:.2s}
+.seg.on{border-color:var(--amber);color:var(--amber);background:rgba(255,122,26,.08)}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}
+@media(max-width:900px){.cards{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.cards{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}
+.card.in{opacity:1;transform:none}
+.card .n{font-size:1.75rem;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.card .l{color:var(--slate);font-size:.84rem;margin-top:3px}
+.card .k{color:var(--slate);font-size:.74rem;margin-top:9px;padding-top:9px;border-top:1px solid var(--line)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px;margin-bottom:16px}
+.panel h2{font-size:1.02rem;margin-bottom:4px}
+.panel .hint{color:var(--slate);font-size:.82rem;margin-bottom:20px}
+/* chart */
+.chart{display:flex;align-items:flex-end;gap:5px;height:170px;padding-top:22px}
+.bwrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.bar{width:100%;max-width:36px;background:linear-gradient(180deg,#ffb347,var(--amber));border-radius:6px 6px 3px 3px;height:0;transition:height .85s cubic-bezier(.2,.7,.2,1);position:relative;cursor:default}
+.bar b{position:absolute;top:-19px;left:50%;transform:translateX(-50%);font-size:.68rem;opacity:0;transition:opacity .4s;white-space:nowrap;font-variant-numeric:tabular-nums}
+.bar.up b{opacity:.85}
+.bl{color:var(--slate);font-size:.67rem}
+/* stages */
+.stage{display:flex;align-items:center;gap:14px;padding:11px 0}
+.stage .sn{flex:0 0 150px;color:var(--slate);font-size:.86rem}
+.stage .track{flex:1;height:11px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden}
+.stage .track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--amber),#ffb347);border-radius:99px;transition:width .9s cubic-bezier(.2,.7,.2,1)}
+.stage .sv{flex:0 0 96px;text-align:right;font-weight:800;font-variant-numeric:tabular-nums;font-size:.94rem}
+.stage .sc{flex:0 0 34px;text-align:right;color:var(--slate);font-size:.8rem}
+.tot{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.tot span{color:var(--slate);font-size:.86rem}
+.tot b{font-size:1.5rem;font-variant-numeric:tabular-nums}
+/* calendar */
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+@media(max-width:760px){.cal{grid-template-columns:repeat(4,1fr)}}
+.cday{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:10px 8px;min-height:124px}
+.cday h4{font-size:.72rem;color:var(--slate);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;text-align:center}
+.chip{background:var(--panel2);border-radius:9px;padding:7px 8px;font-size:.71rem;margin-bottom:6px;opacity:0;transform:scale(.92);transition:opacity .4s,transform .4s}
+.chip.in{opacity:1;transform:none}
+.chip.ai{background:rgba(255,122,26,.15);border:1px solid rgba(255,122,26,.34)}
+.chip b{display:block;color:#fff;font-weight:700;margin:1px 0}
+.chip span{color:var(--slate)}
+.chip .v{color:var(--amber);font-weight:700;font-variant-numeric:tabular-nums}
+.leg{display:flex;gap:18px;margin-top:14px;font-size:.75rem;color:var(--slate)}
+.leg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.leg .a{background:rgba(255,122,26,.5)}.leg .b{background:var(--panel2)}
+/* feed */
+.lead{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:15px 0;border-top:1px solid var(--line);opacity:0;transform:translateX(-12px);transition:opacity .45s,transform .45s}
+.lead.in{opacity:1;transform:none}
+.lead:first-of-type{border-top:0}
+.lead b{display:block;font-size:.96rem}
+.lead .snip{display:block;color:var(--slate);font-size:.85rem;font-style:italic;margin-top:4px;max-width:50ch}
+.lead .when{color:var(--slate);font-size:.77rem;margin-top:4px}
+.lead .right{text-align:right;flex:0 0 auto}
+.lead .amt{font-weight:800;font-size:1.05rem;font-variant-numeric:tabular-nums;color:var(--amber)}
+.lead em{display:inline-block;font-style:normal;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green);background:rgba(47,208,122,.12);padding:4px 9px;border-radius:99px;white-space:nowrap;margin-top:6px}
+.foot{color:var(--slate);font-size:.82rem;text-align:center;margin-top:30px;line-height:1.6}
+.foot b{color:var(--amber)}
+/* ---- in-app mode: rendered inside the Relance mobile app as the Today tab ---- */
+body.app{padding:0 0 calc(28px + env(safe-area-inset-bottom));background:var(--bg)}
+body.app .wrap{max-width:100%}
+body.app .top{position:sticky;top:0;z-index:5;margin:0;padding:calc(10px + env(safe-area-inset-top)) 16px 10px;background:rgba(11,20,32,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+body.app .hero{border-radius:0;border-left:0;border-right:0;padding:24px 18px;margin-bottom:0}
+body.app .hero .big{font-size:2.9rem}
+body.app .controls{position:sticky;top:52px;z-index:4;margin:0;padding:12px 16px;background:rgba(11,20,32,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+body.app .seg{flex:1;padding:11px 12px;font-size:.9rem}
+body.app .cards{grid-template-columns:1fr 1fr;gap:10px;padding:16px 16px 0;margin-bottom:0}
+body.app .card{padding:16px;border-radius:14px}
+body.app .card .n{font-size:1.5rem}
+body.app .panel{border-radius:14px;margin:16px 16px 0;padding:18px}
+body.app .panel:last-of-type{margin-bottom:0}
+body.app .stage .sn{flex:0 0 96px;font-size:.8rem}
+body.app .stage .sv{flex:0 0 78px;font-size:.86rem}
+body.app .cal{grid-template-columns:repeat(4,1fr)}
+body.app .lead{padding:16px 0}
+body.app .lead .snip{max-width:none}
+body.app .foot{padding:0 16px;margin-top:24px}
+body.app .live{font-size:.75rem}
+@media(max-width:420px){body.app .stage .sn{flex:0 0 78px;font-size:.75rem}}
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+</head><body class="app"><div class="wrap">
+<div class="top">
+  <div class="brand"><svg width="24" height="24" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="34" fill="none" stroke="#ff7a1a" stroke-width="11" stroke-linecap="round" stroke-dasharray="165 49" transform="rotate(-50 50 50)"/><circle cx="50" cy="50" r="9" fill="#ff7a1a"/></svg>Relance</div>
+  <div class="live"><span class="pulse"></span><span>Live &middot; updates automatically</span></div>
+</div>
+
+<div class="hero">
+  <span class="eyebrow" id="period">This week</span>
+  <div class="big" id="hero">&pound;0</div>
+  <p>of work recovered for <b id="biz"></b> from enquiries that would otherwise have gone unanswered ,  <b id="hcount">0 enquiries</b>, <b id="hah">0%</b> of them outside working hours.</p>
+</div>
+
+<div class="controls">
+  <button class="seg on" data-days="7" type="button">This week</button>
+  <button class="seg" data-days="30" type="button">This month</button>
+</div>
+
+<div class="cards">
+  <div class="card"><div class="n" id="n0">&pound;0</div><div class="l">Sitting in your pipeline</div><div class="k" id="k0">0 live opportunities</div></div>
+  <div class="card"><div class="n" id="n1">0</div><div class="l">Booked or won</div><div class="k" id="k1">Appointments in the diary</div></div>
+  <div class="card"><div class="n" id="n2">0s</div><div class="l">Average reply time</div><div class="k" id="k2">Every enquiry answered</div></div>
+  <div class="card"><div class="n" id="n3">0</div><div class="l">Messages sent by Relance</div><div class="k" id="k3">0 conversations handled</div></div>
+</div>
+
+<div class="panel"><h2>Value recovered over time</h2>
+  <p class="hint">Each bar is the value of the enquiries answered that day.</p>
+  <div class="chart" id="chart"></div></div>
+
+<div class="panel"><h2>What's in your pipeline right now</h2>
+  <p class="hint">The same board you see in your account, priced up.</p>
+  <div id="stages"></div>
+  <div class="tot"><span>Total open value</span><b id="pipetot">&pound;0</b></div></div>
+
+<div class="panel"><h2 id="caltitle">This week's bookings</h2>
+  <p class="hint">Highlighted slots were booked by Relance while you were working.</p>
+  <div class="cal" id="cal"></div>
+  <div class="leg"><span><i class="a"></i>Booked by Relance</span><span><i class="b"></i>Booked by you</span></div></div>
+
+<div class="panel"><h2>Recently recovered</h2>
+  <p class="hint">Their words, and what the job is typically worth.</p>
+  <div id="recent"></div></div>
+
+<p class="foot">Every one of these started as a call you couldn't take.<br><b>Relance</b> answered it for you.</p>
+</div>
+<script>
+var DATA={"business":"Meridian Heating & Heat Pumps","vertical":"heating","calendar":{"title":"This week's bookings","days":[{"label":"Mon","events":[{"t":"09:30","name":"Annual service","val":90,"ai":false}]},{"label":"Tue","events":[{"t":"11:00","name":"Boiler survey","val":2600,"ai":true},{"t":"15:30","name":"Radiator fix","val":180,"ai":false}]},{"label":"Wed","events":[{"t":"08:15","name":"Emergency callout","val":300,"ai":true}]},{"label":"Thu","events":[{"t":"10:00","name":"Heat pump survey","val":9000,"ai":true},{"t":"17:30","name":"Quote follow-up","val":0,"ai":false}]},{"label":"Fri","events":[{"t":"09:00","name":"Landlord certs x3","val":400,"ai":false}]},{"label":"Sat","events":[{"t":"10:30","name":"Boiler survey","val":2600,"ai":true}]},{"label":"Sun","events":[]}]},"recent":[{"name":"Boiler replacement","when":"Tue 19:42","badge":"After hours","val":2600,"snip":"How much roughly for a new combi? Ours is 15 years old"},{"name":"No hot water ,  emergency","when":"Wed 07:15","badge":"Handed to you","val":300,"snip":"Boiler's leaking and we've got no heating, can someone come today?"},{"name":"Heat pump enquiry","when":"Wed 13:03","badge":"Booked","val":9000,"snip":"Do you handle the government grant paperwork or do we?"},{"name":"Annual service","when":"Thu 18:26","badge":"After hours","val":90,"snip":"Need our boiler serviced before winter, what do you charge?"},{"name":"Landlord certificates","when":"Fri 21:54","badge":"Booked","val":400,"snip":"I need CP12s for three properties in Banbury"}],"days":7,"totals":{"recoveredValue":12490,"recoveredCount":17,"pipelineValue":15800,"pipelineCount":9,"booked":6,"escalated":2,"afterHours":61,"responseSecs":38,"messagesSent":214,"conversations":31},"stages":[{"name":"New Enquiry","count":4,"value":5300},{"name":"In Conversation","count":2,"value":2800},{"name":"Quote Requested","count":1,"value":2600},{"name":"Site Visit Booked","count":1,"value":2600},{"name":"Quote Sent","count":1,"value":2500},{"name":"Won","count":2,"value":3690}],"series":[{"d":"Mon","v":480},{"d":"Tue","v":2900},{"d":"Wed","v":3400},{"d":"Thu","v":900},{"d":"Fri","v":2100},{"d":"Sat","v":2620},{"d":"Sun","v":90}]};
+function esc(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML;}
+function money(n){return '\u00A3'+Math.round(n).toLocaleString('en-GB');}
+function countUp(el,to,fmt){
+  var from=parseFloat(String(el.dataset.v||0))||0;el.dataset.v=to;
+  if(from===to){el.textContent=fmt(to);return;}
+  var t0=null;function step(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/900);
+    el.textContent=fmt(from+(to-from)*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step);}
+  requestAnimationFrame(step);
+}
+function paint(d){
+  var t=d.totals;
+  document.getElementById('biz').textContent=d.business;
+  document.getElementById('period').textContent=d.days>7?'This month':'This week';
+  countUp(document.getElementById('hero'),t.recoveredValue,money);
+  document.getElementById('hcount').textContent=t.recoveredCount+' '+(t.recoveredCount===1?'enquiry':'enquiries');
+  document.getElementById('hah').textContent=t.afterHours+'%';
+  var cards=document.querySelectorAll('.card');
+  setTimeout(function(){cards[0].classList.add('in');countUp(cards[0].querySelector('.n'),t.pipelineValue,money);},80);
+  setTimeout(function(){cards[1].classList.add('in');countUp(cards[1].querySelector('.n'),t.booked,function(v){return Math.round(v)});},200);
+  setTimeout(function(){cards[2].classList.add('in');countUp(cards[2].querySelector('.n'),t.responseSecs,function(v){return Math.round(v)+'s'});},320);
+  setTimeout(function(){cards[3].classList.add('in');countUp(cards[3].querySelector('.n'),t.messagesSent||0,function(v){return Math.round(v).toLocaleString('en-GB')});},440);
+  document.getElementById('k3').textContent=(t.conversations||0)+' '+((t.conversations===1)?'conversation':'conversations')+' handled';
+  document.getElementById('k0').textContent=t.pipelineCount+' live '+(t.pipelineCount===1?'opportunity':'opportunities');
+  document.getElementById('k2').textContent=t.escalated+' handed to you for a human touch';
+  // chart
+  var ch=document.getElementById('chart');ch.innerHTML='';
+  var mx=Math.max.apply(null,[1].concat((d.series||[]).map(function(s){return s.v})));
+  (d.series||[]).forEach(function(s,i){
+    var w=document.createElement('div');w.className='bwrap';
+    var showLbl=d.series.length<=7||((i+1)%5===0)||i===0;
+    w.innerHTML='<div class="bar"><b>'+(s.v?money(s.v):'')+'</b></div><span class="bl">'+(showLbl?esc(s.d):'&nbsp;')+'</span>';
+    ch.appendChild(w);
+    var bar=w.querySelector('.bar');
+    setTimeout(function(){bar.style.height=Math.max(3,Math.round(130*s.v/mx))+'px';bar.classList.add('up');},150+i*(d.series.length>7?22:85));
+  });
+  // stages
+  var mv=Math.max.apply(null,[1].concat(d.stages.map(function(s){return s.value})));
+  var sb=document.getElementById('stages');sb.innerHTML='';
+  d.stages.forEach(function(s,i){
+    var r=document.createElement('div');r.className='stage';
+    r.innerHTML='<span class="sn">'+esc(s.name)+'</span><div class="track"><i></i></div>'+
+      '<span class="sv">'+money(s.value)+'</span><span class="sc">'+s.count+'</span>';
+    sb.appendChild(r);
+    setTimeout(function(){r.querySelector('i').style.width=Math.round(100*s.value/mv)+'%';},250+i*130);
+  });
+  countUp(document.getElementById('pipetot'),d.stages.reduce(function(a,s){return a+s.value},0),money);
+  // calendar
+  document.getElementById('caltitle').textContent=(d.calendar&&d.calendar.title)||"This week's bookings";
+  var cal=document.getElementById('cal');cal.innerHTML='';
+  ((d.calendar&&d.calendar.days)||[]).forEach(function(day,di){
+    var c=document.createElement('div');c.className='cday';
+    c.innerHTML='<h4>'+esc(day.label)+'</h4>';
+    day.events.forEach(function(e,ei){
+      var chip=document.createElement('div');chip.className='chip'+(e.ai?' ai':'');
+      chip.innerHTML='<span>'+esc(e.t)+'</span><b>'+esc(e.name)+'</b>'+(e.val?'<span class="v">'+money(e.val)+'</span>':'');
+      c.appendChild(chip);
+      setTimeout(function(){chip.classList.add('in');},400+di*80+ei*110);
+    });
+    cal.appendChild(c);
+  });
+  // feed
+  var rc=document.getElementById('recent');rc.innerHTML='';
+  d.recent.forEach(function(x,i){
+    var l=document.createElement('div');l.className='lead';
+    l.innerHTML='<div><b>'+esc(x.name)+'</b>'+(x.snip?'<span class="snip">&ldquo;'+esc(x.snip)+'&rdquo;</span>':'')+
+      '<span class="when">'+esc(x.when)+'</span></div>'+
+      '<div class="right">'+(x.val?'<div class="amt">'+money(x.val)+'</div>':'')+'<em>'+esc(x.badge)+'</em></div>';
+    rc.appendChild(l);setTimeout(function(){l.classList.add('in');},350+i*120);
+  });
+}
+function fetchData(days){
+  var u=new URL(location.href);u.searchParams.set('days',days);u.searchParams.set('format','json');
+  return fetch(u).then(function(r){return r.json();});
+}
+document.querySelectorAll('.seg').forEach(function(b){b.addEventListener('click',function(){
+  document.querySelectorAll('.seg').forEach(function(x){x.classList.remove('on')});b.classList.add('on');
+  fetchData(b.dataset.days).then(paint).catch(function(){});});});
+paint(DATA);
+setInterval(function(){var on=document.querySelector('.seg.on');fetchData(on?on.dataset.days:7).then(paint).catch(function(){});},45000);
+</script></body></html>

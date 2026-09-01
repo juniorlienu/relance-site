@@ -3,306 +3,196 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fill your diary from the enquiries you're already missing | Relance</title>
-<meta name="description" content="For UK renewables installers. Relance answers the enquiries you can't, qualifies them on intent, and books surveys directly into your calendar.">
+<title>Relance | Fill your diary from the enquiries you're already missing</title>
+<meta name="description" content="Relance answers the enquiries UK renewables installers miss, in their own voice, qualifies them and books the survey straight into the diary. Your existing number. Live in 48 hours.">
 <link rel="canonical" href="https://www.relance.co.uk/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Relance">
 <meta property="og:url" content="https://www.relance.co.uk/">
 <meta property="og:title" content="Fill your diary from the enquiries you're already missing">
-<meta property="og:description" content="For UK renewables installers. Relance answers the enquiries you can't, qualifies them on intent, and books surveys directly into your calendar.">
+<meta property="og:description" content="Relance answers the enquiries you can't, in your voice, and books the survey straight into your diary.">
 <meta property="og:image" content="https://www.relance.co.uk/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Relance: fill your diary from the enquiries you are already missing.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Fill your diary from the enquiries you're already missing">
-<meta name="twitter:description" content="For UK renewables installers. Relance answers the enquiries you can't, qualifies them on intent, and books surveys directly into your calendar.">
+<meta name="twitter:description" content="Relance answers the enquiries you can't, in your voice, and books the survey straight into your diary.">
 <meta name="twitter:image" content="https://www.relance.co.uk/og-image.png">
 <link rel="icon" type="image/svg+xml" href="relance-favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-
-<style>
-  /* qualification beside the diary */
-  .qd{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px;align-items:start}
-  @media(max-width:900px){.qd{grid-template-columns:1fr}}
-  .qasks{list-style:none;display:flex;flex-direction:column;gap:0}
-  .qasks li{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);align-items:flex-start}
-  .qasks li:last-child{border-bottom:0}
-  .qasks .qn{flex:0 0 26px;height:26px;border-radius:50%;background:rgba(255,122,26,.14);color:var(--amber);
-    display:grid;place-items:center;font-size:.78rem;font-weight:800;margin-top:2px}
-  .qasks b{color:#fff;display:block;font-size:1rem}
-  .qasks span.qs{color:var(--slate);font-size:.9rem}
-
-  /* the diary card, styled like the owner dashboard */
-  .diary{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px;position:sticky;top:90px}
-  @media(max-width:900px){.diary{position:static}}
-  .diary h4{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:4px}
-  .diary .dsub{color:var(--slate);font-size:.85rem;margin-bottom:16px}
-  .drow{display:flex;gap:13px;padding:14px 0;border-top:1px solid var(--line)}
-  .dwhen{flex:0 0 62px;font-size:.78rem;color:var(--slate);line-height:1.35}
-  .dwhen b{display:block;color:#fff;font-size:.95rem}
-  .dwhat{color:#fff;font-weight:700;font-size:.95rem}
-  .dwhere{color:var(--slate);font-size:.83rem;margin-top:1px}
-  .dval{margin-left:auto;color:var(--amber);font-weight:800;font-size:.95rem;white-space:nowrap}
-  .dflags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-  .dflags i{font-style:normal;background:rgba(255,122,26,.13);border:1px solid rgba(255,122,26,.3);
-    color:#ffc46b;font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:999px}
-
-  /* the calendar week */
-  .calweek{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:32px}
-  @media(max-width:760px){.calweek{grid-template-columns:repeat(2,1fr)}}
-  .cday{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:13px 12px;min-height:120px}
-  .cday h5{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:10px}
-  .cslot{border-radius:9px;padding:8px 9px;margin-bottom:7px;font-size:.78rem;line-height:1.35}
-  .cslot.ai{background:rgba(255,122,26,.13);border:1px solid rgba(255,122,26,.36)}
-  .cslot.you{background:rgba(255,255,255,.05);border:1px solid var(--line)}
-  .cslot b{display:block;color:#fff;font-size:.82rem}
-  .cslot span{color:var(--slate)}
-  .cfree{color:#5d7089;font-size:.76rem;font-style:italic;padding:6px 2px}
-  .clegend{display:flex;gap:18px;justify-content:center;margin-top:18px;font-size:.83rem;color:var(--slate);flex-wrap:wrap}
-  .clegend i{width:11px;height:11px;border-radius:3px;display:inline-block;margin-right:7px;vertical-align:-1px}
-  .clegend i.a{background:rgba(255,122,26,.6);border:1px solid var(--amber)}
-  .clegend i.b{background:rgba(255,255,255,.12);border:1px solid var(--line)}
-
-  /* multi channel */
-  .chans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
-  @media(max-width:860px){.chans{grid-template-columns:1fr}}
-  .chan{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
-  .chan .ctop{display:flex;align-items:center;gap:9px;margin-bottom:13px}
-  .chan .cico{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;font-size:.72rem;font-weight:800;color:#fff}
-  .chan .cname{font-size:.83rem;font-weight:700;color:#fff}
-  .chan .ctime{margin-left:auto;font-size:.72rem;color:#5d7089}
-  .bub{border-radius:12px;padding:9px 12px;font-size:.85rem;line-height:1.45;margin-bottom:8px;max-width:92%}
-  .bub.in{background:rgba(255,255,255,.06);color:#dce6f0;border-bottom-left-radius:4px}
-  .bub.out{background:var(--amber);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
-  .creply{font-size:.73rem;color:#5d7089;text-align:right;margin-top:2px}
-</style>
 </head>
-<body>
+<body data-no-modal data-no-fab>
+<a class="skip" href="#main">Skip to content</a>
+
 <nav>
   <div class="wrap">
     <a class="brand" href="index.html"><svg width="30" height="30" viewBox="0 0 100 100" aria-hidden="true" style="flex:0 0 auto"><rect width="100" height="100" rx="26" fill="#0e1b2b"/><circle cx="50" cy="50" r="22" fill="none" stroke="#ff7a1a" stroke-width="9" stroke-linecap="round" stroke-dasharray="107 31" transform="rotate(-50 50 50)"/><circle cx="50" cy="50" r="6.4" fill="#ff7a1a"/></svg>Relance</a>
     <div class="navlinks">
-      <a href="index.html">Home</a>
-      <a href="lance.html">Meet Lance</a>
       <a href="see-it.html">See it</a>
-      <a href="index.html#industries" aria-current="page">Industries</a>
-      <a href="forecast.html">The cost</a>
       <a href="fees.html">What's included</a>
-      <a href="about.html">About</a>
       <a href="book.html" class="btn btn-dark">Book a call</a>
     </div>
+    <button class="menubtn" type="button" aria-expanded="false" aria-controls="mobmenu">Menu</button>
+  </div>
+  <div class="menupanel" id="mobmenu">
+    <a href="see-it.html">See it</a>
+    <a href="fees.html">What's included</a>
+    <a href="forecast.html">The cost</a>
+    <a href="about.html">About</a>
+    <a href="book.html">Book a call</a>
   </div>
 </nav>
+
+<main id="main">
+
+<!-- 1. HERO AND DEMONSTRATION -->
 <header class="hero">
   <div class="wrap">
     <div class="hero-grid">
-      <div>
+      <div class="hero-copy">
         <span class="eyebrow">For UK renewables installers</span>
-        <h1 style="margin-top:14px">Fill your diary from the enquiries <span class="hl">you're already missing.</span></h1>
-        <p class="lead"><b class="rl">Relance</b> answers the enquiries you can't, in your business's voice. It qualifies based on intent, books surveys <span style="color:var(--ink);font-weight:600">directly into your calendar</span>, and tags you the moment there's something only you can handle. It never clocks out, so you can.</p>
+        <h1>Fill your diary from the enquiries <span class="hl">you're already missing.</span></h1>
+        <p class="lead"><b class="rl">Relance</b> answers the ones you can't, in your voice, and books the survey straight into your diary. You change nothing.</p>
         <div class="cta-row">
-          <a href="#industries" class="btn btn-primary">Find your industry &rarr;</a>
-          <a href="see-it.html" class="btn btn-demo" data-demo-picker>Watch the demo</a>
-          <a href="forecast.html" class="btn btn-ghost">What is it costing you?</a>
+          <a href="#economics" class="btn btn-primary">See it work <span class="ar dn" aria-hidden="true">&darr;</span></a>
         </div>
-        <div class="trust">
-          <span><span class="tick">&check;</span> Your existing number</span>
-          <span><span class="tick">&check;</span> Live in 48 hours</span>
-          <span><span class="tick">&check;</span> Cancel any time</span>
-        </div>
+        <ul class="trust">
+          <li>Your existing number</li>
+          <li>Live in 48 hours</li>
+          <li>Cancel any time</li>
+        </ul>
       </div>
-      <div class="phone rv" data-convo="solar,heating">
-        <div class="ptop"><div class="pav">M</div><div><div class="pname">Relance</div><div class="psub">replies in seconds</div></div></div>
-        <div class="pmsgs"></div>
-        <div class="ptag"></div>
+
+      <div class="demo-unit">
+        <div class="phone" data-convo="solar,heating">
+          <div class="ptop"><div class="pav">W</div><div><div class="pname">Westfield Renewables</div><div class="psub">replies in seconds</div></div></div>
+          <div class="pmiss">Missed call<time datetime="19:42">19:42</time></div>
+          <div class="pmsgs" aria-live="polite" aria-atomic="false"></div>
+          <div class="ptag"></div>
+        </div>
+        <ol class="stages" aria-label="What happens to a missed enquiry">
+          <li><span class="st-t">19:42</span><span class="st-l">Call rings out</span></li>
+          <li><span class="st-t">19:42</span><span class="st-l">Answered, eight seconds later</span></li>
+          <li><span class="st-t">19:46</span><span class="st-l">Qualified</span></li>
+          <li><span class="st-t">Thu 10:00</span><span class="st-l">Survey in your diary</span></li>
+        </ol>
       </div>
     </div>
   </div>
 </header>
 
-<!-- THE COST -->
-<section class="how">
+<!-- 2. THE ECONOMICS -->
+<section id="economics" class="band">
   <div class="wrap">
-    <div class="center rv" style="max-width:660px;margin:0 auto">
-      <span class="eyebrow">Sixty seconds, three questions</span>
-      <h2 style="margin-top:12px">What are the enquiries you miss actually worth?</h2>
-      <p style="margin-top:14px">Not our numbers. Yours. Tell us what one customer is worth, how many enquiries you get, and how many go unanswered, and we will show you the figure over a year.</p>
-      <div class="cta-row" style="justify-content:center;margin-top:28px">
-        <a href="forecast.html" class="btn btn-primary">Work out what it's costing me &rarr;</a>
+    <div data-enter>
+      <h2 class="statement">Not lost leads. <span class="hl">Lost revenue.</span></h2>
+      <p class="statement-sub">You already paid for those enquiries. The advertising, the van, the number on the side of it. All of it spent before anyone picked up.</p>
+    </div>
+
+    <div class="ledger" data-enter>
+      <div class="led">
+        <h3>Without</h3>
+        <dl>
+          <dt>Hours</dt><dd>Typical reply time while your hands are full.</dd>
+          <dt>After hours</dt><dd>Most enquiries land when you're closed. They go to whoever answers.</dd>
+          <dt>Silence</dt><dd>Voicemail. Most people won't leave one.</dd>
+        </dl>
+      </div>
+      <div class="led is-on">
+        <h3>With <b class="rl">Relance</b></h3>
+        <dl>
+          <dt>Seconds</dt><dd>Every missed enquiry gets an answer straight away.</dd>
+          <dt>24/7</dt><dd>Evenings, weekends, days off. Nothing waits until Monday.</dd>
+          <dt>A conversation</dt><dd>It qualifies the job, then books the survey. It never invents a time, or a price.</dd>
+        </dl>
       </div>
     </div>
+
+    <p class="aside">Work out what yours are worth: <a href="forecast.html">three questions, your own numbers</a>.</p>
   </div>
 </section>
 
-<!-- COMPARISON -->
-<section>
+<!-- 3. INDUSTRIES -->
+<section id="industries">
   <div class="wrap">
-    <div class="center rv" style="max-width:620px;margin:0 auto">
-      <span class="eyebrow">The leak</span>
-      <h2 style="margin-top:12px">Revenue is slipping through the cracks.</h2>
-      <p style="margin-top:14px">Not lost leads. Lost <em>revenue</em>. Most of it never shows up anywhere you'd notice.</p>
+    <p class="verticals-lead">The questions that turn an enquiry into a booked survey are different in each trade. Pick yours and see the conversation it actually has.</p>
+    <ul class="verticals">
+      <li><a href="solar.html">
+        <span class="v-name">Solar &amp; battery</span>
+        <span class="v-sub">Solar PV, storage, retrofits, EV chargers</span>
+        <span class="v-go">See what it recovers <span class="ar" aria-hidden="true">&rarr;</span></span>
+      </a></li>
+      <li><a href="heating.html">
+        <span class="v-name">Heat pumps &amp; boilers</span>
+        <span class="v-sub">ASHP, oil swaps, boiler replacements</span>
+        <span class="v-go">See what it recovers <span class="ar" aria-hidden="true">&rarr;</span></span>
+      </a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. PROOF -->
+<section id="proof" class="band">
+  <div class="wrap">
+
+    <div class="finding" data-enter>
+      <p class="f-lead">We sent six UK installers a genuine enquiry on a Sunday evening. Text, Facebook and WhatsApp.</p>
+      <p class="f-stat"><b>One</b> replied within twelve minutes.</p>
+      <p class="f-stat"><b>Five</b> had not replied twenty-four hours later.</p>
+      <p class="f-note">Anonymous by design. We're not here to name anybody, and the sixth firm did the job properly.</p>
     </div>
-    <div class="compare">
-      <div class="cmp bad rv">
-        <div class="cl">Without Relance</div>
-        <div class="row"><div class="n">Hours</div><div class="d">Typical reply time while your hands are full.</div></div>
-        <div class="row"><div class="n">After hours</div><div class="d">A huge share of enquiries land when you're closed. They go to whoever answers.</div></div>
-        <div class="row"><div class="n">Silence</div><div class="d">Voicemail. Most customers won't leave one.</div></div>
+
+    <div class="thread">
+      <div class="th-head">
+        <span>A real enquiry, handled by Relance</span>
+        <span>Facebook &middot; Sunday 20:27</span>
       </div>
-      <div class="cmp good rv">
-        <div class="cl">With Relance</div>
-        <div class="row"><div class="n">Seconds</div><div class="d">Every missed enquiry gets an answer straight away.</div></div>
-        <div class="row"><div class="n">24/7</div><div class="d">Evenings, weekends, days off. Nothing waits until Monday.</div></div>
-        <div class="row"><div class="n">Conversation</div><div class="d">It qualifies the job, then books the survey. No price without a visit.</div></div>
+      <div class="th-body">
+        <p class="th-in">Good evening, I was just wondering if it's possible to install a battery even after my solar panels have been installed?</p>
+        <p class="th-out">Thanks for getting in touch with us. Yes, we can add battery storage to your existing solar system. Typically runs &pound;3,500 to &pound;6,000 depending on the capacity you need, and we'd confirm the exact price at a site visit. What sort of electricity bills are you seeing at the moment?</p>
+        <p class="th-in">Right now my usage is around &pound;1,700 per annum.</p>
+        <p class="th-out">That's helpful to know. Do you own the property, and is there any particular timescale you're working to?</p>
+        <p class="th-in">I'm the property owner, and I'm set on getting the batteries installed as soon as possible.</p>
+        <p class="th-out">Would you be looking to spread the cost, or pay outright? And what's your postcode so I can get you booked in for a survey?</p>
+        <p class="th-in">I'm fine with paying outright. My address is UB5 6QJ.</p>
+        <p class="th-out">Perfect. I've got a couple of survey slots available: Wednesday at 10am, or Thursday at 2pm. Which works better for you?</p>
+        <p class="th-in">Wednesday at 10am is perfect.</p>
+        <p class="th-out">That's booked in for Wednesday at 10am. Just make sure someone's home for the 90 minute visit, and if you have any paperwork from your original solar installation that would be useful.</p>
       </div>
+      <div class="th-foot">Survey booked at <b>20:33</b>. Six minutes, unattended, on a Sunday night.</div>
     </div>
+
+    <div class="dashwrap">
+      <div class="dashbar"><i></i><i></i><i></i><span>Owner Digest</span></div>
+      <iframe src="https://missed-call-router.vercel.app/api/digest?demo=1" title="Relance Owner Digest, live sample" loading="lazy"></iframe>
+    </div>
+    <p class="aside">What the owner sees the next morning. <a href="https://missed-call-router.vercel.app/api/digest?demo=1" target="_blank" rel="noopener">Open it full screen</a>.</p>
+
+    <p class="aside">Or test it yourself: ring <a href="tel:+447576584993">07576 584993</a>, let it ring out, and watch the reply land.</p>
+
   </div>
 </section>
 
-<!-- INDUSTRIES -->
-<section id="industries" class="how">
+<!-- 5. CLOSE -->
+<section class="close">
   <div class="wrap">
-    <div class="center rv" style="max-width:640px;margin:0 auto">
-      <span class="eyebrow">Built for your industry</span>
-      <h2 style="margin-top:12px">We built <b class="rl">Relance</b> for businesses like yours.</h2>
-      <p style="margin-top:14px">Built for installers, where one recovered survey is worth thousands.</p>
+    <h2 class="statement">Stop paying for enquiries <span class="hl">you don't answer.</span></h2>
+    <div class="cta-row">
+      <a href="book.html" class="btn btn-primary">Book a call <span class="ar" aria-hidden="true">&rarr;</span></a>
     </div>
-    <div class="indgrid" style="grid-template-columns:repeat(2,minmax(0,1fr))">
-      <a class="indcard rv" href="heating.html">
-        <div class="indic">&#128293;</div>
-        <h3>Heat Pump &amp; Boiler Installations</h3>
-        <p>ASHP installers &middot; oil to heat pump swaps &middot; boiler replacements</p>
-        <span class="indgo">See what it recovers &rarr;</span>
-      </a>
-      <a class="indcard rv" href="solar.html">
-        <div class="indic">&#9728;&#65039;</div>
-        <h3>Solar &amp; Battery Installations</h3>
-        <p>Solar PV &middot; battery storage &middot; retrofits &amp; EV chargers</p>
-        <span class="indgo">See what it recovers &rarr;</span>
-      </a>
-    </div>
-    <p class="fee-note rv">A different trade with high-value enquiries? <a href="book.html">Talk to us</a>, we cover more than installers.</p>
+    <p class="aside">Fifteen minutes. <b class="rl">Relance</b> is built for installers where one recovered enquiry is worth thousands, and that isn't every business. The call tells us both.</p>
   </div>
 </section>
 
-<!-- HOW -->
-<section>
-  <div class="wrap">
-    <div class="center rv" style="max-width:640px;margin:0 auto">
-      <span class="eyebrow">Runs in the background</span>
-      <h2 style="margin-top:12px">You change nothing.</h2>
-    </div>
-    <div class="steps-row">
-      <div class="step rv"><div class="big">1</div><h3>Call rings out</h3><p>Whatever you're doing, whatever the hour.</p></div>
-      <div class="step rv"><div class="big">2</div><h3>Instant reply</h3><p>A text in your voice, within seconds.</p></div>
-      <div class="step rv"><div class="big">3</div><h3>It qualifies</h3><p>What they run now, their timescale, whether they'd spread the cost.</p></div>
-      <div class="step rv"><div class="big">4</div><h3>Survey in the diary</h3><p>With the address and the intent flags attached.</p></div>
-    </div>
-  </div>
-</section>
+</main>
 
-<section>
-  <div class="wrap">
-    <div class="center rv" style="max-width:660px;margin:0 auto">
-      <span class="eyebrow">Every way they reach you</span>
-      <h2 style="margin-top:12px">One brain, wherever the enquiry lands.</h2>
-      <p style="margin-top:14px">Missed calls, texts, Instagram, Facebook, WhatsApp, web chat, Google and email. Same voice, same questions, same diary.</p>
-    </div>
-    <div class="chans">
-    <div class="chan rv">
-      <div class="ctop"><span class="cico" style="background:#2fd07a">SMS</span><span class="cname">Missed call, then text</span><span class="ctime">19:42</span></div>
-      <div class="bub in">Rang earlier about a heat pump, we're on oil</div>
-      <div class="bub out">Oil is where a heat pump makes the biggest difference. Is there a timescale you're working to?</div>
-      <div class="bub in">Before winter ideally</div>
-      <div class="creply">Flagged: On oil, Ready now</div>
-    </div>
-    <div class="chan rv">
-      <div class="ctop"><span class="cico" style="background:#c13584">IG</span><span class="cname">Instagram DM</span><span class="ctime">21:26</span></div>
-      <div class="bub in">hi do you fit batteries to existing solar?</div>
-      <div class="bub out">We do. How old is the existing system, roughly?</div>
-      <div class="bub in">about 5 years ago</div>
-      <div class="creply">Flagged: Has solar, Wants battery</div>
-    </div>
-    <div class="chan rv">
-      <div class="ctop"><span class="cico" style="background:#25d366">WA</span><span class="cname">WhatsApp</span><span class="ctime">07:15</span></div>
-      <div class="bub in">Boiler's packed in again. Third time this year</div>
-      <div class="bub out">Sorry to hear that. How old is it, roughly?</div>
-      <div class="bub in">About 14 years</div>
-      <div class="creply">Flagged: 12+ years old, Broken before</div>
-    </div>
-    </div>
-    <p class="fee-note rv">All three landed outside office hours. All three were answered, qualified and offered a slot.</p>
-  </div>
-</section>
-
-<!-- MEET LANCE -->
-<section class="how" id="lance">
-  <div class="wrap">
-    <div class="center rv" style="max-width:720px;margin:0 auto">
-      <span class="eyebrow">Meet Lance</span>
-      <h2 style="margin-top:12px">The member of staff who never misses a call.</h2>
-      <p class="lead" style="margin-top:16px"><b class="rl">Lance</b> is the AI doing the answering. A chatbot knows what a heat pump is. <b class="rl">Lance</b> knows how far you travel, what counts as an emergency, and which questions turn an enquiry into a booked survey.</p>
-    </div>
-    <div class="steps-row" style="margin-top:38px">
-      <div class="step rv"><h3>Trained on your business</h3><p>Your services, your patch, your hours and your highest paying work.</p></div>
-      <div class="step rv"><h3>Qualifies upward</h3><p>Spots the install hiding inside a repair call, and asks the right question.</p></div>
-      <div class="step rv"><h3>Knows where he stops</h3><p>Emergencies, complaints and anything he can't answer come straight to you.</p></div>
-      <div class="step rv"><h3>Books, not chats</h3><p>Real slots from your own diary. It never invents a time, or a price.</p></div>
-    </div>
-    <div class="center rv" style="margin-top:34px">
-      <a href="lance.html" class="btn btn-primary">Meet <b class="rl">Lance</b> properly &rarr;</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- OWNER DIGEST -->
-<section id="digest">
-  <div class="wrap">
-    <div class="center rv" style="max-width:640px;margin:0 auto">
-      <span class="eyebrow">Proof, not promises</span>
-      <h2 style="margin-top:12px">See exactly what it recovered.</h2>
-      <p style="margin-top:14px">Every client gets a live dashboard: enquiries recovered, what they asked, what got booked. This one is running right now.</p>
-    </div>
-    <div class="dashwrap rv">
-      <div class="dashbar"><i></i><i></i><i></i><span>Owner Digest &middot; live sample</span></div>
-      <iframe src="https://missed-call-router.vercel.app/api/digest?demo=1" title="Relance Owner Digest live sample" loading="lazy"></iframe>
-    </div>
-    <p class="dashnote">Sample data shown. Yours fills with your own enquiries from day one. <a href="https://missed-call-router.vercel.app/api/digest?demo=1" target="_blank" rel="noopener">Open it full screen &rarr;</a></p>
-  </div>
-</section>
-<!-- PRICING -->
-<section id="pricing" class="how">
-  <div class="wrap">
-    <div class="center rv" style="max-width:600px;margin:0 auto">
-      <span class="eyebrow">Not for everyone</span>
-      <h2 style="margin-top:12px">One price. The whole system. If it suits you.</h2>
-      <p style="margin-top:14px">No setup fee, no per-message fees, no long tie-in. But <b class="rl">Relance</b> is built for installers where one recovered enquiry is worth thousands, and that isn't every business. Fifteen minutes tells us both.</p>
-      <div class="center" style="margin-top:26px">
-        <a href="fees.html" class="btn btn-primary">See what's included &rarr;</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL -->
-<section class="final">
-  <div class="wrap rv">
-    <span class="eyebrow">Thirty seconds is all it takes</span>
-    <h2 style="margin-top:14px">See what you&rsquo;re losing. Then watch it stop.</h2>
-    <div style="margin-top:26px">
-      <a href="#industries" class="btn btn-primary">Find your industry &rarr;</a>
-    </div>
-  </div>
-</section>
 <footer>
   <div class="wrap">
     <a class="brand" href="index.html"><svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true" style="flex:0 0 auto"><circle cx="50" cy="50" r="34" fill="none" stroke="#ff7a1a" stroke-width="11" stroke-linecap="round" stroke-dasharray="165 49" transform="rotate(-50 50 50)"/><circle cx="50" cy="50" r="9" fill="#ff7a1a"/></svg>Relance</a>
-    <div>Turn missed enquiries into booked revenue. For UK businesses where every enquiry counts.</div>
-    <div class="footlinks"><a href="index.html">Home</a><a href="heating.html">Heat pumps</a><a href="solar.html">Solar</a><a href="see-it.html">See it</a><a href="forecast.html">The cost</a><a href="fees.html">What's included</a><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="book.html">Book a call</a></div>
-    <div style="margin-top:8px;opacity:.7">&copy; 2026 <b class="rl">Relance</b>. Demo line runs on a sample company for illustration.</div>
+    <div class="footlinks"><a href="see-it.html">See it</a><a href="fees.html">What's included</a><a href="forecast.html">The cost</a><a href="about.html">About</a><a href="privacy.html">Privacy</a></div>
+    <div class="footnote">&copy; 2026 Relance. The demo line runs on a sample company for illustration.</div>
   </div>
 </footer>
 
