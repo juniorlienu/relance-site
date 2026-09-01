@@ -616,23 +616,22 @@ footer .brand{color:#fff;justify-content:center;margin-bottom:8px}
   .th-body p{font-size:.88rem}
 }
 
-/* ---- Menu ------------------------------------------------------------
-   One nav at every width: brand, Menu, Book a call. The panel is the whole
-   site map, so it earns the click rather than duplicating what is already
-   on screen. A word, not a hamburger. */
-.menubtn{order:2;background:transparent;border:1px solid var(--line);color:var(--ink);font-family:inherit;font-weight:600;font-size:.94rem;padding:9px 16px;border-radius:4px;cursor:pointer;margin-right:14px;transition:border-color .16s var(--ease-out),color .16s var(--ease-out)}
+/* ---- Mobile menu -----------------------------------------------------
+   Desktop keeps its inline links. Below 640px those collapse, so this is the
+   only route to the rest of the site and it carries the whole map. A word,
+   not a hamburger; a panel, not a takeover. */
+.menubtn{display:none;order:2;background:transparent;border:1px solid var(--line);color:var(--ink);font-family:inherit;font-weight:600;font-size:.94rem;padding:9px 14px;border-radius:4px;cursor:pointer;margin-right:12px;transition:border-color .16s var(--ease-out),color .16s var(--ease-out)}
 .menubtn[aria-expanded="true"]{border-color:var(--amber);color:var(--amber)}
-.menupanel{position:absolute;left:0;right:0;top:100%;background:var(--panel2);border-bottom:1px solid var(--line);box-shadow:var(--shadow);
-  opacity:0;visibility:hidden;transform:translateY(-6px);
-  transition:opacity .18s var(--ease-out),transform .18s var(--ease-out),visibility 0s .18s}
-nav.open .menupanel{opacity:1;visibility:visible;transform:none;transition-delay:0s}
-.menupanel .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0 32px;padding-top:6px;padding-bottom:6px}
+.menupanel{display:none;position:absolute;left:0;right:0;top:100%;background:var(--panel2);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
 .menupanel a{display:block;padding:15px 2px;color:var(--ink);text-decoration:none;font-size:1rem;font-weight:600;border-bottom:1px solid var(--line)}
 .menupanel a:last-child{color:var(--amber)}
-@media(hover:hover) and (pointer:fine){.menupanel a:hover{color:var(--amber)}}
+
 @media(max-width:640px){
-  .menupanel .wrap{grid-template-columns:1fr;gap:0}
-  .menubtn{margin-right:10px;padding:9px 13px}
+  .navlinks a:not(.btn){display:none}
   .navlinks a.btn{padding:10px 16px;font-size:.88rem}
+  .menubtn{display:inline-block}
+  .menupanel{display:block;opacity:0;visibility:hidden;transform:translateY(-6px);
+    transition:opacity .18s var(--ease-out),transform .18s var(--ease-out),visibility 0s .18s}
+  nav.open .menupanel{opacity:1;visibility:visible;transform:none;transition-delay:0s}
 }
 @media(prefers-reduced-motion:reduce){.menupanel{transition:opacity .01s,visibility 0s}}
