@@ -64,14 +64,14 @@ section{padding:84px 0}
 
 /* NAV */
 nav{position:sticky;top:0;z-index:50;background:rgba(11,20,32,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:16px;padding-bottom:16px}
-.brand{font-weight:800;color:#fff;font-size:1.15rem;letter-spacing:-.02em;display:flex;align-items:center;gap:.5rem;text-decoration:none}
-.navlinks{display:flex;align-items:center;gap:24px}
+nav .wrap{display:flex;align-items:center;padding-top:16px;padding-bottom:16px}
+.brand{font-weight:800;color:#fff;font-size:1.15rem;letter-spacing:-.02em;display:flex;align-items:center;gap:.5rem;text-decoration:none;order:1;margin-right:auto}
+.navlinks{display:flex;align-items:center;gap:24px;order:3}
 .navlinks a{color:var(--ink);text-decoration:none;font-weight:600;font-size:.96rem}
 .navlinks a:hover{color:var(--amber)}
 .navlinks a.btn{color:var(--navy);padding:11px 20px;font-size:.92rem}
 .navlinks a[aria-current]{color:var(--amber)}
-@media(max-width:640px){.navlinks a:not(.btn){display:none}}
+
 
 /* HERO */
 .hero{background:var(--bg);position:relative;overflow:hidden}
@@ -616,21 +616,23 @@ footer .brand{color:#fff;justify-content:center;margin-bottom:8px}
   .th-body p{font-size:.88rem}
 }
 
-/* ---- Mobile menu -----------------------------------------------------
-   A word, not a hamburger, and a panel rather than a full-screen takeover.
-   Absolutely positioned under the sticky bar so opening it shifts nothing. */
-.menubtn{display:none;background:transparent;border:1px solid var(--line);color:var(--ink);font-family:inherit;font-weight:600;font-size:.92rem;padding:9px 14px;border-radius:4px;cursor:pointer;transition:border-color .16s var(--ease-out),color .16s var(--ease-out)}
+/* ---- Menu ------------------------------------------------------------
+   One nav at every width: brand, Menu, Book a call. The panel is the whole
+   site map, so it earns the click rather than duplicating what is already
+   on screen. A word, not a hamburger. */
+.menubtn{order:2;background:transparent;border:1px solid var(--line);color:var(--ink);font-family:inherit;font-weight:600;font-size:.94rem;padding:9px 16px;border-radius:4px;cursor:pointer;margin-right:14px;transition:border-color .16s var(--ease-out),color .16s var(--ease-out)}
 .menubtn[aria-expanded="true"]{border-color:var(--amber);color:var(--amber)}
-.menupanel{display:none;position:absolute;left:0;right:0;top:100%;background:var(--panel2);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
-.menupanel a{display:block;padding:16px 24px;color:var(--ink);text-decoration:none;font-size:1.02rem;font-weight:600;border-top:1px solid var(--line)}
+.menupanel{position:absolute;left:0;right:0;top:100%;background:var(--panel2);border-bottom:1px solid var(--line);box-shadow:var(--shadow);
+  opacity:0;visibility:hidden;transform:translateY(-6px);
+  transition:opacity .18s var(--ease-out),transform .18s var(--ease-out),visibility 0s .18s}
+nav.open .menupanel{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.menupanel .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0 32px;padding-top:6px;padding-bottom:6px}
+.menupanel a{display:block;padding:15px 2px;color:var(--ink);text-decoration:none;font-size:1rem;font-weight:600;border-bottom:1px solid var(--line)}
 .menupanel a:last-child{color:var(--amber)}
-
+@media(hover:hover) and (pointer:fine){.menupanel a:hover{color:var(--amber)}}
 @media(max-width:640px){
-  nav{position:sticky}
-  .menubtn{display:inline-block}
-  .navlinks{gap:12px}
-  .menupanel{display:block;opacity:0;visibility:hidden;transform:translateY(-6px);
-    transition:opacity .18s var(--ease-out),transform .18s var(--ease-out),visibility 0s .18s}
-  nav.open .menupanel{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+  .menupanel .wrap{grid-template-columns:1fr;gap:0}
+  .menubtn{margin-right:10px;padding:9px 13px}
+  .navlinks a.btn{padding:10px 16px;font-size:.88rem}
 }
 @media(prefers-reduced-motion:reduce){.menupanel{transition:opacity .01s,visibility 0s}}
