@@ -64,7 +64,10 @@ section{padding:84px 0}
 
 /* NAV */
 nav{position:sticky;top:0;z-index:50;background:rgba(11,20,32,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;padding-top:16px;padding-bottom:16px}
+/* Direct child only. As a descendant selector this also caught the menu panel's
+   own .wrap, which turned seven stacked links into a centred flex row and is why
+   the mobile menu came out scattered across the screen. */
+nav > .wrap{display:flex;align-items:center;padding-top:16px;padding-bottom:16px}
 .brand{font-weight:800;color:#fff;font-size:1.15rem;letter-spacing:-.02em;display:flex;align-items:center;gap:.5rem;text-decoration:none;order:1;margin-right:auto}
 .navlinks{display:flex;align-items:center;gap:24px;order:3}
 .navlinks a{color:var(--ink);text-decoration:none;font-weight:600;font-size:.96rem}
@@ -254,7 +257,7 @@ footer .brand{color:#fff;justify-content:center;margin-bottom:8px}
 .flowstrip em{color:var(--amber);font-style:normal;font-weight:800}
 
 /* floating demo bubble */
-.fab{position:fixed;right:22px;bottom:22px;z-index:80;display:flex;flex-direction:column;align-items:flex-end;gap:12px;font-family:inherit}
+.fab{position:fixed;right:22px;bottom:max(22px,env(safe-area-inset-bottom));z-index:80;display:flex;flex-direction:column;align-items:flex-end;gap:12px;font-family:inherit}
 .fab-pop{background:#fff;color:var(--navy);border-radius:18px;padding:18px 20px;max-width:270px;box-shadow:0 18px 50px rgba(0,0,0,.45);display:none}
 .fab.open .fab-pop{display:block;animation:fpop .25s ease}
 @keyframes fpop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -497,7 +500,10 @@ footer .brand{color:#fff;justify-content:center;margin-bottom:8px}
 
 /* Industries. Rows, not cards. The whole row is the target so it reads as
    a list of destinations rather than two floating labels. */
-.verticals-lead{max-width:54ch;font-size:1.05rem}
+.verticals-lead{max-width:54ch;font-size:1.05rem;margin-top:16px}
+/* The heading owns the section, so the evidence starts below it rather than
+   floating on the page with nothing to belong to. */
+#proof .statement{margin-bottom:34px}
 .verticals{list-style:none;margin-top:34px;border-top:1px solid var(--line)}
 .verticals li{border-bottom:1px solid var(--line)}
 .verticals a{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:4px 24px;padding:26px 4px;text-decoration:none;transition:padding-left .18s var(--ease-out)}
@@ -624,6 +630,16 @@ footer .brand{color:#fff;justify-content:center;margin-bottom:8px}
   .th-body p{font-size:.88rem}
 }
 
+/* Vertical rhythm on a phone. 84px above and below every section is 168px of
+   nothing between one idea and the next, which on an 812px screen is a fifth of
+   everything the reader can see. The separation still reads at 56px; it just
+   stops stranding them in an empty room while they scroll. */
+@media(max-width:640px){
+  section{padding:56px 0}
+  .hero .wrap{padding-top:40px;padding-bottom:52px}
+  .pagehead .wrap{padding-top:44px;padding-bottom:38px}
+}
+
 /* ---- Mobile menu -----------------------------------------------------
    Desktop keeps its inline links. Below 640px those collapse, so this is the
    only route to the rest of the site and it carries the whole map. A word,
@@ -631,13 +647,17 @@ footer .brand{color:#fff;justify-content:center;margin-bottom:8px}
 .menubtn{display:none;order:2;background:transparent;border:1px solid var(--line);color:var(--ink);font-family:inherit;font-weight:600;font-size:.94rem;padding:9px 14px;border-radius:4px;cursor:pointer;margin-right:12px;transition:border-color .16s var(--ease-out),color .16s var(--ease-out)}
 .menubtn[aria-expanded="true"]{border-color:var(--amber);color:var(--amber)}
 .menupanel{display:none;position:absolute;left:0;right:0;top:100%;background:var(--panel2);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
-.menupanel a{display:block;padding:15px 2px;color:var(--ink);text-decoration:none;font-size:1rem;font-weight:600;border-bottom:1px solid var(--line)}
-.menupanel a:last-child{color:var(--amber)}
+/* One link per line, and it has to say so itself: the nav's flex rule no longer
+   reaches in here, but nothing else was making these stack either. */
+.menupanel .wrap{display:block;padding-top:4px;padding-bottom:max(10px,env(safe-area-inset-bottom))}
+.menupanel a{display:flex;align-items:center;min-height:52px;padding:14px 2px;color:var(--ink);text-decoration:none;font-size:1.02rem;font-weight:600;border-bottom:1px solid var(--line)}
+.menupanel a:last-child{color:var(--amber);border-bottom:0}
+.menupanel a:active{color:var(--amber)}
 
 @media(max-width:640px){
   .navlinks a:not(.btn){display:none}
   .navlinks a.btn{padding:10px 16px;font-size:.88rem}
-  .menubtn{display:inline-block}
+  .menubtn{display:inline-block;padding:12px 14px}
   .menupanel{display:block;opacity:0;visibility:hidden;transform:translateY(-6px);
     transition:opacity .18s var(--ease-out),transform .18s var(--ease-out),visibility 0s .18s}
   nav.open .menupanel{opacity:1;visibility:visible;transform:none;transition-delay:0s}

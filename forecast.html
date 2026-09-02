@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>What would another install a month be worth? | Relance</title>
 <meta name="description" content="Build your picture, see your number. What the enquiries you miss are worth over a year, and what one more install a month would mean.">
 <link rel="canonical" href="https://www.relance.co.uk/forecast.html">
@@ -35,8 +35,13 @@
   .fcfield{margin-bottom:20px}
 
   .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+  /* Four options do not fit across a phone without the labels breaking mid-word,
+     so they pair up until there is room for a single row. */
+  .seg.four{grid-template-columns:repeat(2,1fr)}
+  @media(min-width:600px){.seg.four{grid-template-columns:repeat(4,1fr)}}
+  [hidden]{display:none}
   .seg button{background:rgba(255,255,255,.03);border:1px solid var(--line,#213048);color:var(--slate,#93a7bc);
-    padding:14px 8px;border-radius:12px;font:inherit;font-weight:700;font-size:.94rem;cursor:pointer;transition:.15s}
+    min-height:52px;padding:14px 8px;border-radius:12px;font:inherit;font-weight:700;font-size:.94rem;cursor:pointer;transition:.15s}
   .seg button:hover{color:#eef4fa;border-color:rgba(255,122,26,.5)}
   .seg button.on{border-color:var(--amber,#ff7a1a);color:#eef4fa;background:rgba(255,122,26,.12)}
 
@@ -83,7 +88,10 @@
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
 </head>
-<body data-no-modal>
+<!-- No floating demo button on this page. It is fixed to the bottom of the
+     screen, and on a phone that means it sits on top of the form the whole way
+     down. This page has one job and a second CTA covering the inputs fights it. -->
+<body data-no-modal data-no-fab>
 <a class="skip" href="#main">Skip to content</a>
 <nav>
   <div class="wrap">
@@ -126,11 +134,18 @@
 
         <div class="fcfield">
           <label class="fcq">What do you install?</label>
-          <div class="seg" id="segWhat">
+          <div class="seg four" id="segWhat">
             <button type="button" data-v="heating" class="on">Heat pumps</button>
             <button type="button" data-v="solar">Solar</button>
             <button type="button" data-v="both">Both</button>
+            <button type="button" data-v="other">Other</button>
           </div>
+        </div>
+
+        <div class="fcfield" id="otherWrap" hidden>
+          <label class="fcq" for="qOther">Tell us what you install</label>
+          <span class="fcnote">Biomass, EV chargers, underfloor heating, whatever it is.</span>
+          <div class="inp"><input type="text" id="qOther" maxlength="80" autocomplete="off" placeholder="What you fit"></div>
         </div>
 
         <div class="fcfield">
@@ -246,7 +261,12 @@
   wireSeg('segWhat', function (v) {
     what = v;
     var el = document.getElementById('q1');
-    if (!el.value) el.placeholder = v === 'solar' ? '6500' : (v === 'both' ? '9500' : '11000');
+    // The suggested install value is a hint, not a claim. For "other" we have no
+    // honest median to offer, so we ask for theirs instead of inventing one.
+    if (!el.value) el.placeholder = v === 'solar' ? '6500' : (v === 'both' ? '9500' : (v === 'other' ? 'Your figure' : '11000'));
+    var wrap = document.getElementById('otherWrap');
+    wrap.hidden = v !== 'other';
+    if (v === 'other') document.getElementById('qOther').focus({ preventScroll: true });
   });
   wireSeg('segNow', function (v) { now = v; });
 
@@ -272,6 +292,9 @@
     if (!isFinite(acv) || acv < 1) { err.textContent = 'What is one install worth to you?'; return; }
     if (!now) { err.textContent = 'How many installs are you doing a month at the moment?'; return; }
 
+    var otherText = document.getElementById('qOther').value.trim();
+    if (what === 'other' && !otherText) { err.textContent = 'Tell us what you install and we will use your own numbers.'; return; }
+
     var n = document.getElementById('fName').value.trim();
     var e = document.getElementById('fEmail').value.trim();
     var p = document.getElementById('fPhone').value.trim();
@@ -286,7 +309,10 @@
       email: e,
       phone: p,
       industry: what === 'both' ? 'heating' : what,
+      installs: otherText,
       acv: String(acv),
+      perWeek: String(perWeek),
+      missedWeek: String(missedWeek),
       installsNow: now,
       consent: true
     }, 1);
