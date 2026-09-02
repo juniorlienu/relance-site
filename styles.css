@@ -109,7 +109,15 @@ nav .wrap{display:flex;align-items:center;padding-top:16px;padding-bottom:16px}
 .pb.typing i:nth-child(2){animation-delay:.15s}
 .pb.typing i:nth-child(3){animation-delay:.3s}
 @keyframes tp{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
-.ptag{align-self:center;font-size:.7rem;color:var(--slate);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;opacity:0;transition:opacity .5s var(--ease-out)}
+/* The outcome label is empty until the conversation ends, and the two labels it
+   cycles between are different lengths. Left to itself it appeared from nothing
+   and changed line count, which moved everything below the phone down the page
+   while somebody was reading it. So the space is reserved from the start and
+   never changes: two lines' worth, always, whatever is in it. Measured on the
+   live page: without this, the label goes 0px, 18px, 36px as the demo cycles,
+   and everything below the phone slides down the page twice a minute. iOS
+   Safari has no scroll anchoring, so on a phone you feel every one of them. */
+.ptag{align-self:stretch;display:flex;align-items:center;justify-content:center;text-align:center;min-height:40px;font-size:.7rem;color:var(--slate);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;opacity:0;transition:opacity .5s var(--ease-out)}
 .ptag.show{opacity:1}
 
 
