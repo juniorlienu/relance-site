@@ -91,7 +91,7 @@
          ['out',"My boiler's leaking and I've got no hot water"],
          ['in',"Sorry to hear that. Is anyone in the house elderly, unwell or very young?"],
          ['out',"Yes, my son is 8"],
-         ['in',"Thank you for telling us. The on-call engineer will ring you within the hour."]]},
+         ['in',"Thank you for telling us. I have passed this to the on-call engineer as a priority and flagged it to the owner."]]},
     solar: {name:'Westfield Renewables', sub:'replies in seconds', tag:'Survey booked',
       m:[['in',"Sorry we missed your call, this is Westfield Renewables. What can we help with?"],
          ['out',"Looking at solar panels, maybe a battery too"],
@@ -103,15 +103,15 @@
     aesthetics: {name:'Lumiere Aesthetics', sub:'replies in seconds', tag:'Consultation booked',
       m:[['in',"Sorry we missed you, this is Lumiere Aesthetics. How can we help?"],
          ['out',"How much is lip filler?"],
-         ['in',"Lip filler is from 180 to 280 pounds depending on volume, with a consultation first. Would you like us to call you to book one in?"],
-         ['out',"Yes please, after 5pm"],
-         ['in',"Lovely. The team will ring you after 5 to get you booked."]]},
+         ['in',"That needs a consultation first so we can see what you are after. I have Thursday at 5.30 or Friday at 6, which suits?"],
+         ['out',"Thursday works"],
+         ['in',"Booked for Thursday at 5.30. You will get a confirmation by text."]]},
     clinics: {name:'AM Sports Clinic', sub:'replies in seconds', tag:'Assessment booked',
       m:[['in',"Sorry we missed your call, this is AM Sports Clinic. What can we help with?"],
          ['out',"I've pulled something in my lower back, it's bad"],
          ['in',"That sounds painful. A first visit is 65 pounds for a full hour including assessment. The practitioner will call you between patients to get you seen."],
          ['out',"How soon can I come in?"],
-         ['in',"Evening slots go quickly, so they'll ring shortly with the earliest time."]]}
+         ['in',"I have Wednesday at 6.15 or Thursday at 7, both after work. Which would you like?"]]}
   };
 
   function runPhone(el){
