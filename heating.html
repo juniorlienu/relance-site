@@ -3,313 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Heat Pump &amp; Boiler Installers | Relance</title>
-<meta name="description" content="A missed enquiry is an £11,000 install ringing someone else's phone. Relance answers in seconds, qualifies it, and books the survey.">
+<title>Heat pumps and boilers | Relance</title>
+<meta name="description" content="Lance answers in seconds, books the survey, keeps it, and chases the quote until it&#x27;s decided.">
 <link rel="canonical" href="https://www.relance.co.uk/heating.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Relance">
 <meta property="og:url" content="https://www.relance.co.uk/heating.html">
-<meta property="og:title" content="Heat Pump & Boiler Installers | Relance">
-<meta property="og:description" content="A missed enquiry is an £11,000 install ringing someone else's phone. Relance answers in seconds, qualifies it, and books the survey.">
+<meta property="og:title" content="Heat pumps and boilers | Relance">
+<meta property="og:description" content="Lance answers in seconds, books the survey, keeps it, and chases the quote until it&#x27;s decided.">
 <meta property="og:image" content="https://www.relance.co.uk/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Heat Pump & Boiler Installers | Relance">
-<meta name="twitter:description" content="A missed enquiry is an £11,000 install ringing someone else's phone. Relance answers in seconds, qualifies it, and books the survey.">
+<meta name="twitter:title" content="Heat pumps and boilers | Relance">
+<meta name="twitter:description" content="Lance answers in seconds, books the survey, keeps it, and chases the quote until it&#x27;s decided.">
 <meta name="twitter:image" content="https://www.relance.co.uk/og-image.png">
+<meta name="theme-color" content="#FBFBF8">
 <link rel="icon" type="image/svg+xml" href="relance-favicon.svg">
+<link rel="apple-touch-icon" href="relance-favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-
-<style>
-  /* qualification beside the diary */
-  .qd{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px;align-items:start}
-  @media(max-width:900px){.qd{grid-template-columns:1fr}}
-  .qasks{list-style:none;display:flex;flex-direction:column;gap:0}
-  .qasks li{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);align-items:flex-start}
-  .qasks li:last-child{border-bottom:0}
-  .qasks .qn{flex:0 0 26px;height:26px;border-radius:50%;background:rgba(255,122,26,.14);color:var(--amber);
-    display:grid;place-items:center;font-size:.78rem;font-weight:800;margin-top:2px}
-  .qasks b{color:#fff;display:block;font-size:1rem}
-  .qasks span.qs{color:var(--slate);font-size:.9rem}
-
-  /* the diary card, styled like the owner dashboard */
-  .diary{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px;position:sticky;top:90px}
-  @media(max-width:900px){.diary{position:static}}
-  .diary h4{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:4px}
-  .diary .dsub{color:var(--slate);font-size:.85rem;margin-bottom:16px}
-  .drow{display:flex;gap:13px;padding:14px 0;border-top:1px solid var(--line)}
-  .dwhen{flex:0 0 62px;font-size:.78rem;color:var(--slate);line-height:1.35}
-  .dwhen b{display:block;color:#fff;font-size:.95rem}
-  .dwhat{color:#fff;font-weight:700;font-size:.95rem}
-  .dwhere{color:var(--slate);font-size:.83rem;margin-top:1px}
-  .dval{margin-left:auto;color:var(--amber);font-weight:800;font-size:.95rem;white-space:nowrap}
-  .dflags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-  .dflags i{font-style:normal;background:rgba(255,122,26,.13);border:1px solid rgba(255,122,26,.3);
-    color:#ffc46b;font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:999px}
-
-  /* the calendar week */
-  .calweek{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:32px}
-  @media(max-width:760px){.calweek{grid-template-columns:repeat(2,1fr)}}
-  .cday{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:13px 12px;min-height:120px}
-  .cday h5{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:10px}
-  .cslot{border-radius:9px;padding:8px 9px;margin-bottom:7px;font-size:.78rem;line-height:1.35}
-  .cslot.ai{background:rgba(255,122,26,.13);border:1px solid rgba(255,122,26,.36)}
-  .cslot.you{background:rgba(255,255,255,.05);border:1px solid var(--line)}
-  .cslot b{display:block;color:#fff;font-size:.82rem}
-  .cslot span{color:var(--slate)}
-  .cfree{color:#5d7089;font-size:.76rem;font-style:italic;padding:6px 2px}
-  .clegend{display:flex;gap:18px;justify-content:center;margin-top:18px;font-size:.83rem;color:var(--slate);flex-wrap:wrap}
-  .clegend i{width:11px;height:11px;border-radius:3px;display:inline-block;margin-right:7px;vertical-align:-1px}
-  .clegend i.a{background:rgba(255,122,26,.6);border:1px solid var(--amber)}
-  .clegend i.b{background:rgba(255,255,255,.12);border:1px solid var(--line)}
-
-  /* multi channel */
-  .chans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
-  @media(max-width:860px){.chans{grid-template-columns:1fr}}
-  .chan{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
-  .chan .ctop{display:flex;align-items:center;gap:9px;margin-bottom:13px}
-  .chan .cico{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;font-size:.72rem;font-weight:800;color:#fff}
-  .chan .cname{font-size:.83rem;font-weight:700;color:#fff}
-  .chan .ctime{margin-left:auto;font-size:.72rem;color:#5d7089}
-  .bub{border-radius:12px;padding:9px 12px;font-size:.85rem;line-height:1.45;margin-bottom:8px;max-width:92%}
-  .bub.in{background:rgba(255,255,255,.06);color:#dce6f0;border-bottom-left-radius:4px}
-  .bub.out{background:var(--amber);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
-  .creply{font-size:.73rem;color:#5d7089;text-align:right;margin-top:2px}
-</style>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
 </head>
-<body data-no-modal>
+<body>
 <a class="skip" href="#main">Skip to content</a>
-<nav>
+<nav class="top" aria-label="Main">
   <div class="wrap">
-    <a class="brand" href="index.html"><svg width="30" height="30" viewBox="0 0 100 100" aria-hidden="true" style="flex:0 0 auto"><rect width="100" height="100" rx="26" fill="#0e1b2b"/><circle cx="50" cy="50" r="22" fill="none" stroke="#ff7a1a" stroke-width="9" stroke-linecap="round" stroke-dasharray="107 31" transform="rotate(-50 50 50)"/><circle cx="50" cy="50" r="6.4" fill="#ff7a1a"/></svg>Relance</a>
-    <div class="navlinks">
-      <a href="see-it.html">See it</a>
-      <a href="fees.html">What's included</a>
-      <a href="book.html" class="btn btn-dark">Book a call</a>
-    </div>
+    <a class="brand" href="index.html"><svg width="28" height="28" viewBox="0 0 100 100" aria-hidden="true" style="flex:0 0 auto"><rect width="100" height="100" rx="26" fill="#0F1720"/><circle cx="50" cy="50" r="22" fill="none" stroke="#EE6A17" stroke-width="9" stroke-linecap="round" stroke-dasharray="107 31" transform="rotate(-50 50 50)"/><circle cx="50" cy="50" r="6.4" fill="#EE6A17"/></svg>Relance</a>
+    <div class="navlinks"><a href="see-it.html">See it</a><a href="lance.html">The team</a><a href="fees.html">What's included</a><a href="book.html" class="btn btn-ink">Book a call</a></div>
     <button class="menubtn" type="button" aria-expanded="false" aria-controls="mobmenu">Menu</button>
   </div>
-  <div class="menupanel" id="mobmenu">
-    <div class="wrap">
-      <a href="see-it.html">See it</a>
-      <a href="solar.html">Solar &amp; battery</a>
-      <a href="heating.html">Heat pumps &amp; boilers</a>
-      <a href="fees.html">What's included</a>
-      <a href="forecast.html">The cost</a>
-      <a href="about.html">About</a>
-      <a href="book.html">Book a call</a>
-    </div>
-  </div>
+  <div class="menupanel" id="mobmenu"><div class="wrap"><a href="see-it.html">See it</a><a href="lance.html">The team</a><a href="fees.html">What's included</a><a href="forecast.html">Work out your number</a><a href="solar.html">Solar and battery</a><a href="heating.html">Heat pumps and boilers</a><a href="about.html">About</a><a href="book.html">Book a call</a></div></div>
 </nav>
 <main id="main">
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">For heat pump and boiler installers</span>
-    <h1 style="margin-top:14px;max-width:16ch">A missed enquiry is an <span class="hl">&pound;11,000 install</span> ringing someone else&rsquo;s phone.</h1>
-    <p class="lead" style="max-width:56ch">You can't answer while you're on a job. <b class="rl">Relance</b> answers for you in about eight seconds, in your firm&rsquo;s voice, and <span style="color:var(--ink);font-weight:600">books the survey before they ring the next installer</span>.</p>
-    <div class="cta-row">
-      <a href="#demo" class="btn btn-primary">Try it live &rarr;</a>
-      <a href="forecast.html" class="btn btn-ghost">What is it costing you?</a>
-    </div>
-    <div class="trust">
-      <span><span class="tick">&check;</span> Your existing number</span>
-      <span><span class="tick">&check;</span> Live in days, not weeks</span>
-      <span><span class="tick">&check;</span> No setup fee, no tie-in</span>
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">For heat pump and boiler installers</span>
+        <h1 class="anim">Nothing slips.<br><span class="l">Not a <span class="w">call</span>,</span><br><span class="l">not a <span class="w">survey</span>,</span><br><span class="l">not a <span class="w u">job</span>.</span></h1>
+        <p class="lead">You can't answer while you're in a plant room. Lance answers in about eight seconds, in your firm's voice, books the survey before they ring the next installer, and chases the quote.</p>
+        <div class="cta-row"><a href="tel:+447886071298" class="btn btn-primary">Ring the demo line</a><a href="book.html" class="btn btn-ghost">Book a call</a></div>
+        <div class="under"><span>Your existing number</span><span>Live in days</span><span>Never a price without a survey</span></div>
+      </div>
+      <div class="demo-unit">
+  <div class="phone" data-convo="heating">
+    <div class="ptop"><div class="pav">W</div><div><div class="pname">Westfield Renewables</div><div class="psub">replies in about eight seconds</div></div></div>
+    <div class="pmiss"><span>Missed call</span><time>19:42</time></div>
+    <div class="pmsgs" aria-live="polite" aria-atomic="false"></div>
+  </div>
+  <ol class="stages" aria-label="What each step wins">
+    <li><span class="st-t">19:42</span><span class="st-l">Answered while they still care</span></li>
+    <li><span class="st-t">Thu 10:00</span><span class="st-l">Survey in your diary</span></li>
+    <li><span class="st-t">Day 2</span><span class="st-l">Quote chased. Job signed</span></li>
+    <li><span class="st-t">Mon 08:00</span><span class="st-l">You get the number</span></li>
+  </ol>
+</div>
     </div>
   </div>
 </header>
 
 <section>
   <div class="wrap">
-    <div class="split-2">
-      <div class="rv">
-        <span class="eyebrow">The leak</span>
-        <h2 style="margin-top:12px">They don't leave a voicemail. They ring the next one.</h2>
-        <p style="margin-top:16px">A homeowner deciding on a heat pump or a new boiler is shopping. They call three or four firms in an afternoon and go with whoever answers, not whoever is best.</p>
-        <p style="margin-top:14px"><b style="color:#fff">You will never know it happened.</b> No complaint, no missed voicemail, no trace. Just an install that went somewhere else.</p>
-      </div>
-      <div class="figure rv">
-        <div class="n">&pound;11,000</div>
-        <small>a typical air source heat pump install, which is what one missed enquiry is really worth</small>
-      </div>
-    </div>
+    <div class="section-head"><h2>One enquiry, start to finish.</h2><p>Answered in about eight seconds, qualified, booked. Then the survey kept, the quote chased four times, your old leads worked, and the number texted to you every Monday.</p></div>
+    <figure class="film dt wide"><video data-loop muted loop playsinline preload="metadata" poster="media/journey.jpg" aria-label="Sample conversation"><source src="media/journey.mp4" type="video/mp4"></video><button type="button" class="sound" aria-pressed="false" aria-label="Turn sound on">Sound off</button><figcaption class="vh">Sample conversation</figcaption></figure><figure class="film mb tall"><video data-loop muted loop playsinline preload="metadata" poster="media/journey-tall.jpg" aria-label="Sample conversation"><source src="media/journey-tall.mp4" type="video/mp4"></video><button type="button" class="sound" aria-pressed="false" aria-label="Turn sound on">Sound off</button><figcaption class="vh">Sample conversation</figcaption></figure>
+    <p style="margin-top:24px"><a class="textlink" href="lance.html">Meet the whole team</a></p>
   </div>
 </section>
 
-<section class="how">
+<section class="night close">
   <div class="wrap">
-    <div class="center rv" style="max-width:620px;margin:0 auto">
-      <span class="eyebrow">Watch it happen</span>
-      <h2 style="margin-top:12px">A real conversation, start to booked.</h2>
-    </div>
-    <div style="margin-top:40px">
-      <div class="phone rv" data-convo="heating">
-        <div class="ptop"><div class="pav">R</div><div><div class="pname">Relance</div><div class="psub">replies in seconds</div></div></div>
-        <div class="pmsgs"></div>
-        <div class="ptag"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="center rv" style="max-width:660px;margin:0 auto">
-      <span class="eyebrow">Not just an auto reply</span>
-      <h2 style="margin-top:12px">It qualifies the job, then books the survey.</h2>
-      <p style="margin-top:14px">One question at a time, the way a good office manager would. Never a price, because nobody has seen the job yet.</p>
-    </div>
-    <div class="qd">
-      <ul class="qasks rv">
-        <li><span class="qn">1</span><span><b>What are you heating with now?</b><span class="qs">Oil is the strongest enquiry you get. It gets flagged before it reaches you.</span></span></li>
-        <li><span class="qn">2</span><span><b>How old is the boiler?</b><span class="qs">Turns a repair call into a replacement survey.</span></span></li>
-        <li><span class="qn">3</span><span><b>Is there a timescale?</b><span class="qs">Before winter is a buyer. Just looking is not.</span></span></li>
-        <li><span class="qn">4</span><span><b>Would you spread the cost?</b><span class="qs">Removes the objection before you ever hear it.</span></span></li>
-        <li><span class="qn">5</span><span><b>What's the postcode?</b><span class="qs">So nobody drives to a job outside your patch.</span></span></li>
-      </ul>
-      <div class="diary rv">
-        <h4>Your diary, Monday morning</h4>
-        <div class="dsub">Every survey arrives with what it learned attached.</div>
-        <div class="drow">
-          <div class="dwhen">Tue<b>09:00</b></div>
-          <div><div class="dwhat">Heat pump survey</div><div class="dwhere">Exeter, 4 bed detached</div>
-            <div class="dflags"><i>On oil</i> <i>High bills</i> <i>Ready now</i></div></div>
-          <div class="dval">£11,000</div>
-        </div>
-        <div class="drow">
-          <div class="dwhen">Wed<b>10:00</b></div>
-          <div><div class="dwhat">Heat pump survey</div><div class="dwhere">Truro, 4 bed barn</div>
-            <div class="dflags"><i>On oil</i> <i>Wants finance</i></div></div>
-          <div class="dval">£11,000</div>
-        </div>
-        <div class="drow">
-          <div class="dwhen">Thu<b>08:30</b></div>
-          <div><div class="dwhat">Boiler replacement</div><div class="dwhere">Banbury, 3 bed semi</div>
-            <div class="dflags"><i>12+ years old</i> <i>Broken before</i></div></div>
-          <div class="dval">£2,600</div>
-        </div>
-      </div>
-    </div>
-    <p class="fee-note rv">You know which one to go to first before you have opened the van.</p>
-  </div>
-</section>
-
-<section class="how" id="demo">
-  <div class="wrap">
-    <div class="demo">
-      <div>
-        <span class="kicker">Don't take our word for it</span>
-        <h3>Ring the number. Hang up. Watch your phone.</h3>
-        <p>This is the live system, right now. Call it, let it ring out like a missed call, then wait a few seconds.</p>
-        <a class="num" href="tel:+447576584993"><span>+44 7576 584993<small>Call, then let it ring out</small></span></a>
-        <p class="note">The demo runs on a sample firm, Meridian Heating, so the reply mentions them. Imagine your name, your patch, your voice.</p>
-      </div>
-      <ul class="steps">
-        <li><span class="n">1</span><span><b>Call and let it ring out.</b></span></li>
-        <li><span class="n">2</span><span><b>You get a text back in seconds.</b></span></li>
-        <li><span class="n">3</span><span><b>Now be your own customer.</b> Send the oil boiler that has packed in again, the one asking about a heat pump, the landlord with four properties. Use a real one from this week.</span></li>
-        <li><span class="n">4</span><span><b>Push it.</b> Change your mind, be vague, ask a follow up. Then ask how many of those went unanswered last month.</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="how">
-  <div class="wrap">
-    <div class="center rv" style="max-width:640px;margin:0 auto">
-      <span class="eyebrow">Real slots, not guesses</span>
-      <h2 style="margin-top:12px">It books into the diary you actually keep.</h2>
-      <p style="margin-top:14px">Two way synced, so a job you took on Tuesday blocks the slot before anyone can offer it. It never names a time it cannot see.</p>
-    </div>
-    <div class="calweek rv">
-    <div class="cday"><h5>Mon</h5>
-      <div class="cslot you"><b>08:00</b><span>Install, day 2</span></div>
-      <div class="cfree">10:00 onwards free</div>
-    </div>
-    <div class="cday"><h5>Tue</h5>
-      <div class="cslot ai"><b>09:00</b><span>Heat pump survey</span></div>
-      <div class="cfree">11:00 free</div>
-      <div class="cslot ai"><b>14:00</b><span>Boiler survey</span></div>
-    </div>
-    <div class="cday"><h5>Wed</h5>
-      <div class="cslot ai"><b>10:00</b><span>Heat pump survey</span></div>
-      <div class="cslot you"><b>15:00</b><span>Service call</span></div>
-    </div>
-    <div class="cday"><h5>Thu</h5>
-      <div class="cslot ai"><b>08:30</b><span>Boiler replacement</span></div>
-      <div class="cfree">12:00 onwards free</div>
-    </div>
-    <div class="cday"><h5>Fri</h5>
-      <div class="cslot you"><b>09:00</b><span>Install, day 1</span></div>
-      <div class="cfree">14:00 free</div>
-    </div>
-    </div>
-    <div class="clegend"><span><i class="a"></i>Booked while you were working</span><span><i class="b"></i>Booked by you</span></div>
-    <p class="fee-note rv">Ninety minutes a survey, an hour between them for travel, and never sooner than tomorrow.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="center rv" style="max-width:660px;margin:0 auto">
-      <span class="eyebrow">Every way they reach you</span>
-      <h2 style="margin-top:12px">One brain, wherever the enquiry lands.</h2>
-      <p style="margin-top:14px">Missed calls, texts, Instagram, Facebook, WhatsApp, web chat, Google and email. Same voice, same questions, same diary.</p>
-    </div>
-    <div class="chans">
-    <div class="chan rv">
-      <div class="ctop"><span class="cico" style="background:#2fd07a">SMS</span><span class="cname">Missed call, then text</span><span class="ctime">19:42</span></div>
-      <div class="bub in">Rang earlier about a heat pump, we're on oil and the bills are frightening</div>
-      <div class="bub out">Oil is exactly where a heat pump makes the biggest difference. Is there a timescale you're working to?</div>
-      <div class="bub in">Before winter ideally</div>
-      <div class="creply">Flagged: On oil, Ready now</div>
-    </div>
-    <div class="chan rv">
-      <div class="ctop"><span class="cico" style="background:#c13584">IG</span><span class="cname">Instagram DM</span><span class="ctime">21:26</span></div>
-      <div class="bub in">hi do you do heat pumps? </div>
-      <div class="bub out">We do. What are you heating with at the moment?</div>
-      <div class="bub in">oil, it's costing us a fortune</div>
-      <div class="creply">Flagged: On oil, High bills</div>
-    </div>
-    <div class="chan rv">
-      <div class="ctop"><span class="cico" style="background:#25d366">WA</span><span class="cname">WhatsApp</span><span class="ctime">07:15</span></div>
-      <div class="bub in">Morning, boiler's packed in again. Third time this year</div>
-      <div class="bub out">Sorry to hear that. How old is it, roughly?</div>
-      <div class="bub in">About 14 years</div>
-      <div class="creply">Flagged: 12+ years old, Broken before</div>
-    </div>
-    </div>
-    <p class="fee-note rv">Every one of those arrived outside office hours. All three were answered, qualified, and offered a slot.</p>
-  </div>
-</section>
-
-<section id="pricing">
-  <div class="wrap">
-    <div class="center rv" style="max-width:600px;margin:0 auto">
-      <span class="eyebrow">Not for everyone</span>
-      <h2 style="margin-top:12px">One flat monthly price. Recover one install and it has paid for the year.</h2>
-      <p style="margin-top:14px">No setup fee. No contract. Your existing number. Cancel any time, though we'd rather keep you because it's making you money. We only take on firms it genuinely suits, so book fifteen minutes and we'll go through your numbers and the price together.</p>
-      <div class="cta-row" style="justify-content:center;margin-top:28px">
-        <a href="book.html" class="btn btn-primary">Book a 15 minute call &rarr;</a>
-        <a href="see-it.html" class="btn btn-demo">Watch the demo</a>
-      </div>
-    </div>
+    <h2>Stop paying for enquiries you don't answer.</h2>
+    <div class="cta-row"><a href="book.html" class="btn btn-primary">Book a call</a><a href="tel:+447886071298" class="btn btn-ghost">Ring the demo line</a></div>
+    <p class="aside">Fifteen minutes, and you'll know by the end whether it's worth doing. Or ring <a href="tel:+447886071298">07886 071298</a>, let it ring out, and watch the reply land.</p>
   </div>
 </section>
 
 </main>
 <footer>
   <div class="wrap">
-    <a class="brand" href="index.html"><svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true" style="flex:0 0 auto"><circle cx="50" cy="50" r="34" fill="none" stroke="#ff7a1a" stroke-width="11" stroke-linecap="round" stroke-dasharray="165 49" transform="rotate(-50 50 50)"/><circle cx="50" cy="50" r="9" fill="#ff7a1a"/></svg>Relance</a>
-    <div>Turn missed enquiries into booked revenue. Built for UK renewables installers.</div>
-    <div class="footlinks"><a href="see-it.html">See it</a><a href="fees.html">What's included</a><a href="forecast.html">The cost</a><a href="about.html">About</a><a href="privacy.html">Privacy</a></div>
-    <div style="margin-top:8px;opacity:.7">&copy; 2026 <b class="rl">Relance</b>. Demo line runs on a sample company for illustration.</div>
+    <a class="brand" href="index.html"><svg width="28" height="28" viewBox="0 0 100 100" aria-hidden="true" style="flex:0 0 auto"><rect width="100" height="100" rx="26" fill="#0F1720"/><circle cx="50" cy="50" r="22" fill="none" stroke="#EE6A17" stroke-width="9" stroke-linecap="round" stroke-dasharray="107 31" transform="rotate(-50 50 50)"/><circle cx="50" cy="50" r="6.4" fill="#EE6A17"/></svg>Relance</a>
+    <div class="footlinks"><a href="see-it.html">See it</a><a href="lance.html">The team</a><a href="fees.html">What's included</a><a href="forecast.html">Your number</a><a href="about.html">About</a><a href="privacy.html">Privacy</a></div>
+    <div class="footnote">&copy; 2026 Relance. The demo lines and the dashboard sample run on made-up firms so nobody's real customers appear on this site.</div>
   </div>
 </footer>
-
 <script src="site.js" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
