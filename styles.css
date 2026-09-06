@@ -124,6 +124,7 @@ nav.top > .wrap{display:flex;align-items:center;gap:20px;padding-top:14px;paddin
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px}}
 .hero h1 .hl{color:var(--amber)}
 .hero .lead{margin-top:22px}
+.hero .lead+.lead{margin-top:10px}
 .price-line{margin-top:18px;font-weight:600;color:var(--ink)}
 .price-line b{font-family:var(--display);font-size:1.25em;letter-spacing:-.02em}
 
