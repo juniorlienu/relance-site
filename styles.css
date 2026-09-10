@@ -259,6 +259,9 @@ footer .brand{margin-right:0}
 .footlinks{display:flex;flex-wrap:wrap;gap:8px 22px;margin-left:auto}
 .footlinks a{color:var(--muted);text-decoration:none}
 .footlinks a:hover{color:var(--ink)}
+.footother{flex-basis:100%;font-size:.88rem;padding-top:4px}
+.footother a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+.footother a:hover{border-bottom-color:var(--amber)}
 .footnote{flex-basis:100%;font-size:.84rem}
 
 /* Page heads */
